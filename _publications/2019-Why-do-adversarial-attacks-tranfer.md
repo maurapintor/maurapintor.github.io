@@ -2,7 +2,7 @@
 title: "Why do adversarial attacks transfer? explaining transferability of evasion and poisoning attacks"
 collection: publications
 permalink: /publication/2019-why-do-adversarial-attacks-transfer
-excerpt: 'Definition of useful metrics related to the attacks' transferability.
+excerpt: "Definition of useful metrics related to the attacks' transferability."
 date: 2019-08-14
 venue: 'USENIX Security 2019'
 paperurl: 'http://academicpages.github.io/files/paper1.pdf'
