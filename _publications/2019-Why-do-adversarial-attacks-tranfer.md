@@ -3,9 +3,9 @@ title: "Why do adversarial attacks transfer? explaining transferability of evasi
 collection: publications
 permalink: /publication/2019-why-do-adversarial-attacks-transfer
 excerpt: 'Definition of useful metrics related to the attacks' transferability.
-date: 2019
+date: 14-08-2019
 venue: 'USENIX Security 2019'
-paperurl: 'https://www.usenix.org/system/files/sec19-demontis.pdf'
+paperurl: 'http://academicpages.github.io/files/paper1.pdf'
 citation: 'Your Name, You. (2009). &quot;Why do adversarial attacks transfer? explaining transferability of evasion and poisoning attacks.&quot; <i>28th USENIX Security Symposium 2019</i>. 1(1).'
 ---
 
