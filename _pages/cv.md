@@ -11,30 +11,27 @@ redirect_from:
 
 Education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
+* B.S. in Electronic Engineering, University of Cagliari (Italy), 2016
+* M.S. in Telecommunications Engineering, University of Cagliari (Italy), 2018
+* Ph.D in Electronic and Computer Engineering, University of Cagliari (Italy), 2021 (expected)
 
 Work experience
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* 02/2018 - 07/2018 : Software developer
+  * Pluribus One S.r.l., Cagliari (Italy)
+  * Duties included: Development of systems for internet traffic security.
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* 07/2017 - 12/2017 : Collaborator at University of Cagliari
+  * University of Cagliari (Italy)
+  * Duties included: Project MIUR - Smart Cities - Cagliari Port 2020. Hardware and 
+  software design and implementation of IoT systems for data gathering and visualization. 
+  Software development for Linux OS based microprocessor (Raspberry Pi), sensor integration, 
+  data management and cloud storage.
+
+* 02/2017 - 06/2018 : Academic Tutor
+  * University of Cagliari (Italy)
+  * Duties included: Tutor for Computer Science course, Python language.
   
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
 
 Publications
 ======
@@ -54,6 +51,27 @@ Teaching
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Service and leadership
+Awards and accomplishments
 ======
-* Currently signed in to 43 different slack teams
+* 06/2017 Best IoT - Week Hackathon Project - Siemens Award
+    * 1st place
+    * Project: Be Right Beach
+    * Sustainable tourism development, safety improvement, 
+    environment preservation and economic growth. 
+    Design and implementation of a system composed by two 
+    connected stations that provide sensor values and an 
+    important real-time analysis about the crowdedness.
+    * [Link to the article](https://iot-epi.eu/2017/06/19/highlights-of-hackathon-at-iot-week-geneva-2017/)
+
+* 01/2017 Stanford University on Coursera
+    * Machine Learning
+    * Certificate obtained on January 25th 2017
+    * [Link to the certificate](https://www.coursera.org/account/accomplishments/verify/EW5CF6L9RQUR)
+
+* 04/2018
+    * Android Basics Nanodegree by Google
+    * Android development
+    * Certificate obtained on April 2nd 2018
+    * [Link to the certificate](https://confirm.udacity.com/DWAAHGAU) 
+
+
