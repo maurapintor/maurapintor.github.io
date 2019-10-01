@@ -7,13 +7,13 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Your Name / Site Title"
+title                    : "Maura Pintor"
 title_separator          : "-"
-name                     : &name "Your Name"
-description              : &description "personal description"
-url                      : https://academicpages.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+name                     : &name "Maura Pintor"
+description              : &description "PhD student at University of Cagliari"
+url                      : https://maupin1991.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "academicpages/academicpages.github.io"
+repository               : "maupin1991/maupin1991.github.io"
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
@@ -80,15 +80,15 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Sidebar Name"
+  name             : "Maura Pintor"
   avatar           : "profile.png"
-  bio              : "Your biography for the left-hand sidebar"
-  location         : "Location"
+  bio              : "Maura Pintor (female) is a Ph.D. Student at the University of Cagliari, Italy. She received the MSc degree in Telecommunications Engineering with honors in 2018, from the University of Cagliari (Italy) discussing a graduation thesis titled "A novel temporal descriptor for analyzing small and large crowds by computer vision algorithms". Her research interests include adversarial machine learning and machine learning explainability methods, with applications in cybersecurity. She is co-author of the paper “Why Do Adversarial Attacks Transfer? Explaining Transferability of Evasion and Poisoning Attacks”, recently accepted to USENIX 2019. She is currently collaborating with Pluribus One in the European Project ALOHA (https://www.aloha-h2020.eu/), aimed to create a framework for optimizing the design of Deep Learning systems on heterogeneous low-energy computing platforms. Her contribution to the project focuses on the security evaluation and mitigation strategies against adversarial perturbations."
+  location         : "Cagliari, Italy"
   employer         :
   pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
-  googlescholar    : "http://yourfullgooglescholarurl.com"
+  googlescholar    : "https://scholar.google.it/citations?user=Tu45bY4AAAAJ&hl=it"
   email            :
-  researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
+  researchgate     :  "https://www.researchgate.net/profile/Maura_Pintor2"
   uri              :
   bitbucket        :
   codepen          :
@@ -96,20 +96,20 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "academicpages"
+  github           : "https://github.com/Maupin1991"
   google_plus      :
   keybase          :
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         :
-  orcid            : "http://orcid.org/yourorcidurl"
+  linkedin         : "https://it.linkedin.com/in/maura-pintor"
+  orcid            :
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : "replacethistwitterhandle"
+  twitter          : "Maupin1991"
   vine             :
   weibo            :
   xing             :
