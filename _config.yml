@@ -85,7 +85,7 @@ author:
   bio              : "Second year PhD student at University of Cagliari, Italy."
   location         : "Cagliari, Italy"
   employer         :
-  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
+  pubmed           :
   googlescholar    : "https://scholar.google.it/citations?user=Tu45bY4AAAAJ&hl=it"
   email            : "maura.pintor@unica.it"
   researchgate     : "https://www.researchgate.net/profile/Maura_Pintor2"
@@ -176,16 +176,16 @@ kramdown:
 # Collections
 collections:
   teaching:
-    output: true
+    output: false
     permalink: /:collection/:path/
   publications:
     output: true
     permalink: /:collection/:path/
   portfolio:
-    output: true
+    output: false
     permalink: /:collection/:path/
   talks:
-    output: true
+    output: false
     permalink: /:collection/:path/
 
 
