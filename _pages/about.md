@@ -8,9 +8,6 @@ redirect_from:
   - /about.html
 ---
 
-About me
-======
-
 Maura Pintor (female) is a Ph.D. Student at the University of Cagliari, Italy. 
 She received the MSc degree in Telecommunications Engineering with honors in 
 2018, from the University of Cagliari (Italy) discussing a graduation thesis 
