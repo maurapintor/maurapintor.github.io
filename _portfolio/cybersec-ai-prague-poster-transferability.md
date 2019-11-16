@@ -6,4 +6,4 @@ collection: portfolio
 
 * [Why Do Adversarial Attacks Transfer? Explaining 
 Transferability of Evasion and Poisoning Attacks
-](http://maupin1991.github.io/files/paper3.pdf/files/poster-transferability.pdf)
+](http://maupin1991.github.io/files/poster-transferability.pdf)
