@@ -74,4 +74,13 @@ Awards and accomplishments
     * Certificate obtained on April 2nd 2018
     * [Link to the certificate](https://confirm.udacity.com/DWAAHGAU) 
 
+Projects and Activities
+======
+* 2019-07 International Computer Vision Summer School ([ICVSS](https://iplab.dmi.unict.it/icvss2019/))
+* 2019-10 Presented [poster](https://maupin1991.github.io/portfolio/cybersec-ai-prague-poster-transferability/) at [Cybersec&AI Prague](https://www.cybersecprague.ai/)
+
+
+
+
+
 
