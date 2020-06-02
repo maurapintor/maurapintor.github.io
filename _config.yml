@@ -11,9 +11,9 @@ title                    : "Maura Pintor"
 title_separator          : "-"
 name                     : &name "Maura Pintor"
 description              : &description "PhD student at University of Cagliari"
-url                      : https://maupin1991.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : https://maurapintor.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "maupin1991/maupin1991.github.io"
+repository               : "maurapintor/maurapintor.github.io"
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
@@ -96,7 +96,7 @@ author:
   flickr           :
   facebook         : "maura.pintor"
   foursquare       :
-  github           : "Maupin1991"
+  github           : "maurapintor"
   google_plus      :
   keybase          :
   instagram        : "maupin91/"
