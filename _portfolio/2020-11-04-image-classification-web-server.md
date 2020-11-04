@@ -4,4 +4,4 @@ excerpt: "Slides for Industrial Software Development course."
 collection: portfolio
 ---
 
-* [Link to the slides](http://maurapintor.github.io/files/web-servers.pdf)
+* [Link to the slides](http://maurapintor.github.io/files/image_classification_web_server.pdf)
