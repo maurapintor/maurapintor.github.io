@@ -76,11 +76,11 @@ Awards and accomplishments
 
 Projects and Activities
 ======
-* 2019-07 International Computer Vision Summer School ([ICVSS 2019](https://iplab.dmi.unict.it/icvss2019/))
-* 2019-10 Presented [poster](https://maurapintor.github.io/portfolio/cybersec-ai-prague-poster-transferability/) at [Cybersec&AI Prague](https://www.cybersecprague.ai/)
-* 2020-06 Program Committee at [CVPR 2020 Workshop on Adversarial Machine Learning in Computer Vision](https://adv-workshop-2020.github.io/)
-* 2020-07 Machine Learning Summer School ([MLSS 2020](http://mlss.tuebingen.mpg.de/2020/))
-* 2020-11 Program Committee at [AAAI 2021 Workshop - Towards Robust, Secure and Efficient Machine Learning](https://rseml2021.github.io/)
+* 2019/07 International Computer Vision Summer School ([ICVSS 2019](https://iplab.dmi.unict.it/icvss2019/))
+* 2019/10 Presented [poster](https://maurapintor.github.io/portfolio/cybersec-ai-prague-poster-transferability/) at [Cybersec&AI Prague](https://www.cybersecprague.ai/)
+* 2020/06 Program Committee at [CVPR 2020 Workshop on Adversarial Machine Learning in Computer Vision](https://adv-workshop-2020.github.io/)
+* 2020/07 Machine Learning Summer School ([MLSS 2020](http://mlss.tuebingen.mpg.de/2020/))
+* 2020/11 Program Committee at [AAAI 2021 Workshop - Towards Robust, Secure and Efficient Machine Learning](https://rseml2021.github.io/)
 
 
 
