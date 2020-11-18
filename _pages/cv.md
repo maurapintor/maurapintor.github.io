@@ -14,7 +14,7 @@ Education
 * B.S. in Electronic Engineering, University of Cagliari (Italy), 2016
 * M.S. in Telecommunications Engineering, University of Cagliari (Italy), 2018
 * Ph.D in Electronic and Computer Engineering, University of Cagliari (Italy), 2021 (expected)
-    * Visiting student at Eberhard Karls Universität Tübingen, 2020
+    * Visiting student at Eberhard Karls Universität Tübingen, March 2020 - June 2020
     
 Work experience
 ======
