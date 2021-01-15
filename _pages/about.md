@@ -22,4 +22,6 @@ currently collaborating with Pluribus One in the European Project
  for optimizing the design of Deep Learning systems on heterogeneous 
  low-energy computing platforms. Her contribution to the project 
  focuses on the security evaluation and mitigation strategies 
- against adversarial perturbations.
+ against adversarial perturbations. She is currently enrolled in a PhD course on 
+adversarial machine learning, and was visiting student at Eberhard Karls Universität 
+Tübingen, from March to June 2020.

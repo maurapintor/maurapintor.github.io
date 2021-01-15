@@ -18,6 +18,10 @@ Education
     
 Work experience
 ======
+* 03/2019 - 03/2020 : Collaborator for EU project
+  * Pluribus One S.r.l., Cagliari (Italy)
+  * Duties included: Design and integration of tools for evaluating machine learning 
+  robustness in the EU Project [ALOHA](https://www.aloha-h2020.eu/).
 * 02/2018 - 07/2018 : Software developer
   * Pluribus One S.r.l., Cagliari (Italy)
   * Duties included: Development of systems for internet traffic security.
