@@ -44,11 +44,15 @@ Publications
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Talks
-======
-  <ul>{% for post in site.talks %}
-    {% include archive-single-talk-cv.html %}
-  {% endfor %}</ul>
+[comment]: <> (Talks)
+
+[comment]: <> (======)
+
+[comment]: <> (  <ul>{% for post in site.talks %})
+
+[comment]: <> (    {% include archive-single-talk-cv.html %})
+
+[comment]: <> (  {% endfor %}</ul>)
   
 Teaching
 ======
@@ -85,8 +89,9 @@ Projects and Activities
 * 2019/10 Presented [poster](https://maurapintor.github.io/portfolio/cybersec-ai-prague-poster-transferability/) at [Cybersec&AI Prague](https://www.cybersecprague.ai/)
 * 2020/06 Program Committee at [CVPR 2020 Workshop on Adversarial Machine Learning in Computer Vision](https://adv-workshop-2020.github.io/)
 * 2020/07 Machine Learning Summer School ([MLSS 2020](http://mlss.tuebingen.mpg.de/2020/))
+* 2020/08 Program Committee at [ECCV 2020 Workshop on Adversarial Robustness in the Real World](https://eccv20-adv-workshop.github.io/)
 * 2020/11 Program Committee at [AAAI 2021 Workshop - Towards Robust, Secure and Efficient Machine Learning](https://rseml2021.github.io/)
-
+* 2021/03 Program Committee at [ICLR 2021 Workshop on Security and Safety in Machine Learning Systems](https://aisecure-workshop.github.io/aml-iclr2021/)
 
 
 
