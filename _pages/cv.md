@@ -18,14 +18,18 @@ Education
     
 Work experience
 ======
+* 03/2020 - 03/2021 : Collaborator for EU project
+  * Pluribus One S.r.l., Cagliari (Italy)
+  * Duties included: Collaboration for WP6 "Impact: Benchmark Datasets and Tool Flow Pilots" 
+    in the EU Project [AssureMOSS](https://assuremoss.eu/en/).
 * 03/2021 - 07/2021 : Academic Tutor
   * University of Cagliari (Italy)
-  * Duties included: Tutor for Machine Learning Course.
+  * Duties included: Tutor for [Machine Learning Course](https://unica-ml.github.io/).
 * 03/2019 - 03/2020 : Collaborator for EU project
   * Pluribus One S.r.l., Cagliari (Italy)
   * Duties included: Design and integration of tools for evaluating machine learning 
   robustness in the EU Project [ALOHA](https://www.aloha-h2020.eu/).
-* 02/2018 - 07/2018 : Software developeKr
+* 02/2018 - 07/2018 : Software developer
   * Pluribus One S.r.l., Cagliari (Italy)
   * Duties included: Development of systems for internet traffic security.
 
@@ -79,16 +83,22 @@ Awards and accomplishments
     important real-time analysis about the crowdedness.
     * [Link to the article](https://iot-epi.eu/2017/06/19/highlights-of-hackathon-at-iot-week-geneva-2017/)
 
-* 01/2017 Stanford University on Coursera
-    * Machine Learning
+* 01/2017
+    * Machine Learning by Stanford University on Coursera
     * Certificate obtained on January 25th 2017
     * [Link to the certificate](https://www.coursera.org/account/accomplishments/verify/EW5CF6L9RQUR)
 
 * 04/2018
-    * Android Basics Nanodegree by Google
+    * Android Basics Nanodegree by Google on Udacity
     * Android development
     * Certificate obtained on April 2nd 2018
     * [Link to the certificate](https://confirm.udacity.com/DWAAHGAU) 
+
+* 06/2021
+    * Introduction to Machine Learning in Production by DeepLearning.AI on Coursera.
+    * MLOps
+    * Certificate obtained on June 6th 2021
+    * [Link to the certificate](https://www.coursera.org/account/accomplishments/certificate/24YC826F2QBH)
 
 Projects and Activities
 ======
@@ -99,6 +109,10 @@ Projects and Activities
 * 2020/08 Program Committee at [ECCV 2020 Workshop on Adversarial Robustness in the Real World](https://eccv20-adv-workshop.github.io/)
 * 2020/11 Program Committee at [AAAI 2021 Workshop - Towards Robust, Secure and Efficient Machine Learning](https://rseml2021.github.io/)
 * 2021/03 Program Committee at [ICLR 2021 Workshop on Security and Safety in Machine Learning Systems](https://aisecure-workshop.github.io/aml-iclr2021/)
-
-
+* 2021/06 Program Committee at [ICML 2021 Workshop on Socially Responsible Machine Learning](https://icmlsrml2021.github.io/)
+* 2021/06 Program Committee at [CVPR 2021 Workshop on Adversarial Machine Learning in Real-World Computer Vision Systems and Online Challenges](https://aisecure-workshop.github.io/amlcvpr2021/)
+* 2021/06 Poster Session at Microsoft Security Data Science Colloqium ([Slides](https://docs.google.com/presentation/d/126ppYyCRBsLBgpYOtvNY8McnqS6GK_3Lmc5M8Ot_88c/edit?usp=sharing))
+* 2021/07 Regularization Methods for Machine Learning ([RegML 2021](https://ml.unige.it/education/school/regml2021/))
+* 07/2021 Oral talk at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning
+* 07/2021 Poster Session at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning
 

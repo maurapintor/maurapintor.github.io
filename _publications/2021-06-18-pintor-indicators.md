@@ -1,0 +1,16 @@
+---
+title: "Indicators of Attack Failure: Debugging and Improving Optimization of Adversarial Examples"
+collection: publications
+permalink: /publication/2021-06-18-pintor-indicators
+excerpt: 'Evaluating robustness of machine-learning models to adversarial examples is a challenging problem. Many defenses have been shown to provide a false sense of security by causing gradient-based attacks to fail, and they have been broken under more rigorous evaluations. Although guidelines and best practices have been suggested to improve current adversarial robustness evaluations, the lack of automatic testing and debugging tools makes it difficult to apply these recommendations in a systematic manner. In this work, we overcome these limitations by (i) defining a set of quantitative indicators which unveil common failures in the optimization of gradient-based attacks, and (ii) proposing specific mitigation strategies within a systematic evaluation protocol. Our extensive experimental analysis shows that the proposed indicators of failure can be used to visualize, debug and improve current adversarial robustness evaluations, providing a first concrete step towards automatizing and systematizing current adversarial robustness evaluations. Our open-source code is available at: https://github.com/pralab/IndicatorsOfAttackFailure. '
+date: 2021-06-18
+venue: 'arXiv preprint arXiv:2106.09947  (2021)'
+paperurl: 'https://arxiv.org/pdf/2106.09947.pdf'
+citation: 'Maura Pintor, Luca Demetrio, Angelo Sotgiu, Giovanni Manca, Ambra Demontis, Nicholas Carlini, Battista Biggio, Fabio Roli, &apos;Indicators of Attack Failure: Debugging and Improving Optimization of Adversarial Examples&apos;, arXiv preprint arXiv:2106.09947, 2021'
+---
+
+<a href='https://arxiv.org/pdf/2106.09947.pdf'>Download paper here</a>
+
+Evaluating robustness of machine-learning models to adversarial examples is a challenging problem. Many defenses have been shown to provide a false sense of security by causing gradient-based attacks to fail, and they have been broken under more rigorous evaluations. Although guidelines and best practices have been suggested to improve current adversarial robustness evaluations, the lack of automatic testing and debugging tools makes it difficult to apply these recommendations in a systematic manner. In this work, we overcome these limitations by (i) defining a set of quantitative indicators which unveil common failures in the optimization of gradient-based attacks, and (ii) proposing specific mitigation strategies within a systematic evaluation protocol. Our extensive experimental analysis shows that the proposed indicators of failure can be used to visualize, debug and improve current adversarial robustness evaluations, providing a first concrete step towards automatizing and systematizing current adversarial robustness evaluations. Our open-source code is available at: https://github.com/pralab/IndicatorsOfAttackFailure. 
+
+Recommended citation: Maura Pintor, Luca Demetrio, Angelo Sotgiu, Giovanni Manca, Ambra Demontis, Nicholas Carlini, Battista Biggio, Fabio Roli, 'Indicators of Attack Failure: Debugging and Improving Optimization of Adversarial Examples', arXiv preprint arXiv:2106.09947, 2021
