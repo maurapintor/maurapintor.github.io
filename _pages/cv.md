@@ -113,6 +113,6 @@ Projects and Activities
 * 2021/06 Program Committee at [CVPR 2021 Workshop on Adversarial Machine Learning in Real-World Computer Vision Systems and Online Challenges](https://aisecure-workshop.github.io/amlcvpr2021/)
 * 2021/06 Poster Session at Microsoft Security Data Science Colloqium ([Slides](https://docs.google.com/presentation/d/126ppYyCRBsLBgpYOtvNY8McnqS6GK_3Lmc5M8Ot_88c/edit?usp=sharing))
 * 2021/07 Regularization Methods for Machine Learning ([RegML 2021](https://ml.unige.it/education/school/regml2021/))
-* 07/2021 Oral talk at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning
-* 07/2021 Poster Session at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning
+* 07/2021 Oral talk at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning ([Video](https://slideslive.com/38960366/fast-minimumnorm-fmn-adversarial-attacks-through-adaptive-norm-constraints?ref=speaker-80102-latest)) ([Poster](http://maurapintor.github.io/files/2021_ICML-AML_FMN.pdf))
+* 07/2021 Poster Session at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning ([Poster](http://maurapintor.github.io/files/2021_ICML-AML_IOF.pdf))
 
