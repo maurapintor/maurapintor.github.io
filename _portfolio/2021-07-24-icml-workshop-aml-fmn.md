@@ -1,5 +1,5 @@
 ---
-title: "2021-07-24 - Oral presentation at ICML Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning, for the paper "Fast Minimum-norm Adversarial Attacks through Adaptive Norm Constraints"
+title: "2021-07-24 - Oral presentation at ICML Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning, for the paper Fast Minimum-norm Adversarial Attacks through Adaptive Norm Constraints"
 excerpt: "Video Presentation of the paper FMN."
 collection: portfolio
 ---
