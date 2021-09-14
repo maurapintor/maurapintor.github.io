@@ -4,6 +4,5 @@ excerpt: "Video Presentation of the paper FMN."
 collection: portfolio
 ---
 
-* [Link to the video](https://recorder-v3.slideslive.com/#/share?share=41427&s=d319bdd5-504c-444d-a41f-d88d414e691a)
+* [Link to the video](https://slideslive.com/38960366/fast-minimumnorm-fmn-adversarial-attacks-through-adaptive-norm-constraints?ref=speaker-80102-latest)
 * [Link to the poster](http://maurapintor.github.io/files/2021_ICML-AML_FMN.pdf)
-
