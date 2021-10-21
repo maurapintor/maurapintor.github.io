@@ -15,10 +15,11 @@ Education
 * M.S. in Telecommunications Engineering, University of Cagliari (Italy), 2018
 * Ph.D in Electronic and Computer Engineering, University of Cagliari (Italy), 2021 (expected)
     * Visiting student at Eberhard Karls Universität Tübingen, March 2020 - June 2020
-    
+    * Visiting student at Software Competence Center Hagenberg (SCCH), virtual, May 2021 - August 2021
+
 Work experience
 ======
-* 03/2020 - 03/2021 : Collaborator for EU project
+* 03/2021 - 03/2022 : Collaborator for EU project
   * Pluribus One S.r.l., Cagliari (Italy)
   * Duties included: Collaboration for WP6 "Impact: Benchmark Datasets and Tool Flow Pilots" 
     in the EU Project [AssureMOSS](https://assuremoss.eu/en/).
@@ -35,7 +36,7 @@ Work experience
 
 * 07/2017 - 12/2017 : Collaborator at University of Cagliari
   * University of Cagliari (Italy)
-  * Duties included: Project MIUR - Smart CitieKs - Cagliari Port 2020. Hardware and 
+  * Duties included: Project MIUR - Smart Cities - Cagliari Port 2020. Hardware and 
   software design and implementation of IoT systems for data gathering and visualization. 
   Software development for Linux OS based microprocessor (Raspberry Pi), sensor integration, 
   data management and cloud storage.
@@ -111,8 +112,8 @@ Projects and Activities
 * 2021/03 Program Committee at [ICLR 2021 Workshop on Security and Safety in Machine Learning Systems](https://aisecure-workshop.github.io/aml-iclr2021/)
 * 2021/06 Program Committee at [ICML 2021 Workshop on Socially Responsible Machine Learning](https://icmlsrml2021.github.io/)
 * 2021/06 Program Committee at [CVPR 2021 Workshop on Adversarial Machine Learning in Real-World Computer Vision Systems and Online Challenges](https://aisecure-workshop.github.io/amlcvpr2021/)
-* 2021/06 Poster Session at Microsoft Security Data Science Colloqium ([Slides](https://docs.google.com/presentation/d/126ppYyCRBsLBgpYOtvNY8McnqS6GK_3Lmc5M8Ot_88c/edit?usp=sharing))
+* 2021/06 Poster Session at Microsoft Security Data Science Colloquium ([Slides](https://docs.google.com/presentation/d/126ppYyCRBsLBgpYOtvNY8McnqS6GK_3Lmc5M8Ot_88c/edit?usp=sharing))
 * 2021/07 Regularization Methods for Machine Learning ([RegML 2021](https://ml.unige.it/education/school/regml2021/))
 * 07/2021 Oral talk at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning ([Video](https://slideslive.com/38960366/fast-minimumnorm-fmn-adversarial-attacks-through-adaptive-norm-constraints?ref=speaker-80102-latest)) ([Poster](http://maurapintor.github.io/files/2021_ICML-AML_FMN.pdf))
 * 07/2021 Poster Session at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning ([Poster](http://maurapintor.github.io/files/2021_ICML-AML_IOF.pdf))
-
+* 08/2021 Program Committee at 14th ACM CCS 2021 Workshop on Artificial Intelligence and Security (AISec)
