@@ -118,3 +118,7 @@ Projects and Activities
 * 07/2021 Poster Session at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning ([Poster](http://maurapintor.github.io/files/2021_ICML-AML_IOF.pdf))
 * 08/2021 Program Committee at 14th ACM CCS 2021 Workshop on Artificial Intelligence and Security (AISec)
 * 11/2021 Presented [poster/slides](https://maurapintor.github.io/portfolio/2021-11-05-cybersec-ai-iof/) at [Cybersec&AI Connected](https://cybersecai.com/)
+
+Code
+====
+[SecML](https://github.com/pralab/secml) Library Contributor
