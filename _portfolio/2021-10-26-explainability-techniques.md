@@ -1,5 +1,5 @@
 ---
-title: "2021-10-26 Presentation: ML Explainability Techniques."
+title: "2021-10-26 Presentation: ML Explainability Techniques"
 excerpt: "Presentation of ML Explainability Techniques."
 collection: portfolio
 ---

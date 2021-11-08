@@ -104,7 +104,7 @@ Awards and accomplishments
 Projects and Activities
 ======
 * 2019/07 International Computer Vision Summer School ([ICVSS 2019](https://iplab.dmi.unict.it/icvss2019/))
-* 2019/10 Presented [poster](https://maurapintor.github.io/portfolio/cybersec-ai-prague-poster-transferability/) at [Cybersec&AI Prague](https://www.cybersecprague.ai/)
+* 2019/10 Presented [poster](https://maurapintor.github.io/portfolio/2019-08-06-cybersec-ai-prague-poster-transferability/) at [Cybersec&AI Prague](https://www.cybersecprague.ai/)
 * 2020/06 Program Committee at [CVPR 2020 Workshop on Adversarial Machine Learning in Computer Vision](https://adv-workshop-2020.github.io/)
 * 2020/07 Machine Learning Summer School ([MLSS 2020](http://mlss.tuebingen.mpg.de/2020/))
 * 2020/08 Program Committee at [ECCV 2020 Workshop on Adversarial Robustness in the Real World](https://eccv20-adv-workshop.github.io/)
@@ -117,4 +117,4 @@ Projects and Activities
 * 07/2021 Oral talk at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning ([Video](https://slideslive.com/38960366/fast-minimumnorm-fmn-adversarial-attacks-through-adaptive-norm-constraints?ref=speaker-80102-latest)) ([Poster](http://maurapintor.github.io/files/2021_ICML-AML_FMN.pdf))
 * 07/2021 Poster Session at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning ([Poster](http://maurapintor.github.io/files/2021_ICML-AML_IOF.pdf))
 * 08/2021 Program Committee at 14th ACM CCS 2021 Workshop on Artificial Intelligence and Security (AISec)
-* 11/2021 Presented [poster](https://maurapintor.github.io/portfolio/cybersec-ai-iof/) at [Cybersec&AI](https://cybersecai.com/)
+* 11/2021 Presented [poster/slides](https://maurapintor.github.io/portfolio/2021-11-05-cybersec-ai-iof/) at [Cybersec&AI Connected](https://cybersecai.com/)
