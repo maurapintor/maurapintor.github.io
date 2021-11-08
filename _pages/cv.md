@@ -117,3 +117,4 @@ Projects and Activities
 * 07/2021 Oral talk at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning ([Video](https://slideslive.com/38960366/fast-minimumnorm-fmn-adversarial-attacks-through-adaptive-norm-constraints?ref=speaker-80102-latest)) ([Poster](http://maurapintor.github.io/files/2021_ICML-AML_FMN.pdf))
 * 07/2021 Poster Session at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning ([Poster](http://maurapintor.github.io/files/2021_ICML-AML_IOF.pdf))
 * 08/2021 Program Committee at 14th ACM CCS 2021 Workshop on Artificial Intelligence and Security (AISec)
+* 11/2021 Presented [poster](https://maurapintor.github.io/portfolio/cybersec-ai-iof/) at [Cybersec&AI](https://cybersecai.com/)
