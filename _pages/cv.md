@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-Maura Pintor - PhD Student @ [University of Cagliari](https://www.unica.it/unica/en/homepage.page) and Collaborator @ [Pluribus One](https://www.pluribus-one.it/).
+Maura Pintor - **PhD Student** @ [University of Cagliari](https://www.unica.it/unica/en/homepage.page) and **Collaborator** @ [Pluribus One](https://www.pluribus-one.it/).
 
 Education
 ======
