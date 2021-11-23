@@ -116,7 +116,7 @@ Projects and Activities
 * 2021/07 Regularization Methods for Machine Learning ([RegML 2021](https://ml.unige.it/education/school/regml2021/))
 * 07/2021 [Oral talk](https://maurapintor.github.io/portfolio/2021-07-24-icml-workshop-aml-fmn/) at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning ([Video](https://slideslive.com/38960366/fast-minimumnorm-fmn-adversarial-attacks-through-adaptive-norm-constraints?ref=speaker-80102-latest)) ([Poster](http://maurapintor.github.io/files/2021_ICML-AML_FMN.pdf))
 * 07/2021 Poster Session at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning ([Poster](http://maurapintor.github.io/files/2021_ICML-AML_IOF.pdf))
-* 08/2021 Program Committee at 14th ACM CCS 2021 Workshop on Artificial Intelligence and Security (AISec)
+* 08/2021 Program Committee at 14th ACM CCS 2021 Workshop on Artificial Intelligence and Security ([AISec](https://aisec.cc/))
 * 11/2021 Presented [slides/video](https://maurapintor.github.io/portfolio/2021-11-05-cybersec-ai-iof/) at [Cybersec&AI Connected](https://cybersecai.com/) ([Slides](https://maurapintor.github.io/files/2021_CybersecAI_IoF.pdf))([Video](https://youtu.be/WFxl3nJyMXY?t=7588))
 
 Code
