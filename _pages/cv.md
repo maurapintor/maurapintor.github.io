@@ -9,6 +9,8 @@ redirect_from:
 
 {% include base_path %}
 
+---
+
 Education
 ======
 * B.S. in Electronic Engineering, University of Cagliari (Italy), 2016
