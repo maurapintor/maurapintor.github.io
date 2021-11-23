@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
----
+Maura Pintor - PhD Student @ University of Cagliari and Collaborator @ Pluribus One.
 
 Education
 ======
