@@ -15,12 +15,16 @@ Education
 ======
 * B.S. in Electronic Engineering, University of Cagliari (Italy), 2016
 * M.S. in Telecommunications Engineering, University of Cagliari (Italy), 2018
-* Ph.D in Electronic and Computer Engineering, University of Cagliari (Italy), 2021 (expected)
+* Ph.D in Electronic and Computer Engineering, University of Cagliari (Italy), 2022
     * Visiting student at Eberhard Karls Universität Tübingen, March 2020 - June 2020
     * Visiting student at Software Competence Center Hagenberg (SCCH), virtual, May 2021 - August 2021
+    * [PhD Thesis](http://maurapintor.github.io/files/PhD_Thesis_Maura_Pintor.pdf): "Towards Debugging and Improving Adversarial Robustness Evaluations"
 
 Work experience
 ======
+* 10/2021 - ongoing: Postdoctoral Researcher
+  * University of Cagliari (Italy)
+  * Duties included: Research on machine learning security.
 * 03/2021 - 03/2022 : Collaborator for EU project
   * Pluribus One S.r.l., Cagliari (Italy)
   * Duties included: Collaboration for WP6 "Impact: Benchmark Datasets and Tool Flow Pilots" 
