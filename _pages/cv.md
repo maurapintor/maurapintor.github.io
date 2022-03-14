@@ -109,6 +109,7 @@ Awards and accomplishments
 
 Projects and Activities
 ======
+* 2022/03 Program Committee at [ICML 2022 Workshop on Socially Responsible Machine Learning](https://iclrsrml.github.io/)
 * 2021/11 Presented [slides/video](https://maurapintor.github.io/portfolio/2021-11-05-cybersec-ai-iof/) at [Cybersec&AI Connected](https://cybersecai.com/) ([Slides](https://maurapintor.github.io/files/2021_CybersecAI_IoF.pdf))([Video](https://youtu.be/WFxl3nJyMXY?t=7588))
 * 2021/08 Program Committee at 14th ACM CCS 2021 Workshop on Artificial Intelligence and Security ([AISec](https://aisec.cc/))
 * 2021/07 Poster Session at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning ([Poster](http://maurapintor.github.io/files/2021_ICML-AML_IOF.pdf))
