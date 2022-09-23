@@ -11,13 +11,13 @@ citation: ' Maura Pintor,  Fabio Roli,  Wieland Brendel,  Battista Biggio, &quot
 
 Recommended Citation: 
 >@article{pintor2021fast,
-    author = "Pintor, Maura and Roli, Fabio and Brendel, Wieland and Biggio, Battista",
-    editor = "Ranzato, M. and Beygelzimer, A. and Dauphin, Y. and Liang, P.S. and Vaughan, J. Wortman",
-    title = "Fast minimum-norm adversarial attacks through adaptive norm constraints",
-    booktitle = "Advances in Neural Information Processing Systems",
-    volume = "34",
-    pages = "20052--20062",
-    publisher = "Curran Associates, Inc.",
-    year = "2021",
-    url = "https://proceedings.neurips.cc/paper/2021/hash/a709909b1ea5c2bee24248203b1728a5-Abstract.html"
+    author = &quot;Pintor, Maura and Roli, Fabio and Brendel, Wieland and Biggio, Battista&quot;,
+    editor = &quot;Ranzato, M. and Beygelzimer, A. and Dauphin, Y. and Liang, P.S. and Vaughan, J. Wortman&quot;,
+    title = &quot;Fast minimum-norm adversarial attacks through adaptive norm constraints&quot;,
+    booktitle = &quot;Advances in Neural Information Processing Systems&quot;,
+    volume = &quot;34&quot;,
+    pages = &quot;20052--20062&quot;,
+    publisher = &quot;Curran Associates, Inc.&quot;,
+    year = &quot;2021&quot;,
+    url = &quot;https://proceedings.neurips.cc/paper/2021/hash/a709909b1ea5c2bee24248203b1728a5-Abstract.html&quot;
 }

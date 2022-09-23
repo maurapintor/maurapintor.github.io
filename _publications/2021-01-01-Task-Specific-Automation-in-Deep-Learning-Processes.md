@@ -11,14 +11,14 @@ citation: ' Georg Buchgeher,  Gerald Czech,  Adriano Ribeiro,  Werner Kloihofer,
 
 Recommended Citation: 
 >@inproceedings{10.1007/978-3-030-87101-7_16,
-    author = "Buchgeher, Georg and Czech, Gerald and Ribeiro, Adriano Souza and Kloihofer, Werner and Meloni, Paolo and Busia, Paola and Deriu, Gianfranco and Pintor, Maura and Biggio, Battista and Chesta, Cristina and Rinelli, Luca and Solans, David and Portela, Manuel",
-    editor = "Kotsis, Gabriele and Tjoa, A. Min and Khalil, Ismail and Moser, Bernhard and Mashkoor, Atif and Sametinger, Johannes and Fensel, Anna and Martinez-Gil, Jorge and Fischer, Lukas and Czech, Gerald and Sobieczky, Florian and Khan, Sohail",
-    title = "Task-Specific Automation in Deep Learning Processes",
-    booktitle = "Database and Expert Systems Applications - DEXA 2021 Workshops",
-    isbn = "978-3-030-87101-7",
-    pages = "159--169",
-    address = "Cham",
-    publisher = "Springer International Publishing",
-    year = "2021",
-    url = "https://link.springer.com/chapter/10.1007/978-3-030-87101-7\_16"
+    author = &quot;Buchgeher, Georg and Czech, Gerald and Ribeiro, Adriano Souza and Kloihofer, Werner and Meloni, Paolo and Busia, Paola and Deriu, Gianfranco and Pintor, Maura and Biggio, Battista and Chesta, Cristina and Rinelli, Luca and Solans, David and Portela, Manuel&quot;,
+    editor = &quot;Kotsis, Gabriele and Tjoa, A. Min and Khalil, Ismail and Moser, Bernhard and Mashkoor, Atif and Sametinger, Johannes and Fensel, Anna and Martinez-Gil, Jorge and Fischer, Lukas and Czech, Gerald and Sobieczky, Florian and Khan, Sohail&quot;,
+    title = &quot;Task-Specific Automation in Deep Learning Processes&quot;,
+    booktitle = &quot;Database and Expert Systems Applications - DEXA 2021 Workshops&quot;,
+    isbn = &quot;978-3-030-87101-7&quot;,
+    pages = &quot;159--169&quot;,
+    address = &quot;Cham&quot;,
+    publisher = &quot;Springer International Publishing&quot;,
+    year = &quot;2021&quot;,
+    url = &quot;https://link.springer.com/chapter/10.1007/978-3-030-87101-7\_16&quot;
 }

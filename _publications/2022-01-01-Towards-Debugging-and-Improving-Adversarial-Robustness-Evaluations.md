@@ -11,10 +11,10 @@ citation: ' Maura Pintor, &quot;Towards Debugging and Improving Adversarial Robu
 
 Recommended Citation: 
 >@article{pintor2022towards,
-    author = "Pintor, Maura",
-    title = "Towards Debugging and Improving Adversarial Robustness Evaluations",
-    url = "https://iris.unica.it/bitstream/11584/328882/2/PhD\_Thesis\_Maura\_Pintor.pdf",
-    year = "2022",
-    journal = "",
-    publisher = "Universit{\`a} degli Studi di Cagliari"
+    author = &quot;Pintor, Maura&quot;,
+    title = &quot;Towards Debugging and Improving Adversarial Robustness Evaluations&quot;,
+    url = &quot;https://iris.unica.it/bitstream/11584/328882/2/PhD\_Thesis\_Maura\_Pintor.pdf&quot;,
+    year = &quot;2022&quot;,
+    journal = &quot;&quot;,
+    publisher = &quot;Universit{\`a} degli Studi di Cagliari&quot;
 }

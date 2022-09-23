@@ -11,10 +11,10 @@ citation: ' Maura Pintor,  Daniele Angioni,  Angelo Sotgiu,  Luca Demetrio,  Amb
 
 Recommended Citation: 
 >@article{Pintor2022ImageNetPatchAD,
-    author = "Pintor, Maura and Angioni, Daniele and Sotgiu, Angelo and Demetrio, Luca and Demontis, Ambra and Biggio, Battista and Roli, Fabio",
-    title = "ImageNet-Patch: A Dataset for Benchmarking Machine Learning Robustness against Adversarial Patches",
-    journal = "Pattern Recognition",
-    url = "https://arxiv.org/abs/2203.04412",
-    year = "2022",
-    volume = "abs/2203.04412"
+    author = &quot;Pintor, Maura and Angioni, Daniele and Sotgiu, Angelo and Demetrio, Luca and Demontis, Ambra and Biggio, Battista and Roli, Fabio&quot;,
+    title = &quot;ImageNet-Patch: A Dataset for Benchmarking Machine Learning Robustness against Adversarial Patches&quot;,
+    journal = &quot;Pattern Recognition&quot;,
+    url = &quot;https://arxiv.org/abs/2203.04412&quot;,
+    year = &quot;2022&quot;,
+    volume = &quot;abs/2203.04412&quot;
 }
