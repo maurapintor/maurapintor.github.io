@@ -9,20 +9,5 @@ citation: ' Paolo Meloni,  Daniela Loi,  Paola Busia,  Gianfranco Deriu,  Andy P
 ---
 [Access paper here](https://doi.org/10.1145/3310273.3323435){:target="_blank"}
 
-Recommended Citation: 
->@conference{10.1145/3310273.3323435,
-    author = &quot;Meloni, Paolo and Loi, Daniela and Busia, Paola and Deriu, Gianfranco and Pimentel, Andy D. and Sapra, Dolly and Stefanov, Todor and Minakova, Svetlana and Conti, Francesco and Benini, Luca and Pintor, Maura and Biggio, Battista and Moser, Bernhard and Shepeleva, Natalia and Fragoulis, Nikos and Theodorakopoulos, Ilias and Masin, Michael and Palumbo, Francesca&quot;,
-    title = &quot;Optimization and Deployment of CNNs at the Edge: The ALOHA Experience&quot;,
-    year = &quot;2019&quot;,
-    isbn = &quot;9781450366854&quot;,
-    publisher = &quot;Association for Computing Machinery&quot;,
-    address = &quot;New York, NY, USA&quot;,
-    url = &quot;https://doi.org/10.1145/3310273.3323435&quot;,
-    doi = &quot;10.1145/3310273.3323435&quot;,
-    booktitle = &quot;Proceedings of the 16th ACM International Conference on Computing Frontiers&quot;,
-    pages = &quot;326–332&quot;,
-    numpages = &quot;7&quot;,
-    keywords = &quot;hardware accelerators, convolution neural networks, FPGAs&quot;,
-    location = &quot;Alghero, Italy&quot;,
-    series = &quot;CF &apos;19&quot;
-}
+BibTex: 
+>@conference{10.1145/3310273.3323435,<br>    author = "Meloni, Paolo and Loi, Daniela and Busia, Paola and Deriu, Gianfranco and Pimentel, Andy D. and Sapra, Dolly and Stefanov, Todor and Minakova, Svetlana and Conti, Francesco and Benini, Luca and Pintor, Maura and Biggio, Battista and Moser, Bernhard and Shepeleva, Natalia and Fragoulis, Nikos and Theodorakopoulos, Ilias and Masin, Michael and Palumbo, Francesca",<br>    title = "Optimization and Deployment of CNNs at the Edge: The ALOHA Experience",<br>    year = "2019",<br>    isbn = "9781450366854",<br>    publisher = "Association for Computing Machinery",<br>    address = "New York, NY, USA",<br>    url = "https://doi.org/10.1145/3310273.3323435",<br>    doi = "10.1145/3310273.3323435",<br>    booktitle = "Proceedings of the 16th ACM International Conference on Computing Frontiers",<br>    pages = "326–332",<br>    numpages = "7",<br>    keywords = "hardware accelerators, convolution neural networks, FPGAs",<br>    location = "Alghero, Italy",<br>    series = "CF '19"<br>}<br>
