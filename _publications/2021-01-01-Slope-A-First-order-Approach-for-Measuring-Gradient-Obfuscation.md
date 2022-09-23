@@ -15,4 +15,4 @@ Evaluating adversarial robustness is a challenging problem. Many defenses have b
 [Access paper here](https://www.esann.org/sites/default/files/proceedings/2021/ES2021-99.pdf){:target="_blank"}
 
 BibTeX: 
->@conference{pintor2021slope,<br>    author = "Pintor, Maura and Demetrio, Luca and Manca, Giovanni and Biggio, Battista and Roli, Fabio",<br>    title = "Slope: A First-order Approach for Measuring Gradient Obfuscation",<br>    booktitle = "ESANN 2021 - European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning",<br>    year = "2021",<br>    url = "https://www.esann.org/sites/default/files/proceedings/2021/ES2021-99.pdf"<br>}<br>
+>@conference{pintor2021slope,<br>    author = {Pintor, Maura and Demetrio, Luca and Manca, Giovanni and Biggio, Battista and Roli, Fabio},<br>    title = {Slope: A First-order Approach for Measuring Gradient Obfuscation},<br>    booktitle = {ESANN 2021 - European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning},<br>    year = {2021},<br>    url = {https://www.esann.org/sites/default/files/proceedings/2021/ES2021-99.pdf}<br>}<br>

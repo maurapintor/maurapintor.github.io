@@ -15,4 +15,4 @@ Although ImageNet was initially proposed as a dataset for performance benchmarki
 [Access paper here](https://openreview.net/pdf?id=oWk2dULs1x){:target="_blank"}
 
 BibTeX: 
->@inproceedings{ozbulak2021evaluating,<br>    author = "Ozbulak, Utku and Pintor, M and Van Messem, Arnout and De Neve, Wesley",<br>    title = "Evaluating adversarial attacks on ImageNet: A reality check on misclassification classes",<br>    booktitle = "NeurIPS2021, 35th Conference on Neural Information Processing Systems (NeurIPS 2021), Workshop on ImageNet: Past, Present, and Future",<br>    pages = "1--9",<br>    year = "2021",<br>    url = "https://openreview.net/pdf?id=oWk2dULs1x"<br>}<br>
+>@inproceedings{ozbulak2021evaluating,<br>    author = {Ozbulak, Utku and Pintor, M and Van Messem, Arnout and De Neve, Wesley},<br>    title = {Evaluating adversarial attacks on ImageNet: A reality check on misclassification classes},<br>    booktitle = {NeurIPS2021, 35th Conference on Neural Information Processing Systems (NeurIPS 2021), Workshop on ImageNet: Past, Present, and Future},<br>    pages = {1--9},<br>    year = {2021},<br>    url = {https://openreview.net/pdf?id=oWk2dULs1x}<br>}<br>

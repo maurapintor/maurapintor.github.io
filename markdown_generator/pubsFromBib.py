@@ -153,7 +153,12 @@ for pubsource in publist:
             skipkeys = ['annote', 'abstract']
             bibentry = bibdata.entries[bib_id]
             bibentry.fields = {k: bibentry.fields[k] for k in bibentry.fields if k not in skipkeys}
-            md += "\nBibTeX: \n>" + bibentry.to_string('bibtex').replace("\n", "<br>")
+            bibtex_data = bibentry.to_string('bibtex')
+            all_quotes = re.findall(r'"([^"]*)"', bibtex_data)
+            for element in all_quotes:
+                bibtex_data = bibtex_data.replace('"' + element + '"', "{" + element + "}")
+            bibtex_data = bibtex_data.replace("\n", "<br>")
+            md += "\nBibTeX: \n>" + bibtex_data
 
             md_filename = os.path.basename(md_filename)
 

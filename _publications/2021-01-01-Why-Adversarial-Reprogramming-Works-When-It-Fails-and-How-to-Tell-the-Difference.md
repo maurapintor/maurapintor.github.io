@@ -15,4 +15,4 @@ Adversarial reprogramming allows repurposing a machine-learning model to perform
 [Access paper here](https://arxiv.org/abs/2108.11673){:target="_blank"}
 
 BibTeX: 
->@article{zheng2021adversarial,<br>    author = "Zheng, Yang and Feng, Xiaoyi and Xia, Zhaoqiang and Jiang, Xiaoyue and Demontis, Ambra and Pintor, Maura and Biggio, Battista and Roli, Fabio",<br>    title = "Why Adversarial Reprogramming Works, When It Fails, and How to Tell the Difference",<br>    journal = "arXiv preprint arXiv:2108.11673",<br>    url = "https://arxiv.org/abs/2108.11673",<br>    year = "2021"<br>}<br>
+>@article{zheng2021adversarial,<br>    author = {Zheng, Yang and Feng, Xiaoyi and Xia, Zhaoqiang and Jiang, Xiaoyue and Demontis, Ambra and Pintor, Maura and Biggio, Battista and Roli, Fabio},<br>    title = {Why Adversarial Reprogramming Works, When It Fails, and How to Tell the Difference},<br>    journal = {arXiv preprint arXiv:2108.11673},<br>    url = {https://arxiv.org/abs/2108.11673},<br>    year = {2021}<br>}<br>
