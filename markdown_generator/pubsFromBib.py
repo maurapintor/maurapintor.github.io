@@ -138,6 +138,11 @@ for pubsource in publist:
             if note:
                 md += "\n" + html_escape(b["note"]) + "\n"
 
+            if 'abstract' in b:
+                md += "\nAbstract:\n\n" + html_escape(b["abstract"] + "\n")
+            else:
+                print(f"[{pubsource}] " + "Skipping: ", b['title'], "no abstract found.")
+
             if url:
                 md += "\n[Access paper here](" + b["url"] + "){:target=\"_blank\"}\n"
             else:

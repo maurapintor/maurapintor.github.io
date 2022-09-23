@@ -7,6 +7,10 @@ venue: 'In the proceedings of Proceedings of the Workshop on INTelligent Embedde
 paperurl: 'https://doi.org/10.1145/3285017.3285019'
 citation: ' P. Meloni,  D. Loi,  G. Deriu,  A. Pimentel,  D. Sapra,  B. Moser,  N. Shepeleva,  F. Conti,  L. Benini,  O. Ripolles,  D. Solans,  Maura Pintor,  B. Biggio,  T. Stefanov,  S. Minakova,  N. Fragoulis,  I. Theodorakopoulos,  M. Masin,  F. Palumbo, &quot;ALOHA: An Architectural-Aware Framework for Deep Learning at the Edge.&quot; In the proceedings of Proceedings of the Workshop on INTelligent Embedded Systems Architectures and Applications, 2018.'
 ---
+Abstract:
+
+Novel Deep Learning (DL) algorithms show ever-increasing accuracy and precision in multiple application domains. However, some steps further are needed towards the ubiquitous adoption of this kind of instrument. First, effort and skills required to develop newDL models, or to adapt existing ones to new use-cases, are hardly available for small- and medium-sized businesses. Second, DL inference must be brought at the edge, to overcome limitations posed by the classically-used cloud computing paradigm. This requires implementation on low-energy computing nodes, often heterogenous and parallel, that are usually more complex to program and to manage. This work describes the ALOHA framework, that proposes a solution to these issue by means of an integrated toolflow that automates most phases of the development process. The framework introduces architecture-awareness, considering the target inference platform very early, already during algorithm selection, and driving the optimal porting of the resulting embedded application. Moreover it considers security, power efficiency and adaptiveness as main objectives during the whole development process.
+
 [Access paper here](https://doi.org/10.1145/3285017.3285019){:target="_blank"}
 
 BibTeX: 
