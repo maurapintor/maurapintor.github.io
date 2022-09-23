@@ -15,32 +15,32 @@ author_profile: true
 {% for post in site.publications reversed %}
   {% if post.pubtype == 'journal' %}
       {% include archive-single.html %}
-  {% endif %}
   _______
+  {% endif %}
 {% endfor %}
 
 <h2>Conference Papers</h2>
 {% for post in site.publications reversed %}
   {% if post.pubtype == 'proceeding' %}
       {% include archive-single.html %}
-  {% endif %}
   _______
+  {% endif %}
 {% endfor %}
 
 <h2>Preprints</h2>
 {% for post in site.publications reversed %}
   {% if post.pubtype == 'preprint' %}
       {% include archive-single.html %}
-  {% endif %}
   _______
+  {% endif %}
 {% endfor %}
 
 <h2>Other</h2>
 {% for post in site.publications reversed %}
   {% if post.pubtype == 'other' %}
       {% include archive-single.html %}
-  {% endif %}
   _______
+  {% endif %}
 {% endfor %}
 
 
