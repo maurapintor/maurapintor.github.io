@@ -2,6 +2,7 @@
 title: "Detecting Anomalies from Video-Sequences: a Novel Descriptor"
 collection: publications
 permalink: /publication/2020-01-01-Detecting-Anomalies-from-Video-Sequences-a-Novel-Descriptor
+pubtype: proceeding
 date: 2020-01-01
 venue: 'In the proceedings of 25th International Conference on Pattern Recognition (ICPR 2020)'
 paperurl: 'https://arxiv.org/pdf/2010.06407.pdf'

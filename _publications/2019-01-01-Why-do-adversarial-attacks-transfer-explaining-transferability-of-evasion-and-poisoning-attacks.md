@@ -2,6 +2,7 @@
 title: "Why do adversarial attacks transfer? explaining transferability of evasion and poisoning attacks"
 collection: publications
 permalink: /publication/2019-01-01-Why-do-adversarial-attacks-transfer-explaining-transferability-of-evasion-and-poisoning-attacks
+pubtype: proceeding
 date: 2019-01-01
 venue: 'In the proceedings of 28th USENIX security symposium (USENIX security 19)'
 paperurl: 'https://www.usenix.org/system/files/sec19-demontis.pdf'

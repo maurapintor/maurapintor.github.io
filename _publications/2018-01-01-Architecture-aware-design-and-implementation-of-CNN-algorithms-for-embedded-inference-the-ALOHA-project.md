@@ -2,6 +2,7 @@
 title: "Architecture-aware design and implementation of CNN algorithms for embedded inference: the ALOHA project"
 collection: publications
 permalink: /publication/2018-01-01-Architecture-aware-design-and-implementation-of-CNN-algorithms-for-embedded-inference-the-ALOHA-project
+pubtype: proceeding
 date: 2018-01-01
 venue: 'In the proceedings of 2018 30th International Conference on Microelectronics (ICM)'
 paperurl: 'https://ieeexplore.ieee.org/document/8704093'

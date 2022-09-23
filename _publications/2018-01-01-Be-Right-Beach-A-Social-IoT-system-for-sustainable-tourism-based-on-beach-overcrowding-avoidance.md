@@ -2,6 +2,7 @@
 title: "Be Right Beach: A Social IoT system for sustainable tourism based on beach overcrowding avoidance"
 collection: publications
 permalink: /publication/2018-01-01-Be-Right-Beach-A-Social-IoT-system-for-sustainable-tourism-based-on-beach-overcrowding-avoidance
+pubtype: proceeding
 date: 2018-01-01
 venue: 'In the proceedings of 2018 IEEE International Conference on Internet of Things (iThings) and IEEE Green Computing and Communications (GreenCom) and IEEE Cyber, Physical and Social Computing (CPSCom) and IEEE Smart Data (SmartData)'
 paperurl: 'https://www.researchgate.net/profile/Roberto_Girau/publication/332179808_Be_Right_Beach_A_Social_IoT_System_for_Sustainable_Tourism_Based_on_Beach_Overcrowding_Avoidance/links/5ca4bb2ca6fdcc12ee8fcc07/Be-Right-Beach-A-Social-IoT-System-for-Sustainable-Tourism-Based-on-Beach-Overcrowding-Avoidance.pdf'

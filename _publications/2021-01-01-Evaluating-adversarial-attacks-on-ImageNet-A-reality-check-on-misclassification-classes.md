@@ -2,6 +2,7 @@
 title: "Evaluating adversarial attacks on ImageNet: A reality check on misclassification classes"
 collection: publications
 permalink: /publication/2021-01-01-Evaluating-adversarial-attacks-on-ImageNet-A-reality-check-on-misclassification-classes
+pubtype: proceeding
 date: 2021-01-01
 venue: 'In the proceedings of NeurIPS2021, 35th Conference on Neural Information Processing Systems (NeurIPS 2021), Workshop on ImageNet: Past, Present, and Future'
 paperurl: 'https://openreview.net/pdf?id=oWk2dULs1x'

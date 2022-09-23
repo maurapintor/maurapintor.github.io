@@ -2,6 +2,7 @@
 title: "Indicators of Attack Failure: Debugging and Improving Optimization of Adversarial Examples"
 collection: publications
 permalink: /publication/2022-01-01-Indicators-of-Attack-Failure-Debugging-and-Improving-Optimization-of-Adversarial-Examples
+pubtype: proceeding
 date: 2022-01-01
 venue: 'In the proceedings of Advances in Neural Information Processing Systems'
 paperurl: 'https://arxiv.org/abs/2106.09947'

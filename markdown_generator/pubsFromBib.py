@@ -22,14 +22,14 @@ publist = {
         "collection": {"name": "publications",
                        "permalink": "/publication/"}
     },
-    "preprints": {
+    "preprint": {
         "file": "preprints.bib",
         "venuekey": "journal",
         "venue-pretext": "",
         "collection": {"name": "publications",
                        "permalink": "/publication/"}
     },
-    "others": {
+    "other": {
         "file": "others.bib",
         "venuekey": "journal",
         "venue-pretext": "",
@@ -113,6 +113,8 @@ for pubsource in publist:
             md += """collection: """ + publist[pubsource]["collection"]["name"]
 
             md += """\npermalink: """ + publist[pubsource]["collection"]["permalink"] + html_filename
+
+            md += """\npubtype: """ + pubsource
 
             note = False
             if "note" in b.keys():
