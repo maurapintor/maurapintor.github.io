@@ -16,6 +16,7 @@ author_profile: true
   {% if post.pubtype == 'journal' %}
       {% include archive-single.html %}
   {% endif %}
+  _______
 {% endfor %}
 
 <h2>Conference Papers</h2>
@@ -23,6 +24,7 @@ author_profile: true
   {% if post.pubtype == 'proceeding' %}
       {% include archive-single.html %}
   {% endif %}
+  _______
 {% endfor %}
 
 <h2>Preprints</h2>
@@ -30,6 +32,7 @@ author_profile: true
   {% if post.pubtype == 'preprint' %}
       {% include archive-single.html %}
   {% endif %}
+  _______
 {% endfor %}
 
 <h2>Other</h2>
@@ -37,7 +40,7 @@ author_profile: true
   {% if post.pubtype == 'other' %}
       {% include archive-single.html %}
   {% endif %}
-{% endfor %}
-
   _______
 {% endfor %}
+
+
