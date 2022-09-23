@@ -9,5 +9,5 @@ citation: ' Paolo Meloni,  Daniela Loi,  Gianfranco Deriu,  Andy Pimentel,  Doll
 ---
 [Access paper here](https://ieeexplore.ieee.org/document/8704093){:target="_blank"}
 
-BibTex: 
+BibTeX: 
 >@conference{8704093,<br>    author = "Meloni, Paolo and Loi, Daniela and Deriu, Gianfranco and Pimentel, Andy D. and Sapra, Dolly and Pintor, Maura and Biggio, Battista and Ripolles, Oscar and Solans, David and Conti, Francesco and Benini, Luca and Stefanov, Todor and Minakova, Svetlana and Moser, Bernhard and Shepeleva, Natalia and Masin, Michael and Palumbo, Francesca and Fragoulis, Nikos and Theodorakopoulos, Ilias",<br>    booktitle = "2018 30th International Conference on Microelectronics (ICM)",<br>    title = "Architecture-aware design and implementation of CNN algorithms for embedded inference: the ALOHA project",<br>    year = "2018",<br>    volume = "",<br>    number = "",<br>    url = "https://ieeexplore.ieee.org/document/8704093",<br>    pages = "52-55",<br>    doi = "10.1109/ICM.2018.8704093"<br>}<br>

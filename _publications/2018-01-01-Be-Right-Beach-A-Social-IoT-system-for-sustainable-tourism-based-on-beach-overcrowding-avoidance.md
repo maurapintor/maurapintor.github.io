@@ -9,5 +9,5 @@ citation: ' Roberto Girau,  Enrico Ferrara,  Maura Pintor,  Mariella Sole,  Dani
 ---
 [Access paper here](https://www.researchgate.net/profile/Roberto_Girau/publication/332179808_Be_Right_Beach_A_Social_IoT_System_for_Sustainable_Tourism_Based_on_Beach_Overcrowding_Avoidance/links/5ca4bb2ca6fdcc12ee8fcc07/Be-Right-Beach-A-Social-IoT-System-for-Sustainable-Tourism-Based-on-Beach-Overcrowding-Avoidance.pdf){:target="_blank"}
 
-BibTex: 
+BibTeX: 
 >@conference{girau2018right,<br>    author = "Girau, Roberto and Ferrara, Enrico and Pintor, Maura and Sole, Mariella and Giusto, Daniele",<br>    title = "Be Right Beach: A Social IoT system for sustainable tourism based on beach overcrowding avoidance",<br>    booktitle = "2018 IEEE International Conference on Internet of Things (iThings) and IEEE Green Computing and Communications (GreenCom) and IEEE Cyber, Physical and Social Computing (CPSCom) and IEEE Smart Data (SmartData)",<br>    pages = "9--14",<br>    year = "2018",<br>    organization = "IEEE",<br>    url = "https://www.researchgate.net/profile/Roberto\_Girau/publication/332179808\_Be\_Right\_Beach\_A\_Social\_IoT\_System\_for\_Sustainable\_Tourism\_Based\_on\_Beach\_Overcrowding\_Avoidance/links/5ca4bb2ca6fdcc12ee8fcc07/Be-Right-Beach-A-Social-IoT-System-for-Sustainable-Tourism-Based-on-Beach-Overcrowding-Avoidance.pdf"<br>}<br>

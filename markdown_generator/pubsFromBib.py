@@ -146,7 +146,7 @@ for pubsource in publist:
             skipkeys = ['annote', 'abstract']
             bibentry = bibdata.entries[bib_id]
             bibentry.fields = {k: bibentry.fields[k] for k in bibentry.fields if k not in skipkeys}
-            md += "\nBibTex: \n>" + bibentry.to_string('bibtex').replace("\n", "<br>")
+            md += "\nBibTeX: \n>" + bibentry.to_string('bibtex').replace("\n", "<br>")
 
             md_filename = os.path.basename(md_filename)
 

@@ -9,5 +9,5 @@ citation: ' Georg Buchgeher,  Gerald Czech,  Adriano Ribeiro,  Werner Kloihofer,
 ---
 [Access paper here](https://link.springer.com/chapter/10.1007/978-3-030-87101-7_16){:target="_blank"}
 
-BibTex: 
+BibTeX: 
 >@inproceedings{10.1007/978-3-030-87101-7_16,<br>    author = "Buchgeher, Georg and Czech, Gerald and Ribeiro, Adriano Souza and Kloihofer, Werner and Meloni, Paolo and Busia, Paola and Deriu, Gianfranco and Pintor, Maura and Biggio, Battista and Chesta, Cristina and Rinelli, Luca and Solans, David and Portela, Manuel",<br>    editor = "Kotsis, Gabriele and Tjoa, A. Min and Khalil, Ismail and Moser, Bernhard and Mashkoor, Atif and Sametinger, Johannes and Fensel, Anna and Martinez-Gil, Jorge and Fischer, Lukas and Czech, Gerald and Sobieczky, Florian and Khan, Sohail",<br>    title = "Task-Specific Automation in Deep Learning Processes",<br>    booktitle = "Database and Expert Systems Applications - DEXA 2021 Workshops",<br>    isbn = "978-3-030-87101-7",<br>    pages = "159--169",<br>    address = "Cham",<br>    publisher = "Springer International Publishing",<br>    year = "2021",<br>    url = "https://link.springer.com/chapter/10.1007/978-3-030-87101-7\_16"<br>}<br>

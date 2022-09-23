@@ -9,5 +9,5 @@ citation: ' Maura Pintor,  Luca Demetrio,  Angelo Sotgiu,  Giovanni Manca,  Ambr
 ---
 [Access paper here](https://arxiv.org/abs/2106.09947){:target="_blank"}
 
-BibTex: 
+BibTeX: 
 >@article{pintor2021indicators,<br>    author = "Pintor, Maura and Demetrio, Luca and Sotgiu, Angelo and Manca, Giovanni and Demontis, Ambra and Carlini, Nicholas and Biggio, Battista and Roli, Fabio",<br>    title = "Indicators of Attack Failure: Debugging and Improving Optimization of Adversarial Examples",<br>    booktitle = "Advances in Neural Information Processing Systems",<br>    year = "2022",<br>    url = "https://arxiv.org/abs/2106.09947"<br>}<br>
