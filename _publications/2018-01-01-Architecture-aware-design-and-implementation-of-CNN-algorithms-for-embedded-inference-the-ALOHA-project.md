@@ -11,13 +11,13 @@ citation: ' Paolo Meloni,  Daniela Loi,  Gianfranco Deriu,  Andy Pimentel,  Doll
 
 Recommended Citation: 
 >@conference{8704093,
-    author = &quot;Meloni, Paolo and Loi, Daniela and Deriu, Gianfranco and Pimentel, Andy D. and Sapra, Dolly and Pintor, Maura and Biggio, Battista and Ripolles, Oscar and Solans, David and Conti, Francesco and Benini, Luca and Stefanov, Todor and Minakova, Svetlana and Moser, Bernhard and Shepeleva, Natalia and Masin, Michael and Palumbo, Francesca and Fragoulis, Nikos and Theodorakopoulos, Ilias&quot;,
-    booktitle = &quot;2018 30th International Conference on Microelectronics (ICM)&quot;,
-    title = &quot;Architecture-aware design and implementation of CNN algorithms for embedded inference: the ALOHA project&quot;,
-    year = &quot;2018&quot;,
-    volume = &quot;&quot;,
-    number = &quot;&quot;,
-    url = &quot;https://ieeexplore.ieee.org/document/8704093&quot;,
-    pages = &quot;52-55&quot;,
-    doi = &quot;10.1109/ICM.2018.8704093&quot;
+    author = "Meloni, Paolo and Loi, Daniela and Deriu, Gianfranco and Pimentel, Andy D. and Sapra, Dolly and Pintor, Maura and Biggio, Battista and Ripolles, Oscar and Solans, David and Conti, Francesco and Benini, Luca and Stefanov, Todor and Minakova, Svetlana and Moser, Bernhard and Shepeleva, Natalia and Masin, Michael and Palumbo, Francesca and Fragoulis, Nikos and Theodorakopoulos, Ilias",
+    booktitle = "2018 30th International Conference on Microelectronics (ICM)",
+    title = "Architecture-aware design and implementation of CNN algorithms for embedded inference: the ALOHA project",
+    year = "2018",
+    volume = "",
+    number = "",
+    url = "https://ieeexplore.ieee.org/document/8704093",
+    pages = "52-55",
+    doi = "10.1109/ICM.2018.8704093"
 }

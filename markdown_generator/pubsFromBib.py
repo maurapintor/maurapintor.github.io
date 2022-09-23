@@ -146,7 +146,7 @@ for pubsource in publist:
             skipkeys = ['annote', 'abstract']
             bibentry = bibdata.entries[bib_id]
             bibentry.fields = {k: bibentry.fields[k] for k in bibentry.fields if k not in skipkeys}
-            md += "\nRecommended Citation: \n>" + html_escape(bibentry.to_string('bibtex'))
+            md += "\nRecommended Citation: \n>" + bibentry.to_string('bibtex')
 
             md_filename = os.path.basename(md_filename)
 

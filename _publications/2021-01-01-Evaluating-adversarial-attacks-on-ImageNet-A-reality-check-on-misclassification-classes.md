@@ -11,10 +11,10 @@ citation: ' Utku {\&quot;O}zbulak,  M Pintor,  Arnout Van,  Wesley De, &quot;Eva
 
 Recommended Citation: 
 >@inproceedings{ozbulak2021evaluating,
-    author = {{\&quot;O}zbulak, Utku and Pintor, M and Van Messem, Arnout and De Neve, Wesley},
-    title = &quot;Evaluating adversarial attacks on ImageNet: A reality check on misclassification classes&quot;,
-    booktitle = &quot;NeurIPS2021, 35th Conference on Neural Information Processing Systems (NeurIPS 2021), Workshop on ImageNet: Past, Present, and Future&quot;,
-    pages = &quot;1--9&quot;,
-    year = &quot;2021&quot;,
-    url = &quot;https://openreview.net/pdf?id=oWk2dULs1x&quot;
+    author = {{\"O}zbulak, Utku and Pintor, M and Van Messem, Arnout and De Neve, Wesley},
+    title = "Evaluating adversarial attacks on ImageNet: A reality check on misclassification classes",
+    booktitle = "NeurIPS2021, 35th Conference on Neural Information Processing Systems (NeurIPS 2021), Workshop on ImageNet: Past, Present, and Future",
+    pages = "1--9",
+    year = "2021",
+    url = "https://openreview.net/pdf?id=oWk2dULs1x"
 }

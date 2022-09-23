@@ -11,9 +11,9 @@ citation: ' Maura Pintor,  Luca Demetrio,  Giovanni Manca,  Battista Biggio,  Fa
 
 Recommended Citation: 
 >@conference{pintor2021slope,
-    author = &quot;Pintor, Maura and Demetrio, Luca and Manca, Giovanni and Biggio, Battista and Roli, Fabio&quot;,
-    title = &quot;Slope: A First-order Approach for Measuring Gradient Obfuscation&quot;,
-    booktitle = &quot;ESANN 2021 - European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning&quot;,
-    year = &quot;2021&quot;,
-    url = &quot;https://www.esann.org/sites/default/files/proceedings/2021/ES2021-99.pdf&quot;
+    author = "Pintor, Maura and Demetrio, Luca and Manca, Giovanni and Biggio, Battista and Roli, Fabio",
+    title = "Slope: A First-order Approach for Measuring Gradient Obfuscation",
+    booktitle = "ESANN 2021 - European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning",
+    year = "2021",
+    url = "https://www.esann.org/sites/default/files/proceedings/2021/ES2021-99.pdf"
 }

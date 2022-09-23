@@ -11,9 +11,9 @@ citation: ' Giulia Orrù,  Davide Ghiani,  Maura Pintor,  Gian Marcialis,  Fabio
 
 Recommended Citation: 
 >@conference{orrù2020detecting,
-    author = &quot;Orrù, Giulia and Ghiani, Davide and Pintor, Maura and Marcialis, Gian Luca and Roli, Fabio&quot;,
-    title = &quot;Detecting Anomalies from Video-Sequences: a Novel Descriptor&quot;,
-    year = &quot;2020&quot;,
-    booktitle = &quot;25th International Conference on Pattern Recognition (ICPR 2020)&quot;,
-    url = &quot;https://arxiv.org/pdf/2010.06407.pdf&quot;
+    author = "Orrù, Giulia and Ghiani, Davide and Pintor, Maura and Marcialis, Gian Luca and Roli, Fabio",
+    title = "Detecting Anomalies from Video-Sequences: a Novel Descriptor",
+    year = "2020",
+    booktitle = "25th International Conference on Pattern Recognition (ICPR 2020)",
+    url = "https://arxiv.org/pdf/2010.06407.pdf"
 }

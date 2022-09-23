@@ -11,9 +11,9 @@ citation: ' Yang Zheng,  Xiaoyi Feng,  Zhaoqiang Xia,  Xiaoyue Jiang,  Ambra Dem
 
 Recommended Citation: 
 >@article{zheng2021adversarial,
-    author = &quot;Zheng, Yang and Feng, Xiaoyi and Xia, Zhaoqiang and Jiang, Xiaoyue and Demontis, Ambra and Pintor, Maura and Biggio, Battista and Roli, Fabio&quot;,
-    title = &quot;Why Adversarial Reprogramming Works, When It Fails, and How to Tell the Difference&quot;,
-    journal = &quot;arXiv preprint arXiv:2108.11673&quot;,
-    url = &quot;https://arxiv.org/abs/2108.11673&quot;,
-    year = &quot;2021&quot;
+    author = "Zheng, Yang and Feng, Xiaoyi and Xia, Zhaoqiang and Jiang, Xiaoyue and Demontis, Ambra and Pintor, Maura and Biggio, Battista and Roli, Fabio",
+    title = "Why Adversarial Reprogramming Works, When It Fails, and How to Tell the Difference",
+    journal = "arXiv preprint arXiv:2108.11673",
+    url = "https://arxiv.org/abs/2108.11673",
+    year = "2021"
 }
