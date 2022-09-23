@@ -1,7 +1,7 @@
 ---
 title: "Towards Debugging and Improving Adversarial Robustness Evaluations"
 collection: publications
-permalink: /publication/2022-01-01-Towards-Debugging-and-Improving-Adversarial-Robustness-Evaluations
+permalink: /publications/2022-01-01-Towards-Debugging-and-Improving-Adversarial-Robustness-Evaluations
 pubtype: other
 date: 2022-01-01
 venue: 'UNICA'

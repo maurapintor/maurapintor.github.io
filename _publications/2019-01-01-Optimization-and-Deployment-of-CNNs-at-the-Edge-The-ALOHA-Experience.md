@@ -1,7 +1,7 @@
 ---
 title: "Optimization and Deployment of CNNs at the Edge: The ALOHA Experience"
 collection: publications
-permalink: /publication/2019-01-01-Optimization-and-Deployment-of-CNNs-at-the-Edge-The-ALOHA-Experience
+permalink: /publications/2019-01-01-Optimization-and-Deployment-of-CNNs-at-the-Edge-The-ALOHA-Experience
 pubtype: proceeding
 date: 2019-01-01
 venue: 'In the proceedings of Proceedings of the 16th ACM International Conference on Computing Frontiers'

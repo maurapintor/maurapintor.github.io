@@ -1,7 +1,7 @@
 ---
 title: "Slope: A First-order Approach for Measuring Gradient Obfuscation"
 collection: publications
-permalink: /publication/2021-01-01-Slope-A-First-order-Approach-for-Measuring-Gradient-Obfuscation
+permalink: /publications/2021-01-01-Slope-A-First-order-Approach-for-Measuring-Gradient-Obfuscation
 pubtype: proceeding
 date: 2021-01-01
 venue: 'In the proceedings of ESANN 2021 - European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning'

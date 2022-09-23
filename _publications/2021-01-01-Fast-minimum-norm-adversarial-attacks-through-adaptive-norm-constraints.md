@@ -1,7 +1,7 @@
 ---
 title: "Fast minimum-norm adversarial attacks through adaptive norm constraints"
 collection: publications
-permalink: /publication/2021-01-01-Fast-minimum-norm-adversarial-attacks-through-adaptive-norm-constraints
+permalink: /publications/2021-01-01-Fast-minimum-norm-adversarial-attacks-through-adaptive-norm-constraints
 pubtype: proceeding
 date: 2021-01-01
 venue: 'In the proceedings of Advances in Neural Information Processing Systems'

@@ -1,7 +1,7 @@
 ---
 title: "Be Right Beach: A Social IoT system for sustainable tourism based on beach overcrowding avoidance"
 collection: publications
-permalink: /publication/2018-01-01-Be-Right-Beach-A-Social-IoT-system-for-sustainable-tourism-based-on-beach-overcrowding-avoidance
+permalink: /publications/2018-01-01-Be-Right-Beach-A-Social-IoT-system-for-sustainable-tourism-based-on-beach-overcrowding-avoidance
 pubtype: proceeding
 date: 2018-01-01
 venue: 'In the proceedings of 2018 IEEE International Conference on Internet of Things (iThings) and IEEE Green Computing and Communications (GreenCom) and IEEE Cyber, Physical and Social Computing (CPSCom) and IEEE Smart Data (SmartData)'

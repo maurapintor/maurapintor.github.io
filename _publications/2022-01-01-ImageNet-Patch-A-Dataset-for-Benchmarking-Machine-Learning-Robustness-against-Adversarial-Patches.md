@@ -1,7 +1,7 @@
 ---
 title: "ImageNet-Patch: A Dataset for Benchmarking Machine Learning Robustness against Adversarial Patches"
 collection: publications
-permalink: /publication/2022-01-01-ImageNet-Patch-A-Dataset-for-Benchmarking-Machine-Learning-Robustness-against-Adversarial-Patches
+permalink: /publications/2022-01-01-ImageNet-Patch-A-Dataset-for-Benchmarking-Machine-Learning-Robustness-against-Adversarial-Patches
 pubtype: journal
 date: 2022-01-01
 venue: 'Pattern Recognition'

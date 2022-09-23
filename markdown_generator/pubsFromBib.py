@@ -12,7 +12,7 @@ publist = {
         "venuekey": "booktitle",
         "venue-pretext": "In the proceedings of ",
         "collection": {"name": "publications",
-                       "permalink": "/publication/"}
+                       "permalink": "/publications/"}
 
     },
     "journal": {
@@ -20,21 +20,21 @@ publist = {
         "venuekey": "journal",
         "venue-pretext": "",
         "collection": {"name": "publications",
-                       "permalink": "/publication/"}
+                       "permalink": "/publications/"}
     },
     "preprint": {
         "file": "preprints.bib",
         "venuekey": "journal",
         "venue-pretext": "",
         "collection": {"name": "publications",
-                       "permalink": "/publication/"}
+                       "permalink": "/publications/"}
     },
     "other": {
         "file": "others.bib",
         "venuekey": "journal",
         "venue-pretext": "",
         "collection": {"name": "publications",
-                       "permalink": "/publication/"}
+                       "permalink": "/publications/"}
     }
 }
 

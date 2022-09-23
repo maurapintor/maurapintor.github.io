@@ -1,7 +1,7 @@
 ---
 title: "Task-Specific Automation in Deep Learning Processes"
 collection: publications
-permalink: /publication/2021-01-01-Task-Specific-Automation-in-Deep-Learning-Processes
+permalink: /publications/2021-01-01-Task-Specific-Automation-in-Deep-Learning-Processes
 pubtype: proceeding
 date: 2021-01-01
 venue: 'In the proceedings of Database and Expert Systems Applications - DEXA 2021 Workshops'

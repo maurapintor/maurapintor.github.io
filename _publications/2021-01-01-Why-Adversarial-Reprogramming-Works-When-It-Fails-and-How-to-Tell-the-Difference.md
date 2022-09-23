@@ -1,7 +1,7 @@
 ---
 title: "Why Adversarial Reprogramming Works, When It Fails, and How to Tell the Difference"
 collection: publications
-permalink: /publication/2021-01-01-Why-Adversarial-Reprogramming-Works-When-It-Fails-and-How-to-Tell-the-Difference
+permalink: /publications/2021-01-01-Why-Adversarial-Reprogramming-Works-When-It-Fails-and-How-to-Tell-the-Difference
 pubtype: preprint
 date: 2021-01-01
 venue: 'arXiv preprint arXiv:2108.11673'

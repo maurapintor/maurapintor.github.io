@@ -1,7 +1,7 @@
 ---
 title: "secml: Secure and explainable machine learning in Python"
 collection: publications
-permalink: /publication/2022-01-01-secml-Secure-and-explainable-machine-learning-in-Python
+permalink: /publications/2022-01-01-secml-Secure-and-explainable-machine-learning-in-Python
 pubtype: journal
 date: 2022-01-01
 venue: 'SoftwareX'
