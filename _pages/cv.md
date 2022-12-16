@@ -89,6 +89,7 @@ Awards and accomplishments
     connected stations that provide sensor values and an 
     important real-time analysis about the crowdedness.
     * [Link to the article](https://iot-epi.eu/2017/06/19/highlights-of-hackathon-at-iot-week-geneva-2017/)
+    * [Report](http://maurapintor.github.io/files/2017_IoT-Week_Hackathon_Report.pdf)
 
 * 01/2017
     * Machine Learning by Stanford University on Coursera
@@ -135,3 +136,4 @@ GitHub profile: https://github.com/maurapintor
 
 * [SecML](https://github.com/pralab/secml) Library Maintainer
 * [PandaVision](https://github.com/maurapintor/pandavision) Library Maintainer
+* [MLSec Seminars](https://pralab.github.io/mlsec/) Organizer of the series.
