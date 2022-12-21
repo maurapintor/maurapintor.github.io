@@ -3,6 +3,7 @@ title: "Architecture-aware design and implementation of CNN algorithms for embed
 collection: publications
 permalink: /publications/2018-01-01-Architecture-aware-design-and-implementation-of-CNN-algorithms-for-embedded-inference-the-ALOHA-project
 pubtype: proceeding
+authors:  Paolo Meloni,  Daniela Loi,  Gianfranco Deriu,  Andy Pimentel,  Dolly Sapra,  Maura Pintor,  Battista Biggio,  Oscar Ripolles,  David Solans,  Francesco Conti,  Luca Benini,  Todor Stefanov,  Svetlana Minakova,  Bernhard Moser,  Natalia Shepeleva,  Michael Masin,  Francesca Palumbo,  Nikos Fragoulis,  Ilias Theodorakopoulos
 date: 2018-01-01
 venue: 'In the proceedings of 2018 30th International Conference on Microelectronics (ICM)'
 paperurl: 'https://ieeexplore.ieee.org/document/8704093'

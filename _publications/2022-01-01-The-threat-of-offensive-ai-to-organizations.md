@@ -3,6 +3,7 @@ title: "The threat of offensive ai to organizations"
 collection: publications
 permalink: /publications/2022-01-01-The-threat-of-offensive-ai-to-organizations
 pubtype: journal
+authors:  Yisroel Mirsky,  Ambra Demontis,  Jaidip Kotak,  Ram Shankar,  Deng Gelei,  Liu Yang,  Xiangyu Zhang,  Maura Pintor,  Wenke Lee,  Yuval Elovici,  Battista Biggio
 date: 2022-01-01
 venue: 'Computers &amp; Security'
 citation: ' Yisroel Mirsky,  Ambra Demontis,  Jaidip Kotak,  Ram Shankar,  Deng Gelei,  Liu Yang,  Xiangyu Zhang,  Maura Pintor,  Wenke Lee,  Yuval Elovici,  Battista Biggio, &quot;The threat of offensive ai to organizations.&quot; Computers &amp;amp; Security, 2022.'

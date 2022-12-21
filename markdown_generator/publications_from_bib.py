@@ -93,8 +93,12 @@ for pubsource in publist:
             citation = ""
 
             # citation authors - todo - add highlighting for primary author?
+            authors = ""
             for author in bibdata.entries[bib_id].persons["author"]:
                 citation = citation + " " + author.first_names[0] + " " + author.last_names[0] + ", "
+                authors = authors + " " + author.first_names[0] + " " + author.last_names[0] + (" " + author.last_names[1] if len(author.last_names)>1 else "") + ", "
+            # remove last two characters
+            authors = authors[:-2] 
 
             # citation title
             citation = citation + "\"" + html_escape(
@@ -115,6 +119,8 @@ for pubsource in publist:
             md += """\npermalink: """ + publist[pubsource]["collection"]["permalink"] + html_filename
 
             md += """\npubtype: """ + pubsource
+
+            md += """\nauthors: """ + authors
 
             note = False
             if "note" in b.keys():

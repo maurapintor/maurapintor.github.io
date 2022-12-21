@@ -3,6 +3,7 @@ title: "Slope: A First-order Approach for Measuring Gradient Obfuscation"
 collection: publications
 permalink: /publications/2021-01-01-Slope-A-First-order-Approach-for-Measuring-Gradient-Obfuscation
 pubtype: proceeding
+authors:  Maura Pintor,  Luca Demetrio,  Giovanni Manca,  Battista Biggio,  Fabio Roli
 date: 2021-01-01
 venue: 'In the proceedings of ESANN 2021 - European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning'
 paperurl: 'https://www.esann.org/sites/default/files/proceedings/2021/ES2021-99.pdf'

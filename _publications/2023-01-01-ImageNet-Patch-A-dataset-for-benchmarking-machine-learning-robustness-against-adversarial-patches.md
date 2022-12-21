@@ -3,6 +3,7 @@ title: "ImageNet-Patch: A dataset for benchmarking machine learning robustness a
 collection: publications
 permalink: /publications/2023-01-01-ImageNet-Patch-A-dataset-for-benchmarking-machine-learning-robustness-against-adversarial-patches
 pubtype: journal
+authors:  Maura Pintor,  Daniele Angioni,  Angelo Sotgiu,  Luca Demetrio,  Ambra Demontis,  Battista Biggio,  Fabio Roli
 date: 2023-01-01
 venue: 'Pattern Recognition'
 paperurl: 'https://arxiv.org/abs/2203.04412'

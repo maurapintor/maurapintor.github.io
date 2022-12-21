@@ -3,6 +3,7 @@ title: "Fast minimum-norm adversarial attacks through adaptive norm constraints"
 collection: publications
 permalink: /publications/2021-01-01-Fast-minimum-norm-adversarial-attacks-through-adaptive-norm-constraints
 pubtype: proceeding
+authors:  Maura Pintor,  Fabio Roli,  Wieland Brendel,  Battista Biggio
 date: 2021-01-01
 venue: 'In the proceedings of Advances in Neural Information Processing Systems'
 paperurl: 'https://proceedings.neurips.cc/paper/2021/hash/a709909b1ea5c2bee24248203b1728a5-Abstract.html'

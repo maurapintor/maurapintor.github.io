@@ -3,6 +3,7 @@ title: "ALOHA: An Architectural-Aware Framework for Deep Learning at the Edge"
 collection: publications
 permalink: /publications/2018-01-01-ALOHA-An-Architectural-Aware-Framework-for-Deep-Learning-at-the-Edge
 pubtype: proceeding
+authors:  P. Meloni,  D. Loi,  G. Deriu,  A. Pimentel,  D. Sapra,  B. Moser,  N. Shepeleva,  F. Conti,  L. Benini,  O. Ripolles,  D. Solans,  Maura Pintor,  B. Biggio,  T. Stefanov,  S. Minakova,  N. Fragoulis,  I. Theodorakopoulos,  M. Masin,  F. Palumbo
 date: 2018-01-01
 venue: 'In the proceedings of Proceedings of the Workshop on INTelligent Embedded Systems Architectures and Applications'
 paperurl: 'https://doi.org/10.1145/3285017.3285019'

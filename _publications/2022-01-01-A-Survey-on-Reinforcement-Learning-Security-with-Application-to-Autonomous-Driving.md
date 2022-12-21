@@ -3,6 +3,7 @@ title: "A Survey on Reinforcement Learning Security with Application to Autonomo
 collection: publications
 permalink: /publications/2022-01-01-A-Survey-on-Reinforcement-Learning-Security-with-Application-to-Autonomous-Driving
 pubtype: preprint
+authors:  Ambra Demontis,  Maura Pintor,  Luca Demetrio,  Kathrin Grosse,  Hsiao-Ying Lin,  Chengfang Fang,  Battista Biggio,  Fabio Roli
 date: 2022-01-01
 venue: 'arXiv preprint arXiv:2212.06123'
 citation: ' Ambra Demontis,  Maura Pintor,  Luca Demetrio,  Kathrin Grosse,  Hsiao-Ying Lin,  Chengfang Fang,  Battista Biggio,  Fabio Roli, &quot;A Survey on Reinforcement Learning Security with Application to Autonomous Driving.&quot; arXiv preprint arXiv:2212.06123, 2022.'

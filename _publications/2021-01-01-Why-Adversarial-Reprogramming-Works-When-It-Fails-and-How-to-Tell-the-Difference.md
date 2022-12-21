@@ -3,6 +3,7 @@ title: "Why Adversarial Reprogramming Works, When It Fails, and How to Tell the 
 collection: publications
 permalink: /publications/2021-01-01-Why-Adversarial-Reprogramming-Works-When-It-Fails-and-How-to-Tell-the-Difference
 pubtype: preprint
+authors:  Yang Zheng,  Xiaoyi Feng,  Zhaoqiang Xia,  Xiaoyue Jiang,  Ambra Demontis,  Maura Pintor,  Battista Biggio,  Fabio Roli
 date: 2021-01-01
 venue: 'arXiv preprint arXiv:2108.11673'
 paperurl: 'https://arxiv.org/abs/2108.11673'

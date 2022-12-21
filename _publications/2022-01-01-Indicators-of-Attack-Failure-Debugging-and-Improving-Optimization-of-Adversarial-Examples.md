@@ -3,6 +3,7 @@ title: "Indicators of Attack Failure: Debugging and Improving Optimization of Ad
 collection: publications
 permalink: /publications/2022-01-01-Indicators-of-Attack-Failure-Debugging-and-Improving-Optimization-of-Adversarial-Examples
 pubtype: proceeding
+authors:  Maura Pintor,  Luca Demetrio,  Angelo Sotgiu,  Giovanni Manca,  Ambra Demontis,  Nicholas Carlini,  Battista Biggio,  Fabio Roli
 date: 2022-01-01
 venue: 'In the proceedings of Advances in Neural Information Processing Systems'
 paperurl: 'https://arxiv.org/abs/2106.09947'

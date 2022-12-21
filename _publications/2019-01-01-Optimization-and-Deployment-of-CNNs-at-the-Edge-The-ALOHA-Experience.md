@@ -3,6 +3,7 @@ title: "Optimization and Deployment of CNNs at the Edge: The ALOHA Experience"
 collection: publications
 permalink: /publications/2019-01-01-Optimization-and-Deployment-of-CNNs-at-the-Edge-The-ALOHA-Experience
 pubtype: proceeding
+authors:  Paolo Meloni,  Daniela Loi,  Paola Busia,  Gianfranco Deriu,  Andy Pimentel,  Dolly Sapra,  Todor Stefanov,  Svetlana Minakova,  Francesco Conti,  Luca Benini,  Maura Pintor,  Battista Biggio,  Bernhard Moser,  Natalia Shepeleva,  Nikos Fragoulis,  Ilias Theodorakopoulos,  Michael Masin,  Francesca Palumbo
 date: 2019-01-01
 venue: 'In the proceedings of Proceedings of the 16th ACM International Conference on Computing Frontiers'
 paperurl: 'https://doi.org/10.1145/3310273.3323435'

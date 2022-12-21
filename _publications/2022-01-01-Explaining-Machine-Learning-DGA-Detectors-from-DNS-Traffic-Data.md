@@ -3,6 +3,7 @@ title: "Explaining Machine Learning DGA Detectors from DNS Traffic Data"
 collection: publications
 permalink: /publications/2022-01-01-Explaining-Machine-Learning-DGA-Detectors-from-DNS-Traffic-Data
 pubtype: proceeding
+authors:  Giorgio Piras,  Maura Pintor,  Luca Demetrio,  Battista Biggio
 date: 2022-01-01
 venue: 'In the proceedings of Proceedings of the Italian Conference on Cybersecurity (ITASEC 2022), Rome, Italy, June 20-23, 2022'
 paperurl: 'http://ceur-ws.org/Vol-3260/paper11.pdf'

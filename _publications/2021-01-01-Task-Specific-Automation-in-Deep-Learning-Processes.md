@@ -3,6 +3,7 @@ title: "Task-Specific Automation in Deep Learning Processes"
 collection: publications
 permalink: /publications/2021-01-01-Task-Specific-Automation-in-Deep-Learning-Processes
 pubtype: proceeding
+authors:  Georg Buchgeher,  Gerald Czech,  Adriano Ribeiro,  Werner Kloihofer,  Paolo Meloni,  Paola Busia,  Gianfranco Deriu,  Maura Pintor,  Battista Biggio,  Cristina Chesta,  Luca Rinelli,  David Solans,  Manuel Portela
 date: 2021-01-01
 venue: 'In the proceedings of Database and Expert Systems Applications - DEXA 2021 Workshops'
 paperurl: 'https://link.springer.com/chapter/10.1007/978-3-030-87101-7_16'

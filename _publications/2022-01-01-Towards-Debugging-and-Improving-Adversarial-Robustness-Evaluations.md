@@ -3,6 +3,7 @@ title: "Towards Debugging and Improving Adversarial Robustness Evaluations"
 collection: publications
 permalink: /publications/2022-01-01-Towards-Debugging-and-Improving-Adversarial-Robustness-Evaluations
 pubtype: other
+authors:  Maura Pintor
 date: 2022-01-01
 venue: 'UNICA'
 paperurl: 'https://iris.unica.it/bitstream/11584/328882/2/PhD_Thesis_Maura_Pintor.pdf'
