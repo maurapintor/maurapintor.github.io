@@ -22,7 +22,10 @@ Education
 
 Work experience
 ======
-* 10/2021 - ongoing: Postdoctoral Researcher
+* 03/2023 - ongoing: Assistant Professor (RTDa)
+  * University of Cagliari (Italy)
+  * Duties included: Research on machine learning security.
+* 10/2021 - 02/2022: Postdoctoral Researcher
   * University of Cagliari (Italy)
   * Duties included: Research on machine learning security.
 * 03/2021 - 03/2022 : Collaborator for EU project
