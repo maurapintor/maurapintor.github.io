@@ -11,7 +11,7 @@ redirect_from:
 
 Maura Pintor - **Assistant Professor** @ [University of Cagliari](https://www.unica.it/unica/en/homepage.page) and **Collaborator** @ [Pluribus One](https://www.pluribus-one.it/).
 
-[Download pdf version](files/Curriculum.pdf)
+[Download pdf version](http://maurapintor.github.io/files/Curriculum.pdf)
 
 Education and Research
 ======
