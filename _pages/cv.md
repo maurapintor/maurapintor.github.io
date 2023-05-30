@@ -152,11 +152,14 @@ Other Activities
 ======
 
 ## Conference Chair
-
-* 08/2022: [Workshop chair at ARES International Workshop on Continuous Software Evaluation and Certification (IWCSEC 2022)](https://www.ares-conference.eu/workshops-eu-symposium/iwcsec-2022/)
-* 06/2022: [Workshop chair at ITASEC AI for Security and Security of AI Workshop (AISSAI 2022)](https://itasec.it/workshop/workshop-ai-for-security-and-security-of-ai/)
+* 11/2023: [Wokshop co-chair at 16th ACM Workshop on Artificial Intelligence and Security (AISec 2023)](https://aisec.cc), co-located with ACM CCS.
+* 10/2023: [Session co-chair of ESANN 2023 special session Towards Machine Learning Models that We Can Trust: Testing, Improving, and Explaining Robustness](https://www.esann.org/special-sessions#session5).
+* 08/2022: [Workshop co-chair at ARES International Workshop on Continuous Software Evaluation and Certification (IWCSEC 2022)](https://www.ares-conference.eu/workshops-eu-symposium/iwcsec-2022/)
+* 06/2022: [Workshop co-chair at ITASEC AI for Security and Security of AI Workshop (AISSAI 2022)](https://itasec.it/workshop/workshop-ai-for-security-and-security-of-ai/)
 
 ## Reviewer
+* 05/2023 PC at [Neural Information Processing Systems (NeurIPS 2023)](https://neurips.cc)
+* 05/2023 PC at [Annual Computer Security Applications Conference (ACSAC)](https://www.acsac.org)
 * 03/2023 PC at [AAAI Workshop on Practical Deep Learning in the Wild](https://practical-dl.github.io)
 * 03/2023 PC at [Euro S&P Workshop on Robust Malware Analysis](https://worma.gitlab.io/2023/)
 * 02/2023 PC at [CVPR Workshop on Generative Models for Computer Vision](https://generative-vision.github.io/workshop-CVPR-23/)
