@@ -13,6 +13,8 @@ Maura Pintor - **Assistant Professor** @ [University of Cagliari](https://www.un
 
 [Download pdf version](http://maurapintor.github.io/files/Curriculum.pdf)
 
+Last update: June 4th 2023
+
 Education and Research
 ======
 *  03/2023 - ongoing: Assistant Professor (RTDa)
@@ -94,9 +96,9 @@ Teaching
 
 Publications
 ======
-  <ul>{% for post in site.publications reversed%}
+{% for post in site.publications reversed%}
     {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+{% endfor %}
   
 [comment]: <> (Talks)
 
