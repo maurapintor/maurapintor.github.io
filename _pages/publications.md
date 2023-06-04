@@ -35,7 +35,7 @@ author_profile: true
 <h2>Other</h2>
 {% for post in site.publications reversed %}
   {% if post.pubtype == 'other' %}
-      {% include archive-single.html %}
+      {% include archive-single-cv.html %}
   {% endif %}
 {% endfor %}
 
