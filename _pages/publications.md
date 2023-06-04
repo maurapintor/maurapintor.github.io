@@ -14,21 +14,21 @@ author_profile: true
 <h2>Journal Articles</h2>
 {% for post in site.publications reversed %}
   {% if post.pubtype == 'journal' %}
-      {% include archive-single.html %}
+      {% include archive-single-cv.html %}
   {% endif %}
 {% endfor %}
 
 <h2>Conference Papers</h2>
 {% for post in site.publications reversed %}
   {% if post.pubtype == 'proceeding' %}
-      {% include archive-single.html %}
+      {% include archive-single-cv.html %}
   {% endif %}
 {% endfor %}
 
 <h2>Preprints</h2>
 {% for post in site.publications reversed %}
   {% if post.pubtype == 'preprint' %}
-      {% include archive-single.html %}
+      {% include archive-single-cv.html %}
   {% endif %}
 {% endfor %}
 
