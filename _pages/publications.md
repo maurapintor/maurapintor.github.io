@@ -15,7 +15,6 @@ author_profile: true
 {% for post in site.publications reversed %}
   {% if post.pubtype == 'journal' %}
       {% include archive-single.html %}
-  _______
   {% endif %}
 {% endfor %}
 
@@ -23,7 +22,6 @@ author_profile: true
 {% for post in site.publications reversed %}
   {% if post.pubtype == 'proceeding' %}
       {% include archive-single.html %}
-  _______
   {% endif %}
 {% endfor %}
 
@@ -31,7 +29,6 @@ author_profile: true
 {% for post in site.publications reversed %}
   {% if post.pubtype == 'preprint' %}
       {% include archive-single.html %}
-  _______
   {% endif %}
 {% endfor %}
 
@@ -39,7 +36,6 @@ author_profile: true
 {% for post in site.publications reversed %}
   {% if post.pubtype == 'other' %}
       {% include archive-single.html %}
-  _______
   {% endif %}
 {% endfor %}
 
