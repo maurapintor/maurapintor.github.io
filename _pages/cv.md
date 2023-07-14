@@ -153,20 +153,38 @@ Awards and accomplishments
 Other Activities
 ======
 
-## Conference Chair
-* 11/2023: [Wokshop co-chair at 16th ACM Workshop on Artificial Intelligence and Security (AISec 2023)](https://aisec.cc), co-located with ACM CCS.
-* 10/2023: [Session co-chair of ESANN 2023 special session Towards Machine Learning Models that We Can Trust: Testing, Improving, and Explaining Robustness](https://www.esann.org/special-sessions#session5).
-* 08/2022: [Workshop co-chair at ARES International Workshop on Continuous Software Evaluation and Certification (IWCSEC 2022)](https://www.ares-conference.eu/workshops-eu-symposium/iwcsec-2022/)
-* 06/2022: [Workshop co-chair at ITASEC AI for Security and Security of AI Workshop (AISSAI 2022)](https://itasec.it/workshop/workshop-ai-for-security-and-security-of-ai/)
+## Conference and Workshop Chair
+* 04/2024: Workshop co-chair at [Safe, Secure and Robust AI Track at the SAC24 Conference](https://sites.google.com/view/s2rai-sac/)
+* 11/2023: Wokshop co-chair at [16th ACM Workshop on Artificial Intelligence and Security (AISec 2023)](https://aisec.cc), co-located with ACM CCS.
+* 10/2023: Session co-chair of [ESANN 2023 special session Towards Machine Learning Models that We Can Trust: Testing, Improving, and Explaining Robustness](https://www.esann.org/special-sessions#session5).
+* 08/2022: Workshop co-chair at [ARES International Workshop on Continuous Software Evaluation and Certification (IWCSEC 2022)](https://www.ares-conference.eu/workshops-eu-symposium/iwcsec-2022/)
+* 06/2022: Workshop co-chair at [ITASEC AI for Security and Security of AI Workshop (AISSAI 2022)](https://itasec.it/workshop/workshop-ai-for-security-and-security-of-ai/)
 
 ## Reviewer
+
+### Journals
+* IEEE Transactions on Information Forensics and Security (IEEE T-IFS)
+* IEEE Transactions on Image Processing (IEEE TIP)
+* IEEE Transactions on Dependable and Secure Computing (IEEE TDSC)
+* IEEE Transactions on Neural Networks and Learning Systems (IEEE-TNNLS)
+* ACM Transactions on Privacy and Security (TOPS)
+* Journal of Intelligent Information Systems (JIIS)
+* Eurasip Journal on Information Security 
+* Machine Vision and Applications (MVAP)
+
+
+### Conferences
 * 05/2023 PC at [Neural Information Processing Systems (NeurIPS 2023)](https://neurips.cc)
 * 05/2023 PC at [Annual Computer Security Applications Conference (ACSAC)](https://www.acsac.org)
+* 04/2023 PC at [International Conference on Computer Vision(ICCV 2023)](https://iccv2023.thecvf.com)
+* 03/2023 PC at the [International Conference on Availability, Reliability and Security (ARES 2023)](https://www.ares-conference.eu)
+
+### Workshops
+
 * 03/2023 PC at [AAAI Workshop on Practical Deep Learning in the Wild](https://practical-dl.github.io)
 * 03/2023 PC at [Euro S&P Workshop on Robust Malware Analysis](https://worma.gitlab.io/2023/)
 * 02/2023 PC at [CVPR Workshop on Generative Models for Computer Vision](https://generative-vision.github.io/workshop-CVPR-23/)
-* 02/2023 PC at [CVPR Workshop of Adversarial Machine Learning 
-on Computer Vision: Art of Robustness](https://robustart.github.io)
+* 02/2023 PC at [CVPR Workshop of Adversarial Machine Learning on Computer Vision: Art of Robustness](https://robustart.github.io)
 * 2022/04 Program Committee at [ICML 2022 Workshop Shift happens: Crowdsourcing metrics and test datasets beyond ImageNet](https://shift-happens-benchmark.github.io)
 * 2022/03 Program Committee at [ICML 2022 Workshop on Socially Responsible Machine Learning](https://iclrsrml.github.io/)
 * 2021/08 Program Committee at 14th ACM CCS 2021 Workshop on Artificial Intelligence and Security ([AISec](https://aisec.cc/))
