@@ -4,4 +4,5 @@ excerpt: "Slides for the lecture: Towards Machine Learning Models that We Can Tr
 collection: portfolio
 ---
 
+
 * [Slides](http://maurapintor.github.io/files/20230718_artisan_pintor.pdf)
