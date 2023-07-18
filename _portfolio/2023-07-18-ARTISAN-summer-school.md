@@ -5,6 +5,3 @@ collection: portfolio
 ---
 
 * [Slides](http://maurapintor.github.io/files/20230718_artisan_pintor.pdf)
-
-
-2022-06-22-icml-workshop-shift-happens
