@@ -14,5 +14,4 @@ Maura Pintor is an **Assistant Professor** at the [**PRA Lab**](http://pralab.di
 
 **EU Projects.**She has collaborated with [Pluribus One](https://www.pluribus-one.it/) in the EU H2020 projects [ALOHA](https://www.aloha-h2020.eu/) and [AssureMOSS](https://assuremoss.eu/en/)(still ongoing).
 
-* [Slides ARTISAN](http://maurapintor.github.io/files/20230718_artisan_pintor.pdf)
 
