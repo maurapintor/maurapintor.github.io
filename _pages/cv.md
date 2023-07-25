@@ -154,9 +154,9 @@ Other Activities
 ======
 
 ## Conference and Workshop Chair
-* 04/2024: Workshop co-chair at [Safe, Secure and Robust AI Track at the SAC24 Conference](https://sites.google.com/view/s2rai-sac/)
+* 04/2024: Track co-chair at [Safe, Secure and Robust AI Track at the SAC24 Conference](https://sites.google.com/view/s2rai-sac/)
 * 11/2023: Wokshop co-chair at [16th ACM Workshop on Artificial Intelligence and Security (AISec 2023)](https://aisec.cc), co-located with ACM CCS.
-* 10/2023: Session co-chair of [ESANN 2023 special session Towards Machine Learning Models that We Can Trust: Testing, Improving, and Explaining Robustness](https://www.esann.org/special-sessions#session5).
+* 10/2023: Track co-chair of [ESANN 2023 special session Towards Machine Learning Models that We Can Trust: Testing, Improving, and Explaining Robustness](https://www.esann.org/special-sessions#session5).
 * 08/2022: Workshop co-chair at [ARES International Workshop on Continuous Software Evaluation and Certification (IWCSEC 2022)](https://www.ares-conference.eu/workshops-eu-symposium/iwcsec-2022/)
 * 06/2022: Workshop co-chair at [ITASEC AI for Security and Security of AI Workshop (AISSAI 2022)](https://itasec.it/workshop/workshop-ai-for-security-and-security-of-ai/)
 
@@ -196,7 +196,9 @@ Other Activities
 * 2020/06 Program Committee at [CVPR 2020 Workshop on Adversarial Machine Learning in Computer Vision](https://adv-workshop-2020.github.io/)
 
 ## Talks and Posters
-* 2022/11 Presented "Indicators of Attack Failure: Debugging and Improving Optimization of Adversarial Examples" at [NeurIPS 2022]()
+* 2023/07 Presented "Towards Machine Learning Models that We Can Trust: Hacking and (properly) Testing AI" at the ARTISAN Summer School 2023 (Role and effects of ARTificial Intelligence in Secure ApplicatioNs) in Vienna, Austria.
+* 2023/05 Presented "Machine Learning Security: Lessons Learned and Future Challenges" at the Hamburg University of Technology (TUHH), Hamburg, Germany.
+* 2022/11 Presented "Indicators of Attack Failure: Debugging and Improving Optimization of Adversarial Examples" at [NeurIPS 2022](https://proceedings.neurips.cc/paper_files/paper/2022/hash/91ffdc5e2f12436d99914418e38d0a09-Abstract-Conference.html)
 * 2022/06 Presented [slides/video](https://slideslive.com/38987457) at [ICML 2022 Workshop Shift happens: Crowdsourcing metrics and test datasets beyond ImageNet](https://shift-happens-benchmark.github.io)
 * 2021/11 Presented [slides/video](https://maurapintor.github.io/portfolio/2021-11-05-cybersec-ai-iof/) at [Cybersec&AI Connected](https://cybersecai.com/) ([Slides](https://maurapintor.github.io/files/2021_CybersecAI_IoF.pdf))([Video](https://youtu.be/WFxl3nJyMXY?t=7588))
 * 2021/07 Poster Session at ICML 2021 Workshop A Blessing in Disguise: The Prospects and Perils of Adversarial Machine Learning ([Poster](http://maurapintor.github.io/files/2021_ICML-AML_IOF.pdf))
@@ -204,7 +206,7 @@ Other Activities
 * 2021/06 Poster Session at Microsoft Security Data Science Colloquium ([Slides](https://docs.google.com/presentation/d/126ppYyCRBsLBgpYOtvNY8McnqS6GK_3Lmc5M8Ot_88c/edit?usp=sharing))
 * 2019/10 Presented [poster](https://maurapintor.github.io/portfolio/2019-08-06-cybersec-ai-prague-poster-transferability/) at [Cybersec&AI Prague](https://www.cybersecprague.ai/)
 
-## Summer Schools
+## Summer Schools (as a student)
 * 2021/07 Regularization Methods for Machine Learning ([RegML 2021](https://ml.unige.it/education/school/regml2021/))
 * 2020/07 Machine Learning Summer School ([MLSS 2020](http://mlss.tuebingen.mpg.de/2020/))
 * 2019/07 International Computer Vision Summer School ([ICVSS 2019](https://iplab.dmi.unict.it/icvss2019/))
