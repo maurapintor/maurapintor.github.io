@@ -13,7 +13,7 @@ Maura Pintor - **Assistant Professor** @ [University of Cagliari](https://www.un
 
 [Download pdf version](http://maurapintor.github.io/files/Curriculum.pdf)
 
-Last update: June 4th 2023
+Last update: Sept. 3rd 2023
 
 Education and Research
 ======
@@ -174,6 +174,7 @@ Other Activities
 
 
 ### Conferences
+* 10/2023 PC at [Twelfth International Conference on Learning Representations](iclr.cc)
 * 05/2023 PC at [Neural Information Processing Systems (NeurIPS 2023)](https://neurips.cc)
 * 05/2023 PC at [Annual Computer Security Applications Conference (ACSAC)](https://www.acsac.org)
 * 04/2023 PC at [International Conference on Computer Vision(ICCV 2023)](https://iccv2023.thecvf.com)
