@@ -15,4 +15,4 @@ Maura Pintor is an **Assistant Professor** at the [**PRA Lab**](http://pralab.di
 **EU Projects.**She has collaborated with [Pluribus One](https://www.pluribus-one.it/) in the EU H2020 projects [ALOHA](https://www.aloha-h2020.eu/) and [AssureMOSS](https://assuremoss.eu/en/)(still ongoing).
 
 
-**Lecture Slides Leuven**: https://docs.google.com/presentation/d/1EC4WQccPPRPEgnouML3wB5jsUWlegsnudIbyap6xSPE/edit?usp=sharing
+**Lecture Slides Leuven**: [https://docs.google.com/presentation/d/1EC4WQccPPRPEgnouML3wB5jsUWlegsnudIbyap6xSPE/edit?usp=sharing](https://docs.google.com/presentation/d/1EC4WQccPPRPEgnouML3wB5jsUWlegsnudIbyap6xSPE/edit?usp=sharing)
