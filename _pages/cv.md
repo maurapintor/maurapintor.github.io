@@ -13,7 +13,7 @@ Maura Pintor - **Assistant Professor** @ [University of Cagliari](https://www.un
 
 [Download pdf version](http://maurapintor.github.io/files/Curriculum.pdf)
 
-Last update: Sept. 3rd 2023
+Last update: Dec. 13th 2023
 
 Education and Research
 ======
@@ -53,6 +53,8 @@ Work experience
 
 Projects
 ========
+
+* Participation, with the University of Cagliari, in the EU project ``Security for AI and AI for Security'' (Sec4AI4Sec), Grant Agreement no.: 101120393, funded by the European Union in the programme HORIZON-CL3-2022-CS-01.
 * 10/2022 - ongoing: Participation, with the University of Cagliari, in the EU project ``European Lighthouse on Secure and Safe AI'' (ELSA), Grant Agreement no.: 101070617, funded by the European Union in the programme HORIZON-CL4-2021-HUMAN-01.
 * 10/2021 - ongoing : Participation, with the University of Cagliari, in the research project ``Huawei R\&D Agreement: Deep Reinforcement Learning Key Security Technologies'', Grant Agreement n. TC20201118006.
 * 03/2021 - ongoing: Scientific Coordinator, with the company Pluribus One, of the WP6 (Impact: Benchmark Datasets and Tool Flow Pilots) of the EU project ``Assurance and certification in secure Multi-party Open Software and Services'' (AssureMOSS), Grant Agreement no.: 952647, funded by the EU Union in the programme H2020-SU-ICT-2019.
@@ -174,8 +176,10 @@ Other Activities
 
 
 ### Conferences
-* 10/2023 PC at [Twelfth International Conference on Learning Representations](iclr.cc)
-* 05/2023 PC at [Neural Information Processing Systems (NeurIPS 2023)](https://neurips.cc)
+* 10/2023 PC at [2024 IEEE International Conference on Acoustics, Speech and Signal Processing (IEEE ICASSP)](https://2024.ieeeicassp.org)
+* 10/2023 PC at [Twelfth International Conference on Learning Representations (ICLR2024)](iclr.cc)
+* 05/2023 PC at [Neural Information Processing Systems (NeurIPS 2023)](https://neurips.cc) ![Static Badge](https://img.shields.io/badge/Top%20Reviewers-reviewers)
+
 * 05/2023 PC at [Annual Computer Security Applications Conference (ACSAC)](https://www.acsac.org)
 * 04/2023 PC at [International Conference on Computer Vision(ICCV 2023)](https://iccv2023.thecvf.com)
 * 03/2023 PC at the [International Conference on Availability, Reliability and Security (ARES 2023)](https://www.ares-conference.eu)
@@ -197,6 +201,7 @@ Other Activities
 * 2020/06 Program Committee at [CVPR 2020 Workshop on Adversarial Machine Learning in Computer Vision](https://adv-workshop-2020.github.io/)
 
 ## Talks and Posters
+* 2023/09 Presented "Foundations of Machine Learning and its Application to Cybersecurity" (co-lecturer with [Luca Demetrio](https://zangobot.github.io)) at the Summer School on Security and Privacy in the Age of AI, organized by the [DistriNet Research Unit at KU Leuven](https://distrinet.cs.kuleuven.be).
 * 2023/07 Presented "Towards Machine Learning Models that We Can Trust: Hacking and (properly) Testing AI" at the ARTISAN Summer School 2023 (Role and effects of ARTificial Intelligence in Secure ApplicatioNs) in Vienna, Austria.
 * 2023/05 Presented "Machine Learning Security: Lessons Learned and Future Challenges" at the Hamburg University of Technology (TUHH), Hamburg, Germany.
 * 2022/11 Presented "Indicators of Attack Failure: Debugging and Improving Optimization of Adversarial Examples" at [NeurIPS 2022](https://proceedings.neurips.cc/paper_files/paper/2022/hash/91ffdc5e2f12436d99914418e38d0a09-Abstract-Conference.html)
