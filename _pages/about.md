@@ -15,6 +15,6 @@ Maura Pintor is an **Assistant Professor** at the [**PRA Lab**](http://pralab.di
 **EU Projects.**She has collaborated with [Pluribus One](https://www.pluribus-one.it/) in the EU H2020 projects [ALOHA](https://www.aloha-h2020.eu/) and [AssureMOSS](https://assuremoss.eu/en/)(still ongoing).
 
 
-**Lecture Slides ISDe**: [Link to the slides](http://maurapintor.github.io/files/web-servers_2023.pdf)
+**Lecture Slides UNIPD**: [Link to the slides](http://maurapintor.github.io/files/talk_pintor_unipd.pdf)
 
 **Repository MLSec Labs**: [Link to the repository](https://github.com/maurapintor/unica_mlsec_labs)
