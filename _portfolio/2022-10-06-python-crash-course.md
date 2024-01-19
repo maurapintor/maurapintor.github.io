@@ -4,5 +4,5 @@ excerpt: "Python crash course for Industrial Software Development."
 collection: portfolio
 ---
 
-* [Tutorial 01](../files/isde_tutoring_01.pdf)
-* [Tutorial 02](../files/isde_tutoring_02.pdf)
+* [Tutorial 01](http://maurapintor.github.io/files/isde_tutoring_01.pdf)
+* [Tutorial 02](http://maurapintor.github.io/files/isde_tutoring_02.pdf)
