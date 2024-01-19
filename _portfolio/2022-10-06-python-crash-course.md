@@ -5,4 +5,4 @@ collection: portfolio
 ---
 
 * [Tutorial 01](../files/isde_tutoring_01.pdf)
-* [Tutorial 01](../files/isde_tutoring_02.pdf)
+* [Tutorial 02](../files/isde_tutoring_02.pdf)
