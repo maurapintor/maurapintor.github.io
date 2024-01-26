@@ -17,4 +17,4 @@ Maura Pintor is an **Assistant Professor** at the [**PRA Lab**](http://pralab.di
 
 **Python crash course**: [slides](http://maurapintor.github.io/portfolio/2022-10-06-python-crash-course/)
 
-
+**My PyTorch short course**: https://unica-ml.github.io/dlcv/
