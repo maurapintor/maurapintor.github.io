@@ -13,7 +13,7 @@ Maura Pintor - **Assistant Professor** @ [University of Cagliari](https://www.un
 
 [Download pdf version](http://maurapintor.github.io/files/Curriculum.pdf)
 
-Last update: Dec. 13th 2023
+Last update: Mar. 7th 2024
 
 Education and Research
 ======
@@ -162,6 +162,10 @@ Other Activities
 * 08/2022: Workshop co-chair at [ARES International Workshop on Continuous Software Evaluation and Certification (IWCSEC 2022)](https://www.ares-conference.eu/workshops-eu-symposium/iwcsec-2022/)
 * 06/2022: Workshop co-chair at [ITASEC AI for Security and Security of AI Workshop (AISSAI 2022)](https://itasec.it/workshop/workshop-ai-for-security-and-security-of-ai/)
 
+## Associate Editor
+
+* 9/2023: [Associate Editor for International Journal of Machine Learning and Cybernetics (JMLC)](https://link.springer.com/journal/13042)
+
 ## Reviewer
 
 ### Journals
@@ -176,8 +180,11 @@ Other Activities
 
 
 ### Conferences
-* 10/2023 PC at [2024 IEEE International Conference on Acoustics, Speech and Signal Processing (IEEE ICASSP)](https://2024.ieeeicassp.org)
-* 10/2023 PC at [Twelfth International Conference on Learning Representations (ICLR2024)](iclr.cc)
+* 02/2024 PC at [33rd USENIX Security Symposium](https://www.usenix.org/conference/usenixsecurity24)
+* 02/2024 PC at the [31st ACM Conference on Computer and Communications Security (CCS 2024)](https://www.sigsac.org/ccs/CCS2024/call-for/call-for-papers.html)
+* 01/2024 PC at [33rd International Joint Conference on Artificial Intelligence (IJCAI 2024)](https://ijcai24.org)
+* 10/2023 PC at [2024 IEEE International Conference on Acoustics, Speech and Signal Processing (IEEE ICASSP 2024)](https://2024.ieeeicassp.org)
+* 10/2023 PC at [Twelfth International Conference on Learning Representations (ICLR 2024)](iclr.cc)
 * 05/2023 PC at [Neural Information Processing Systems (NeurIPS 2023)](https://neurips.cc) ![Static Badge](https://img.shields.io/badge/Top%20Reviewers-reviewers)
 
 * 05/2023 PC at [Annual Computer Security Applications Conference (ACSAC)](https://www.acsac.org)
@@ -201,6 +208,7 @@ Other Activities
 * 2020/06 Program Committee at [CVPR 2020 Workshop on Adversarial Machine Learning in Computer Vision](https://adv-workshop-2020.github.io/)
 
 ## Talks and Posters
+* 2024/05 [Invited speaker at the 3rd Workshop on Rethinking Malware Analysis (WORMA 2024)](https://worma.gitlab.io/2024)
 * 2023/09 Presented "Foundations of Machine Learning and its Application to Cybersecurity" (co-lecturer with [Luca Demetrio](https://zangobot.github.io)) at the Summer School on Security and Privacy in the Age of AI, organized by the [DistriNet Research Unit at KU Leuven](https://distrinet.cs.kuleuven.be).
 * 2023/07 Presented "Towards Machine Learning Models that We Can Trust: Hacking and (properly) Testing AI" at the ARTISAN Summer School 2023 (Role and effects of ARTificial Intelligence in Secure ApplicatioNs) in Vienna, Austria.
 * 2023/05 Presented "Machine Learning Security: Lessons Learned and Future Challenges" at the Hamburg University of Technology (TUHH), Hamburg, Germany.
