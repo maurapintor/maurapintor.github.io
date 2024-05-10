@@ -188,7 +188,7 @@ Other Activities
 * 02/2024 PC at the [31st ACM Conference on Computer and Communications Security (CCS 2024)](https://www.sigsac.org/ccs/CCS2024/call-for/call-for-papers.html)
 * 01/2024 PC at [33rd International Joint Conference on Artificial Intelligence (IJCAI 2024)](https://ijcai24.org)
 * 10/2023 PC at [2024 IEEE International Conference on Acoustics, Speech and Signal Processing (IEEE ICASSP 2024)](https://2024.ieeeicassp.org)
-* 10/2023 PC at [Twelfth International Conference on Learning Representations (ICLR 2024)](iclr.cc)(https://img.shields.io/badge/Top%20Reviewers-reviewers)
+* 10/2023 PC at [Twelfth International Conference on Learning Representations (ICLR 2024)](iclr.cc) ![Static Badge](https://img.shields.io/badge/Top%20Reviewers-reviewers) 
 * 05/2023 PC at [Neural Information Processing Systems (NeurIPS 2023)](https://neurips.cc) ![Static Badge](https://img.shields.io/badge/Top%20Reviewers-reviewers) 
 * 05/2023 PC at [Annual Computer Security Applications Conference (ACSAC)](https://www.acsac.org)
 * 04/2023 PC at [International Conference on Computer Vision(ICCV 2023)](https://iccv2023.thecvf.com)
