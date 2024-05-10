@@ -156,8 +156,10 @@ Other Activities
 ======
 
 ## Conference and Workshop Chair
+* 10/2024: Wokshop co-chair at [17th ACM Workshop on Artificial Intelligence and Security (AISec 2024)](https://aisec.cc), co-located with ACM CCS.
+* 05/2024 AC at the [Thirty-eighth Annual Conference on Neural Information Processing Systems (NeurIPS 2024)](https://neurips.cc)
 * 04/2024: Track co-chair at [Safe, Secure and Robust AI Track at the SAC24 Conference](https://sites.google.com/view/s2rai-sac/)
-* 11/2023: Wokshop co-chair at [16th ACM Workshop on Artificial Intelligence and Security (AISec 2023)](https://aisec.cc), co-located with ACM CCS.
+* 11/2023: Wokshop co-chair at [16th ACM Workshop on Artificial Intelligence and Security (AISec 2023)](https://aisec.cc/2023), co-located with ACM CCS.
 * 10/2023: Track co-chair of [ESANN 2023 special session Towards Machine Learning Models that We Can Trust: Testing, Improving, and Explaining Robustness](https://www.esann.org/special-sessions#session5).
 * 08/2022: Workshop co-chair at [ARES International Workshop on Continuous Software Evaluation and Certification (IWCSEC 2022)](https://www.ares-conference.eu/workshops-eu-symposium/iwcsec-2022/)
 * 06/2022: Workshop co-chair at [ITASEC AI for Security and Security of AI Workshop (AISSAI 2022)](https://itasec.it/workshop/workshop-ai-for-security-and-security-of-ai/)
@@ -180,19 +182,20 @@ Other Activities
 
 
 ### Conferences
+
+* 04/2024 PC at the [18th European Conference on Computer Vision (ECCV 2024)](https://eccv.ecva.net)
 * 02/2024 PC at [33rd USENIX Security Symposium](https://www.usenix.org/conference/usenixsecurity24)
 * 02/2024 PC at the [31st ACM Conference on Computer and Communications Security (CCS 2024)](https://www.sigsac.org/ccs/CCS2024/call-for/call-for-papers.html)
 * 01/2024 PC at [33rd International Joint Conference on Artificial Intelligence (IJCAI 2024)](https://ijcai24.org)
 * 10/2023 PC at [2024 IEEE International Conference on Acoustics, Speech and Signal Processing (IEEE ICASSP 2024)](https://2024.ieeeicassp.org)
-* 10/2023 PC at [Twelfth International Conference on Learning Representations (ICLR 2024)](iclr.cc)
-* 05/2023 PC at [Neural Information Processing Systems (NeurIPS 2023)](https://neurips.cc) ![Static Badge](https://img.shields.io/badge/Top%20Reviewers-reviewers)
-
+* 10/2023 PC at [Twelfth International Conference on Learning Representations (ICLR 2024)](iclr.cc)(https://img.shields.io/badge/Top%20Reviewers-reviewers)
+* 05/2023 PC at [Neural Information Processing Systems (NeurIPS 2023)](https://neurips.cc) ![Static Badge](https://img.shields.io/badge/Top%20Reviewers-reviewers) 
 * 05/2023 PC at [Annual Computer Security Applications Conference (ACSAC)](https://www.acsac.org)
 * 04/2023 PC at [International Conference on Computer Vision(ICCV 2023)](https://iccv2023.thecvf.com)
 * 03/2023 PC at the [International Conference on Availability, Reliability and Security (ARES 2023)](https://www.ares-conference.eu)
 
 ### Workshops
-
+* 03/2024 PC at [Euro S&P Workshop on Robust Malware Analysis](https://worma.gitlab.io/2024/)
 * 03/2023 PC at [AAAI Workshop on Practical Deep Learning in the Wild](https://practical-dl.github.io)
 * 03/2023 PC at [Euro S&P Workshop on Robust Malware Analysis](https://worma.gitlab.io/2023/)
 * 02/2023 PC at [CVPR Workshop on Generative Models for Computer Vision](https://generative-vision.github.io/workshop-CVPR-23/)
