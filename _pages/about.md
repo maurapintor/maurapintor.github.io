@@ -29,8 +29,8 @@ Revisiona per le conferenze ACM CCS, ECCV, ICPR, IJCAI, ICLR, NeurIPS, ACSAC, IC
 
 ---
 
-WoRMA Slides: [slides](http://maurapintor.github.io/portfolio/2024-07-12-worma)
 
 Quick links to some of the resources that you can find in this site: 
+* **WoRMA Slides**: [slides](http://maurapintor.github.io/portfolio/2024-07-12-worma)
 * **Python crash course**: [slides](http://maurapintor.github.io/portfolio/2022-10-06-python-crash-course/)
 * **My PyTorch short course**: [Website](https://unica-ml.github.io/dlcv/)
