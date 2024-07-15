@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Maura Pintor is an **Assistant Professor** at the [**PRA Lab**](http://pralab.diee.unica.it/en), in the Department of Electrical and Electronic Engineering of the University of Cagliari, Italy, Italy. 
+Maura Pintor is an **Assistant Professor** at the [**PRA Lab**](http://pralab.diee.unica.it/en), in the Department of Electrical and Electronic Engineering of the University of Cagliari, Italy. 
 
 **Research.** She received her PhD in Electronic and Computer Engineering from the University of Cagliari in 2022. Her PhD thesis, \"Towards Debugging and Improving Adversarial Robustness Evaluations\", provides a framework for optimizing and debugging adversarial attacks. She was a visiting student at Eberhard Karls Universitaet Tuebingen, Germany, from March to June 2020 and at the Software Competence Center Hagenberg (SCCH), Austria, from May to August 2021.
 She is currently visiting researcher at the Universitat Autònoma de Barcelona (UAB), at the Computer Vision Center (CVC), until the end of October 2024.
@@ -34,5 +34,6 @@ Revisiona per le conferenze ACM CCS, ECCV, ICPR, IJCAI, ICLR, NeurIPS, ACSAC, IC
 
 Quick links to some of the resources that you can find in this site: 
 * **WoRMA Slides**: [slides](http://maurapintor.github.io/portfolio/2024-07-12-worma)
+* **ARTISAN Slides**: [slides](2024-07-15-ARTISAN-summer-school)
 * **Python crash course**: [slides](http://maurapintor.github.io/portfolio/2022-10-06-python-crash-course/)
 * **My PyTorch short course**: [Website](https://unica-ml.github.io/dlcv/)
