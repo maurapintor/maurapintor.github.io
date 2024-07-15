@@ -20,11 +20,12 @@ Education and Research
 *  03/2023 - ongoing: Assistant Professor (RTDa)
   * University of Cagliari (Italy)
   * Duties included: Research on machine learning security.
+  * Visiting researcher at Universitat Autònoma de Barcelona - Computer Vision Center, June 2024 - October 2024
 * 10/2021 - 02/2022: Postdoctoral Researcher
   * University of Cagliari (Italy)
   * Duties included: Research on machine learning security.
 * 2022 - Ph.D in Electronic and Computer Engineering, University of Cagliari (Italy)
-    * Visiting student at Eberhard Karls Universität Tübingen, March 2020 - June 2020
+    * Visiting student at Eberhard Karls Universität Tübingen - Bethgelab, March 2020 - June 2020
     * Visiting student at Software Competence Center Hagenberg (SCCH), virtual, May 2021 - August 2021
     * [PhD Thesis](http://maurapintor.github.io/files/PhD_Thesis_Maura_Pintor.pdf): "Towards Debugging and Improving Adversarial Robustness Evaluations"
 * 2018 - M.S. in Telecommunications Engineering, University of Cagliari (Italy)
