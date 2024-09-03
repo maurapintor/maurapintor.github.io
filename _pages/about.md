@@ -33,7 +33,8 @@ Revisiona per le conferenze ACM CCS, ECCV, ICPR, IJCAI, ICLR, NeurIPS, ACSAC, IC
 
 
 Quick links to some of the resources that you can find in this site: 
-* **WoRMA Slides**: [slides](http://maurapintor.github.io/portfolio/2024-07-12-worma)
-* **ARTISAN Slides**: [slides](http://maurapintor.github.io/portfolio/2024-07-15-ARTISAN-summer-school)
 * **Python crash course**: [slides](http://maurapintor.github.io/portfolio/2022-10-06-python-crash-course/)
 * **My PyTorch short course**: [Website](https://unica-ml.github.io/dlcv/)
+* **CPM Postgraduate Summer School**: 
+  * [Code](https://github.com/maurapintor/android_tutorial)
+  * [Slides](http://maurapintor.github.io/portfolio/2024-07-15-Madrid-CPM/)
