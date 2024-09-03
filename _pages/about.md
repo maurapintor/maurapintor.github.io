@@ -37,4 +37,4 @@ Quick links to some of the resources that you can find in this site:
 * **My PyTorch short course**: [Website](https://unica-ml.github.io/dlcv/)
 * **CPM Postgraduate Summer School**: 
   * [Code](https://github.com/maurapintor/android_tutorial)
-  * [Slides](http://maurapintor.github.io/portfolio/2024-07-15-Madrid-CPM/)
+  * [Slides](http://maurapintor.github.io/portfolio/2024-09-02-Madrid-CPM/)
