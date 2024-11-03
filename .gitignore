@@ -1,3 +1,16 @@
+# Ignore the contents of the _site directory and other cache directories
 _site/
+.sass-cache/
 
+# local file for keeping track of what to add
 todo.txt
+
+# Ignore the directory for local files during development
+local/
+
+# Ignore the Gemfile that is generated
+Gemfile.lock
+
+# Ingore files created by npm
+node_modules
+package-lock.json
