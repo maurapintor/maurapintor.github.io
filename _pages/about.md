@@ -10,11 +10,10 @@ redirect_from:
 
 Maura Pintor is an **Assistant Professor** at the [**PRA Lab**](http://pralab.diee.unica.it/en), in the Department of Electrical and Electronic Engineering of the University of Cagliari, Italy. 
 
-**Research.** She received her PhD in Electronic and Computer Engineering from the University of Cagliari in 2022. Her PhD thesis, \"Towards Debugging and Improving Adversarial Robustness Evaluations\", provides a framework for optimizing and debugging adversarial attacks. She was a visiting student at Eberhard Karls Universitaet Tuebingen, Germany, from March to June 2020 and at the Software Competence Center Hagenberg (SCCH), Austria, from May to August 2021.
-She is currently visiting researcher at the Universitat Autònoma de Barcelona (UAB), at the Computer Vision Center (CVC), until the end of October 2024.
-She is reviewer for ACM CCS, ECCV, ICPR, IJCAI, ICLR, NeurIPS, ACSAC, ICCV, ARES, and for the journals IEEE TIFS, IEEE TIP, IEEE TDSC, IEEE TNNLS, TOPS. She is co-chair of the ACM Workshop on Artificial Intelligence and Security (AISec), co-located with ACM CCS.
+**Research.** She received her PhD in Electronic and Computer Engineering from the University of Cagliari in 2022. Her PhD thesis, \"Towards Debugging and Improving Adversarial Robustness Evaluations\", provides a framework for optimizing and debugging adversarial attacks. She was a visiting student at the Eberhard Karls Universitaet Tuebingen, Germany, from March to June 2020 and at the Software Competence Center Hagenberg (SCCH), Austria, from May to August 2021, and at the Universitat Autònoma de Barcelona (UAB), in the Computer Vision Center (CVC), from July to October 2024.
+She is reviewer for ACM CCS, ECCV, ICPR, IJCAI, ICLR, NeurIPS, ACSAC, ICCV, ARES, and for the journals IEEE TIFS, IEEE TIP, IEEE TDSC, IEEE TNNLS, TOPS. She is co-chair of the ACM Workshop on Artificial Intelligence and Security (AISec), co-located with ACM CCS. 
 
-**EU Projects.**She has collaborated with [Pluribus One](https://www.pluribus-one.it/) in the EU H2020 projects [ALOHA](https://www.aloha-h2020.eu/) and [AssureMOSS](https://assuremoss.eu/en/). She is now involved in the EU HORIZON Projects [ELSA](https://www.elsa-ai.eu) and [Sec4AI4Sec](https://www.sec4ai4sec-project.eu).
+**EU Projects.**She has collaborated with [Pluribus One](https://www.pluribus-one.it/) in the EU H2020 projects [ALOHA](https://www.aloha-h2020.eu/) and [AssureMOSS](https://assuremoss.eu/en/). She is now involved in the EU HORIZON Projects [ELSA](https://www.elsa-ai.eu), and [Sec4AI4Sec](https://www.sec4ai4sec-project.eu).
 
 ---
 
@@ -35,6 +34,5 @@ Revisiona per le conferenze ACM CCS, ECCV, ICPR, IJCAI, ICLR, NeurIPS, ACSAC, IC
 Quick links to some of the resources that you can find in this site: 
 * **Python crash course**: [slides](http://maurapintor.github.io/portfolio/2022-10-06-python-crash-course/)
 * **My PyTorch short course**: [Website](https://unica-ml.github.io/dlcv/)
-* **UPM Postgraduate Summer School**: 
-  * [Code](https://github.com/maurapintor/android_tutorial)
-  * [Slides](http://maurapintor.github.io/portfolio/2024-09-02-Madrid-UPM/)
+
+
