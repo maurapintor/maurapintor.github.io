@@ -14,3 +14,4 @@ She is area chair for NeurIPS, Associate Editor for Pattern Recognition, and rev
 
 **EU Projects.**She has collaborated with [Pluribus One](https://www.pluribus-one.it/) in the EU H2020 projects [ALOHA](https://www.aloha-h2020.eu/) and [AssureMOSS](https://assuremoss.eu/en/). She is now involved in the EU HORIZON Projects [ELSA](https://www.elsa-ai.eu), [Sec4AI4Sec](https://www.sec4ai4sec-project.eu) and [CoEvolution](https://coevolution-project.eu).
 
+[Slides ML in PL Tutorial](https://docs.google.com/presentation/d/1NJPzPpdXdxLTdg2F7QR2tK8xAV9PrEPQ9cy2lpJnbA4/edit?usp=sharing)
