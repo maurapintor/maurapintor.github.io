@@ -19,6 +19,18 @@ function hasNullOriginContext() {
     return window.location.protocol === 'file:' || window.location.origin === 'null';
 }
 
+function buildFetchSources(targetUrl) {
+    const sources = [];
+    if (!hasNullOriginContext()) {
+        sources.push({ url: targetUrl, isProxy: false, name: 'direct' });
+    }
+    sources.push(
+        { url: `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`, isProxy: true, name: 'corsproxy' },
+        { url: `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`, isProxy: true, name: 'allorigins' },
+    );
+    return sources;
+}
+
 function normalizePublicationTitleKey(value) {
     return String(value || '')
         .toLowerCase()
@@ -499,17 +511,10 @@ async function loadPapers() {
 
         try {
             const crossrefApiUrl = `https://api.crossref.org/works/${encodeURIComponent(doi)}`;
-            const sourceUrls = [];
-            if (!hasNullOriginContext()) {
-                sourceUrls.push({ url: crossrefApiUrl, isProxy: false });
-            }
-            sourceUrls.push(
-                { url: `https://corsproxy.io/?${encodeURIComponent(crossrefApiUrl)}`, isProxy: true },
-                { url: `https://api.allorigins.win/raw?url=${encodeURIComponent(crossrefApiUrl)}`, isProxy: true },
-            );
+            const sources = buildFetchSources(crossrefApiUrl);
 
             let crData = null;
-            for (const source of sourceUrls) {
+            for (const source of sources) {
                 try {
                     if (source.isProxy && isProxyBackoffActive()) continue;
 
@@ -627,16 +632,9 @@ async function loadPapers() {
 
         try {
             const doiUrl = `https://doi.org/${encodeURIComponent(doi)}`;
-            const sourceUrls = [];
-            if (!hasNullOriginContext()) {
-                sourceUrls.push({ url: doiUrl, isProxy: false });
-            }
-            sourceUrls.push(
-                { url: `https://corsproxy.io/?${encodeURIComponent(doiUrl)}`, isProxy: true },
-                { url: `https://api.allorigins.win/raw?url=${encodeURIComponent(doiUrl)}`, isProxy: true },
-            );
+            const sources = buildFetchSources(doiUrl);
 
-            for (const source of sourceUrls) {
+            for (const source of sources) {
                 try {
                     if (source.isProxy && isProxyBackoffActive()) continue;
 
@@ -1427,26 +1425,13 @@ async function loadArxivPapersIntoList() {
         let parsedEntries = [];
         const orcid = cleanSpace(PUBLICATIONS_CONFIG.orcid || '0000-0002-1944-2875');
         const feedUrl = `https://arxiv.org/a/${orcid}.atom2`;
-        console.log(`[arXiv] Loader start: orcid=${orcid}, maxItems=${maxItems}, origin=${window.location.origin || 'null'}`);
-        console.log(`[arXiv] Trying ORCID atom feed: ${feedUrl}`);
+        console.debug(`[arXiv] Loader start: orcid=${orcid}, maxItems=${maxItems}, origin=${window.location.origin || 'null'}`);
+        console.debug(`[arXiv] Trying ORCID atom feed: ${feedUrl}`);
 
-        // In file:// pages origin is null, direct cross-origin fetch is expected to fail CORS.
-        const fetchStrategies = [];
-        if (!hasNullOriginContext()) {
-            fetchStrategies.push({ url: feedUrl, name: 'direct', isProxy: false });
-        } else {
+        if (hasNullOriginContext()) {
             console.warn('[arXiv] origin is null/file://, skipping direct feed fetch to avoid CORS noise');
         }
-        fetchStrategies.push({
-            url: `https://corsproxy.io/?${encodeURIComponent(feedUrl)}`,
-            name: 'corsproxy',
-            isProxy: true,
-        });
-        fetchStrategies.push({
-            url: `https://api.allorigins.win/raw?url=${encodeURIComponent(feedUrl)}`,
-            name: 'allorigins',
-            isProxy: true,
-        });
+        const fetchStrategies = buildFetchSources(feedUrl);
 
         let payload = '';
         let strategy = '';
@@ -1454,12 +1439,12 @@ async function loadArxivPapersIntoList() {
         for (const strat of fetchStrategies) {
             try {
                 if (strat.isProxy && isProxyBackoffActive()) {
-                    console.warn('[arXiv] Proxy backoff active, skipping proxy attempt');
+                    console.debug('[arXiv] Proxy backoff active, skipping proxy attempt');
                     continue;
                 }
-                console.log(`[arXiv] Fetch attempt via ${strat.name}: ${strat.url}`);
+                console.debug(`[arXiv] Fetch attempt via ${strat.name}: ${strat.url}`);
                 const res = await fetch(strat.url);
-                console.log(`[arXiv] Response via ${strat.name}: status=${res.status}, ok=${res.ok}`);
+                console.debug(`[arXiv] Response via ${strat.name}: status=${res.status}, ok=${res.ok}`);
                 if (strat.isProxy && res.status === 429) {
                     console.warn('[arXiv] Proxy rate limited (429), activating backoff');
                     activateProxyBackoff();
@@ -1469,7 +1454,7 @@ async function loadArxivPapersIntoList() {
 
                 const text = await res.text();
                 const trimmed = text?.trim() || '';
-                console.log(`[arXiv] Payload via ${strat.name}: chars=${trimmed.length}`);
+                console.debug(`[arXiv] Payload via ${strat.name}: chars=${trimmed.length}`);
                 if (!trimmed) continue;
 
                 payload = trimmed;
@@ -1486,13 +1471,13 @@ async function loadArxivPapersIntoList() {
             return;
         }
 
-        console.log(`[arXiv] Parsing payload from strategy=${strategy}`);
+        console.debug(`[arXiv] Parsing payload from strategy=${strategy}`);
         parsedEntries = parseArxivPayload(payload, maxItems);
-        console.log(`[arXiv] Parsed entries count=${parsedEntries.length}`);
+        console.debug(`[arXiv] Parsed entries count=${parsedEntries.length}`);
         if (parsedEntries.length) {
             const preview = parsedEntries.slice(0, 3).map(item => item.title).join(' | ');
-            console.log(`[arXiv] Successfully found ${parsedEntries.length} papers via ORCID feed (${strategy})`);
-            console.log(`[arXiv] Top titles: ${preview}`);
+            console.debug(`[arXiv] Successfully found ${parsedEntries.length} papers via ORCID feed (${strategy})`);
+            console.debug(`[arXiv] Top titles: ${preview}`);
         }
 
         if (!parsedEntries.length) {
@@ -1503,7 +1488,7 @@ async function loadArxivPapersIntoList() {
         // Deduplicate against published papers
         const beforeDedupe = parsedEntries.length;
         parsedEntries = dedupePreprintsAgainstPublished(parsedEntries);
-        console.log(`[arXiv] Deduped preprints: before=${beforeDedupe}, after=${parsedEntries.length}, publishedTitleKeys=${PUBLISHED_TITLE_KEYS.size}`);
+        console.debug(`[arXiv] Deduped preprints: before=${beforeDedupe}, after=${parsedEntries.length}, publishedTitleKeys=${PUBLISHED_TITLE_KEYS.size}`);
 
         if (!parsedEntries.length) {
             console.warn('[arXiv] All arXiv papers already in published list');
@@ -1545,7 +1530,7 @@ async function loadArxivPapersIntoList() {
             papersList.appendChild(card);
         });
 
-        console.log(`[arXiv] Added ${parsedEntries.length} arXiv papers to publications list`);
+        console.debug(`[arXiv] Added ${parsedEntries.length} arXiv papers to publications list`);
     } catch (err) {
         console.error('[arXiv] Error loading arXiv papers for main list:', err);
     }
@@ -1948,22 +1933,21 @@ function makeManualProjectCard(entry) {
 
 async function fetchCordisProject(entry) {
     const normalized = /^https?:\/\//i.test(entry.url) ? entry.url : `https://${entry.url}`;
-    const candidates = [];
-    if (!hasNullOriginContext()) {
-        candidates.push(normalized);
-    }
-    candidates.push(
-        `https://corsproxy.io/?${encodeURIComponent(normalized)}`,
-        `https://api.allorigins.win/raw?url=${encodeURIComponent(normalized)}`,
-    );
+    const sources = buildFetchSources(normalized);
 
     let lastError = '';
 
-    for (const sourceUrl of candidates) {
+    for (const source of sources) {
         try {
-            const res = await fetch(sourceUrl, {
+            if (source.isProxy && isProxyBackoffActive()) continue;
+
+            const res = await fetch(source.url, {
                 headers: { 'Accept': 'text/html, text/plain;q=0.9, */*;q=0.8' }
             });
+            if (source.isProxy && res.status === 429) {
+                activateProxyBackoff();
+                continue;
+            }
             if (!res.ok) {
                 lastError = `HTTP ${res.status}`;
                 continue;
@@ -2276,21 +2260,22 @@ async function fetchUnicaCourse(course) {
         // Ignore API failures and continue with scrape fallback.
     }
 
-    const candidates = [
-        `https://corsproxy.io/?${encodeURIComponent(normalized)}`,
-        `https://api.allorigins.win/raw?url=${encodeURIComponent(normalized)}`,
-    ];
-    if (!hasNullOriginContext()) {
-        candidates.push(normalized);
-    }
+    const sources = buildFetchSources(normalized);
 
     let lastError = '';
 
-    for (const sourceUrl of candidates) {
+    for (const source of sources) {
         try {
-            const res = await fetch(sourceUrl, {
+            if (source.isProxy && isProxyBackoffActive()) continue;
+
+            const res = await fetch(source.url, {
                 headers: { 'Accept': 'text/html, text/plain;q=0.9, */*;q=0.8' }
             });
+
+            if (source.isProxy && res.status === 429) {
+                activateProxyBackoff();
+                continue;
+            }
 
             if (!res.ok) {
                 lastError = `HTTP ${res.status}`;
