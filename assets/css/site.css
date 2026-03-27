@@ -251,6 +251,12 @@
             border-color: #6fba87;
             box-shadow: 0 2px 8px rgba(21, 126, 73, 0.18);
         }
+        .pub-badge-preprint {
+            color: #1f3f65;
+            background: linear-gradient(180deg, #dceeff 0%, #c7e2fb 100%);
+            border-color: #7ba8d2;
+            box-shadow: 0 2px 8px rgba(43, 98, 150, 0.16);
+        }
         .pub-toolbar {
             margin-top: 10px;
             margin-bottom: 10px;

@@ -44,6 +44,11 @@ window.SITE_CONFIG = Object.freeze({
       "ieee tifs": "IEEE Transactions on Information Forensics and Security",
       "international conference on representation learning": "International Conference on Learning Representations (ICLR)",
       "international conference on learning representations": "International Conference on Learning Representations (ICLR)"
+    },
+    preprints: {
+      maxItems: 20,
+      // Set true to hide preprints already present in Publications.
+      excludeAlreadyPublished: false
     }
   },
   projects: {

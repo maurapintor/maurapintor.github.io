@@ -2,6 +2,29 @@ const SITE_CONFIG = window.SITE_CONFIG || {};
 const PUBLICATIONS_CONFIG = SITE_CONFIG.publications || {};
 const PROJECTS_CONFIG = SITE_CONFIG.projects || {};
 const TEACHING_CONFIG = SITE_CONFIG.teaching || {};
+const PREPRINTS_CONFIG = PUBLICATIONS_CONFIG.preprints || {};
+const PUBLISHED_TITLE_KEYS = new Set();
+const EXCLUDE_PUBLISHED_FROM_PREPRINTS = Boolean(PREPRINTS_CONFIG.excludeAlreadyPublished);
+let PROXY_BACKOFF_UNTIL = 0;
+
+function isProxyBackoffActive() {
+    return Date.now() < PROXY_BACKOFF_UNTIL;
+}
+
+function activateProxyBackoff(ms = 180000) {
+    PROXY_BACKOFF_UNTIL = Math.max(PROXY_BACKOFF_UNTIL, Date.now() + Math.max(1000, Number(ms) || 0));
+}
+
+function hasNullOriginContext() {
+    return window.location.protocol === 'file:' || window.location.origin === 'null';
+}
+
+function normalizePublicationTitleKey(value) {
+    return String(value || '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim();
+}
 
 async function loadPapers() {
     const ORCID = PUBLICATIONS_CONFIG.orcid || "0000-0002-1944-2875";
@@ -228,10 +251,7 @@ async function loadPapers() {
     }
 
     function normalizeTitleKey(value) {
-        return String(value || '')
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, ' ')
-            .trim();
+        return normalizePublicationTitleKey(value);
     }
 
     function isPreferredPublicationUrl(url) {
@@ -478,10 +498,61 @@ async function loadPapers() {
         if (crossrefCache.has(doi)) return crossrefCache.get(doi);
 
         try {
-            const crRes = await fetch(`https://api.crossref.org/works/${encodeURIComponent(doi)}`);
-            if (!crRes.ok) throw new Error('Crossref fetch failed');
+            const crossrefApiUrl = `https://api.crossref.org/works/${encodeURIComponent(doi)}`;
+            const sourceUrls = [];
+            if (!hasNullOriginContext()) {
+                sourceUrls.push({ url: crossrefApiUrl, isProxy: false });
+            }
+            sourceUrls.push(
+                { url: `https://corsproxy.io/?${encodeURIComponent(crossrefApiUrl)}`, isProxy: true },
+                { url: `https://api.allorigins.win/raw?url=${encodeURIComponent(crossrefApiUrl)}`, isProxy: true },
+            );
 
-            const crData = await crRes.json();
+            let crData = null;
+            for (const source of sourceUrls) {
+                try {
+                    if (source.isProxy && isProxyBackoffActive()) continue;
+
+                    const crRes = await fetch(source.url, {
+                        headers: { Accept: 'application/json, text/plain;q=0.9, */*;q=0.5' }
+                    });
+                    if (source.isProxy && crRes.status === 429) {
+                        activateProxyBackoff();
+                        continue;
+                    }
+                    if (!crRes.ok) continue;
+
+                    const payload = await crRes.text();
+                    const direct = (() => {
+                        try {
+                            return JSON.parse(payload);
+                        } catch {
+                            return null;
+                        }
+                    })();
+
+                    const extracted = (() => {
+                        if (direct) return direct;
+                        const start = payload.indexOf('{');
+                        const end = payload.lastIndexOf('}');
+                        if (start < 0 || end <= start) return null;
+                        try {
+                            return JSON.parse(payload.slice(start, end + 1));
+                        } catch {
+                            return null;
+                        }
+                    })();
+
+                    if (extracted?.message) {
+                        crData = extracted;
+                        break;
+                    }
+                } catch {
+                    // Try next source.
+                }
+            }
+
+            if (!crData?.message) throw new Error('Crossref fetch failed');
             const msg = crData?.message || {};
             const containerTitle = msg['container-title']?.[0] || null;
             const title = msg.title?.[0] || null;
@@ -540,18 +611,59 @@ async function loadPapers() {
         if (!doi) return null;
         if (doiBibtexCache.has(doi)) return doiBibtexCache.get(doi);
 
-        try {
-            const doiRes = await fetch(`https://doi.org/${encodeURIComponent(doi)}`, {
-                headers: {
-                    Accept: 'application/x-bibtex; charset=utf-8'
-                }
-            });
-            if (!doiRes.ok) throw new Error('DOI BibTeX fetch failed');
+        function extractBibtexCandidate(payload) {
+            const text = String(payload || '').trim();
+            if (!text) return null;
+            if (text.startsWith('@')) return text;
 
-            const bibtex = String(await doiRes.text() || '').trim();
-            const parsed = bibtex.startsWith('@') ? bibtex : null;
-            doiBibtexCache.set(doi, parsed);
-            return parsed;
+            const codeBlock = text.match(/```(?:bibtex)?\s*([\s\S]*?@\w+\{[\s\S]*?)```/i);
+            if (codeBlock?.[1]) return String(codeBlock[1]).trim();
+
+            const inline = text.match(/(@\w+\{[\s\S]+)/);
+            if (inline?.[1]) return String(inline[1]).trim();
+
+            return null;
+        }
+
+        try {
+            const doiUrl = `https://doi.org/${encodeURIComponent(doi)}`;
+            const sourceUrls = [];
+            if (!hasNullOriginContext()) {
+                sourceUrls.push({ url: doiUrl, isProxy: false });
+            }
+            sourceUrls.push(
+                { url: `https://corsproxy.io/?${encodeURIComponent(doiUrl)}`, isProxy: true },
+                { url: `https://api.allorigins.win/raw?url=${encodeURIComponent(doiUrl)}`, isProxy: true },
+            );
+
+            for (const source of sourceUrls) {
+                try {
+                    if (source.isProxy && isProxyBackoffActive()) continue;
+
+                    const doiRes = await fetch(source.url, {
+                        headers: {
+                            Accept: 'application/x-bibtex; charset=utf-8, text/plain;q=0.9, */*;q=0.5'
+                        }
+                    });
+                    if (source.isProxy && doiRes.status === 429) {
+                        activateProxyBackoff();
+                        continue;
+                    }
+                    if (!doiRes.ok) continue;
+
+                    const payload = await doiRes.text();
+                    const parsed = extractBibtexCandidate(payload);
+                    if (parsed) {
+                        doiBibtexCache.set(doi, parsed);
+                        return parsed;
+                    }
+                } catch {
+                    // Try next source.
+                }
+            }
+
+            doiBibtexCache.set(doi, null);
+            return null;
         } catch {
             doiBibtexCache.set(doi, null);
             return null;
@@ -860,11 +972,12 @@ async function loadPapers() {
 
             const publicationUrl = nonArxivPublicationUrl || arxivUrl;
 
-            const isArxiv = isArxivRecord(externalIds, doi, publicationUrl, title, venue);
+            const isArxiv = isArxivRecord(externalIds, doi, publicationUrl, arxivUrl, title, venue);
             const hasNonArxivDoi = Boolean(doi && !doi.toLowerCase().startsWith('10.48550/arxiv.'));
             const publishedTypes = ['journal-article', 'conference-paper', 'book-chapter', 'book', 'edited-book'];
             const hasPublishedType = publishedTypes.includes(rawType);
             const isPublished = hasNonArxivDoi || hasPublishedType;
+            const isArxivUnpublished = isArxiv && !isPublished;
             const genericVenue = !isMeaningfulVenue(venue) || /repository record|online record/i.test(venue);
 
             const isArxivOnly = isArxiv && !hasNonArxivDoi && !hasPublishedType && genericVenue;
@@ -875,6 +988,7 @@ async function loadPapers() {
                 && matchesVenueList(venue, TOP_CONFERENCE_KEYS)
                 && !matchesVenueList(venue, TOP_CONFERENCE_EXCLUDED_KEYS);
             const isQ1Journal = effectiveType === 'journal-article' && matchesVenueList(venue, Q1_JOURNAL_KEYS);
+            const isArxivPreprint = arxivRef.exact === true;
 
             if (isArxivOnly && !isMeaningfulVenue(venue)) {
                 venue = 'arXiv preprint';
@@ -917,6 +1031,7 @@ async function loadPapers() {
                     <div class="pub-badges">
                         ${isTopConference ? '<span class="pub-badge pub-badge-top">Top Conference</span>' : ''}
                         ${isQ1Journal ? '<span class="pub-badge pub-badge-q1">Q1 Journal</span>' : ''}
+                        ${isArxivPreprint ? '<span class="pub-badge pub-badge-preprint">arXiv Preprint</span>' : ''}
                     </div>
                 </div>
                 <div class="pub-meta">${year} • ${venue} • ${type}</div>
@@ -931,6 +1046,8 @@ async function loadPapers() {
                 element: li,
                 year: Number.parseInt(year, 10) || 0,
                 filterType,
+                isArxivPreprint,
+                isArxivUnpublished,
                 isTopConference,
                 isQ1Journal,
                 titleKey: normalizeTitleKey(title),
@@ -948,6 +1065,8 @@ async function loadPapers() {
                     html: record.element.outerHTML,
                     year: record.year || 0,
                     filterType: record.filterType || 'other',
+                    isArxivPreprint: Boolean(record.isArxivPreprint),
+                    isArxivUnpublished: Boolean(record.isArxivUnpublished),
                     isTopConference: Boolean(record.isTopConference),
                     isQ1Journal: Boolean(record.isQ1Journal),
                 });
@@ -955,6 +1074,8 @@ async function loadPapers() {
                     element: record.element,
                     year: record.year || 0,
                     filterType: record.filterType || 'other',
+                    isArxivPreprint: Boolean(record.isArxivPreprint),
+                    isArxivUnpublished: Boolean(record.isArxivUnpublished),
                     isTopConference: Boolean(record.isTopConference),
                     isQ1Journal: Boolean(record.isQ1Journal),
                 };
@@ -985,6 +1106,7 @@ async function loadPapers() {
             const visible = state.items
                 .filter(item => {
                     if (state.filter === 'all') return true;
+                    if (state.filter === 'preprint') return Boolean(item.isArxivUnpublished);
                     if (state.filter === 'top-conference') return Boolean(item.isTopConference);
                     if (state.filter === 'q1-journal') return Boolean(item.isQ1Journal);
                     return item.filterType === state.filter;
@@ -1022,6 +1144,13 @@ async function loadPapers() {
 
         state.items = toRecords();
         renderedCount = state.items.length;
+        PUBLISHED_TITLE_KEYS.clear();
+        state.items.forEach(item => {
+            if (item.filterType === 'preprint') return;
+            const title = item.element?.querySelector('.pub-title')?.textContent || '';
+            const key = normalizePublicationTitleKey(title);
+            if (key) PUBLISHED_TITLE_KEYS.add(key);
+        });
 
         setActiveFilterButton(state.filter);
         renderList();
@@ -1041,10 +1170,20 @@ async function loadPapers() {
                     element: wrapper.firstElementChild,
                     year: item.year || 0,
                     filterType: item.filterType || 'other',
+                    isArxivPreprint: Boolean(item.isArxivPreprint),
+                    isArxivUnpublished: Boolean(item.isArxivUnpublished),
                     isTopConference: Boolean(item.isTopConference),
                     isQ1Journal: Boolean(item.isQ1Journal),
                 };
             }).filter(item => item.element);
+
+            PUBLISHED_TITLE_KEYS.clear();
+            records.forEach(item => {
+                if (item.filterType === 'preprint') return;
+                const title = item.element?.querySelector('.pub-title')?.textContent || '';
+                const key = normalizePublicationTitleKey(title);
+                if (key) PUBLISHED_TITLE_KEYS.add(key);
+            });
 
             el.innerHTML = '';
             records.sort((a, b) => b.year - a.year).forEach(item => el.appendChild(item.element));
@@ -1061,7 +1200,363 @@ async function loadPapers() {
     }
 }
 
-loadPapers();
+const papersLoadPromise = loadPapers();
+
+function xmlNodesByLocalName(root, localName) {
+    const nsNodes = Array.from(root.getElementsByTagNameNS('*', localName));
+    if (nsNodes.length) return nsNodes;
+    return Array.from(root.getElementsByTagName(localName));
+}
+
+function firstXmlNodeText(root, localName) {
+    const node = xmlNodesByLocalName(root, localName)[0];
+    return cleanSpace(node?.textContent || '');
+}
+
+function firstXmlNodeAttr(root, localName, attrName, predicate) {
+    const nodes = xmlNodesByLocalName(root, localName);
+    const found = predicate
+        ? nodes.find(predicate)
+        : nodes[0];
+    return cleanSpace(found?.getAttribute(attrName) || '');
+}
+
+function extractArxivEntryId(absUrl) {
+    const match = String(absUrl || '').match(/\/abs\/([^?#\s]+)/i);
+    return cleanSpace(match?.[1] || '');
+}
+
+function formatDateLabel(value) {
+    const raw = cleanSpace(value || '');
+    if (!raw) return 'Date unavailable';
+    const dt = new Date(raw);
+    if (Number.isNaN(dt.getTime())) return raw;
+    return new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).format(dt);
+}
+
+function extractFeedXml(payload) {
+    const raw = String(payload || '').trim();
+    if (!raw) return '';
+
+    // Try simple extraction first
+    const xmlIdx = raw.indexOf('<?xml');
+    const feedIdx = raw.indexOf('<feed');
+    const start = xmlIdx >= 0 ? xmlIdx : feedIdx;
+    if (start >= 0) return raw.slice(start).trim();
+
+    // Fallback: look for feed tag anywhere, even if wrapped in HTML
+    const feedMatch = raw.match(/<feed[^>]*>[\s\S]*<\/feed>/i);
+    if (feedMatch) return feedMatch[0];
+
+    // Final fallback: look for entry tags
+    const entriesMatch = raw.match(/<entry[^>]*>[\s\S]*<\/entry>/i);
+    if (entriesMatch) {
+        const wrapped = `<feed xmlns="http://www.w3.org/2005/Atom">${raw.match(/<entry[^>]*>[\s\S]*?<\/entry>/gi)?.join('') || ''}</feed>`;
+        return wrapped;
+    }
+
+    return '';
+}
+
+function parseArxivFeed(xmlPayload, maxItems) {
+    const xmlText = extractFeedXml(xmlPayload);
+    if (!xmlText) {
+        console.debug('[arXiv] No XML feed found in payload');
+        return [];
+    }
+
+    const doc = new DOMParser().parseFromString(xmlText, 'text/xml');
+    if (doc.querySelector('parsererror')) {
+        console.debug('[arXiv] XML parse error:', doc.querySelector('parsererror')?.textContent);
+        return [];
+    }
+
+    const entries = xmlNodesByLocalName(doc, 'entry');
+    console.debug(`[arXiv] Found ${entries.length} entries in XML feed`);
+
+    return entries.slice(0, Math.max(1, maxItems)).map((entry) => {
+        const title = firstXmlNodeText(entry, 'title');
+        const absUrl = firstXmlNodeText(entry, 'id')
+            || firstXmlNodeAttr(entry, 'link', 'href', (node) => (node.getAttribute('rel') || '').toLowerCase() === 'alternate')
+            || '';
+        const pdfUrl = firstXmlNodeAttr(entry, 'link', 'href', (node) => {
+            const href = node.getAttribute('href') || '';
+            const titleAttr = (node.getAttribute('title') || '').toLowerCase();
+            const typeAttr = (node.getAttribute('type') || '').toLowerCase();
+            return titleAttr === 'pdf' || typeAttr === 'application/pdf' || /\/pdf\//i.test(href);
+        });
+        const published = firstXmlNodeText(entry, 'published') || firstXmlNodeText(entry, 'updated');
+        const category = firstXmlNodeAttr(entry, 'primary_category', 'term') || firstXmlNodeAttr(entry, 'category', 'term');
+
+        return {
+            title: title || 'Untitled preprint',
+            absUrl,
+            pdfUrl,
+            arxivId: extractArxivEntryId(absUrl),
+            published,
+            category,
+        };
+    }).filter(item => item.absUrl || item.title);
+}
+
+function inferPublishedFromArxivId(arxivId) {
+    const id = cleanSpace(arxivId || '').replace(/^arxiv:/i, '').replace(/v\d+$/i, '');
+    const m = id.match(/^(\d{2})(\d{2})\./);
+    if (!m) return '';
+
+    const yy = Number(m[1]);
+    const mm = Math.min(12, Math.max(1, Number(m[2])));
+    const currentYY = new Date().getFullYear() % 100;
+    const fullYear = yy <= currentYY + 1 ? (2000 + yy) : (1900 + yy);
+    return `${fullYear}-${String(mm).padStart(2, '0')}-01`;
+}
+
+function parseArxivAuthorMarkdown(markdownPayload, maxItems) {
+    const raw = String(markdownPayload || '');
+    if (!raw) {
+        console.debug('[arXiv] Empty markdown payload');
+        return [];
+    }
+
+    const lines = raw.replace(/\r\n/g, '\n').split('\n');
+    const items = [];
+
+    const pushItem = (seed, titleParts) => {
+        if (!seed?.arxivId || !seed?.absUrl) return;
+        const title = cleanSpace(titleParts.join(' ').replace(/\s+/g, ' ')) || `arXiv:${seed.arxivId}`;
+        items.push({
+            title,
+            absUrl: seed.absUrl,
+            pdfUrl: seed.pdfUrl || '',
+            arxivId: seed.arxivId,
+            published: inferPublishedFromArxivId(seed.arxivId),
+            category: '',
+        });
+    };
+
+    for (let i = 0; i < lines.length && items.length < Math.max(1, maxItems); i += 1) {
+        const line = lines[i];
+
+        // Try pattern 1: [number] [arXiv:ID](url)
+        let itemMatch = line.match(/^\s*\[\d+\]\s+\[arXiv:([^\]]+)\]\((https?:\/\/(?:www\.)?arxiv\.org\/abs\/[^\s)]+)/i);
+
+        // Try pattern 2: plain arXiv ID in text like "2301.12345"
+        if (!itemMatch) {
+            itemMatch = line.match(/(?:^|\s)(arxiv[:\s]*)?(\d{4}\.\d{4,5}(?:v\d+)?)\s/i);
+            if (itemMatch?.[2]) {
+                const arxivId = itemMatch[2];
+                // Construct URLs for this ID
+                const absUrl = `https://arxiv.org/abs/${arxivId}`;
+                const pdfUrl = `https://arxiv.org/pdf/${arxivId}.pdf`;
+
+                let titleParts = [];
+                // Try to extract title from nearby lines
+                for (let j = Math.max(0, i - 1); j <= Math.min(lines.length - 1, i + 3); j++) {
+                    const candidate = lines[j].trim();
+                    if (candidate && !/^\[|\barxiv\b/i.test(candidate) && candidate.length > 10) {
+                        titleParts.push(candidate);
+                    }
+                }
+                pushItem({ arxivId, absUrl, pdfUrl }, titleParts.length ? titleParts : [arxivId]);
+                continue;
+            }
+        }
+
+        if (!itemMatch) continue;
+
+        const arxivId = cleanSpace(itemMatch[1] || '');
+        const absUrl = cleanSpace(itemMatch[2] || '');
+        const pdfUrl = cleanSpace((line.match(/\[pdf\]\((https?:\/\/arxiv\.org\/pdf\/[^\s)]+)/i) || [])[1] || '');
+
+        let j = i + 1;
+        while (j < lines.length && !/^\s*Title\s*:/i.test(lines[j])) {
+            if (/^\s*\[\d+\]\s+\[arXiv:/i.test(lines[j])) break;
+            j += 1;
+        }
+
+        const titleParts = [];
+        if (j < lines.length && /^\s*Title\s*:/i.test(lines[j])) {
+            titleParts.push(lines[j].replace(/^\s*Title\s*:\s*/i, '').trim());
+            j += 1;
+            while (j < lines.length) {
+                const next = lines[j].trim();
+                if (!next) break;
+                if (/^(Comments|Subjects|Authors)\s*:/i.test(next)) break;
+                if (/^\[\d+\]\s+\[arXiv:/i.test(next)) break;
+                titleParts.push(next);
+                j += 1;
+            }
+        }
+
+        pushItem({ arxivId, absUrl, pdfUrl }, titleParts);
+    }
+
+    console.debug(`[arXiv] Parsed ${items.length} items from markdown`);
+    return items;
+}
+
+function parseArxivPayload(payload, maxItems) {
+    const parsedFeed = parseArxivFeed(payload, maxItems);
+    if (parsedFeed.length) {
+        console.debug(`[arXiv] Using Atom feed: ${parsedFeed.length} entries`);
+        return parsedFeed;
+    }
+    console.debug('[arXiv] Atom feed empty, trying markdown fallback');
+    const parsedMarkdown = parseArxivAuthorMarkdown(payload, maxItems);
+    if (parsedMarkdown.length) {
+        console.debug(`[arXiv] Using markdown fallback: ${parsedMarkdown.length} entries`);
+    }
+    return parsedMarkdown;
+}
+
+function dedupePreprintsAgainstPublished(items) {
+    if (!EXCLUDE_PUBLISHED_FROM_PREPRINTS) return items || [];
+    return (items || []).filter(item => {
+        const key = normalizePublicationTitleKey(item?.title || '');
+        if (!key) return false;
+        return !PUBLISHED_TITLE_KEYS.has(key);
+    });
+}
+
+async function loadArxivPapersIntoList() {
+    // Merge arXiv papers into main publications list
+    const maxItems = Math.max(1, Number(PREPRINTS_CONFIG.maxItems) || 20);
+
+    try {
+        await papersLoadPromise.catch(() => null);
+        let parsedEntries = [];
+        const orcid = cleanSpace(PUBLICATIONS_CONFIG.orcid || '0000-0002-1944-2875');
+        const feedUrl = `https://arxiv.org/a/${orcid}.atom2`;
+        console.log(`[arXiv] Loader start: orcid=${orcid}, maxItems=${maxItems}, origin=${window.location.origin || 'null'}`);
+        console.log(`[arXiv] Trying ORCID atom feed: ${feedUrl}`);
+
+        // In file:// pages origin is null, direct cross-origin fetch is expected to fail CORS.
+        const fetchStrategies = [];
+        if (!hasNullOriginContext()) {
+            fetchStrategies.push({ url: feedUrl, name: 'direct', isProxy: false });
+        } else {
+            console.warn('[arXiv] origin is null/file://, skipping direct feed fetch to avoid CORS noise');
+        }
+        fetchStrategies.push({
+            url: `https://corsproxy.io/?${encodeURIComponent(feedUrl)}`,
+            name: 'corsproxy',
+            isProxy: true,
+        });
+        fetchStrategies.push({
+            url: `https://api.allorigins.win/raw?url=${encodeURIComponent(feedUrl)}`,
+            name: 'allorigins',
+            isProxy: true,
+        });
+
+        let payload = '';
+        let strategy = '';
+
+        for (const strat of fetchStrategies) {
+            try {
+                if (strat.isProxy && isProxyBackoffActive()) {
+                    console.warn('[arXiv] Proxy backoff active, skipping proxy attempt');
+                    continue;
+                }
+                console.log(`[arXiv] Fetch attempt via ${strat.name}: ${strat.url}`);
+                const res = await fetch(strat.url);
+                console.log(`[arXiv] Response via ${strat.name}: status=${res.status}, ok=${res.ok}`);
+                if (strat.isProxy && res.status === 429) {
+                    console.warn('[arXiv] Proxy rate limited (429), activating backoff');
+                    activateProxyBackoff();
+                    continue;
+                }
+                if (!res.ok) continue;
+
+                const text = await res.text();
+                const trimmed = text?.trim() || '';
+                console.log(`[arXiv] Payload via ${strat.name}: chars=${trimmed.length}`);
+                if (!trimmed) continue;
+
+                payload = trimmed;
+                strategy = strat.name;
+                break;
+            } catch (err) {
+                console.warn(`[arXiv] Fetch error via ${strat.name}: ${err?.message || err}`);
+                // Try next strategy.
+            }
+        }
+
+        if (!payload) {
+            console.warn('[arXiv] ORCID atom feed fetch failed: all strategies failed');
+            return;
+        }
+
+        console.log(`[arXiv] Parsing payload from strategy=${strategy}`);
+        parsedEntries = parseArxivPayload(payload, maxItems);
+        console.log(`[arXiv] Parsed entries count=${parsedEntries.length}`);
+        if (parsedEntries.length) {
+            const preview = parsedEntries.slice(0, 3).map(item => item.title).join(' | ');
+            console.log(`[arXiv] Successfully found ${parsedEntries.length} papers via ORCID feed (${strategy})`);
+            console.log(`[arXiv] Top titles: ${preview}`);
+        }
+
+        if (!parsedEntries.length) {
+            console.warn('[arXiv] No arXiv papers found to add to publications');
+            return;
+        }
+
+        // Deduplicate against published papers
+        const beforeDedupe = parsedEntries.length;
+        parsedEntries = dedupePreprintsAgainstPublished(parsedEntries);
+        console.log(`[arXiv] Deduped preprints: before=${beforeDedupe}, after=${parsedEntries.length}, publishedTitleKeys=${PUBLISHED_TITLE_KEYS.size}`);
+
+        if (!parsedEntries.length) {
+            console.warn('[arXiv] All arXiv papers already in published list');
+            return;
+        }
+
+        // Add arXiv papers to the main papers list
+        const papersList = document.getElementById('papers');
+        if (!papersList) {
+            console.warn('[arXiv] #papers container not found');
+            return;
+        }
+
+        parsedEntries.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'pub-item';
+            card.dataset.filter = 'preprint';
+            card.dataset.year = item.published?.substring(0, 4) || '0000';
+
+            const dateLabel = formatDateLabel(item.published);
+            const metaBits = [dateLabel];
+            if (item.arxivId) metaBits.push(`arXiv:${item.arxivId}`);
+            if (item.category) metaBits.push(item.category);
+
+            card.innerHTML = `
+                <div class="pub-head">
+                    <div class="pub-title">${item.title}</div>
+                    <div class="pub-badges">
+                        <span class="pub-badge pub-badge-preprint">arXiv Preprint</span>
+                    </div>
+                </div>
+                <div class="pub-meta">${metaBits.join(' • ')}</div>
+                <div class="pub-url-row">
+                    ${item.absUrl ? `<a class="action-pill" href="${item.absUrl}" target="_blank" rel="noopener noreferrer">Open arXiv</a>` : ''}
+                    ${item.pdfUrl ? `<a class="action-pill" href="${item.pdfUrl}" target="_blank" rel="noopener noreferrer">PDF</a>` : ''}
+                </div>
+            `;
+
+            papersList.appendChild(card);
+        });
+
+        console.log(`[arXiv] Added ${parsedEntries.length} arXiv papers to publications list`);
+    } catch (err) {
+        console.error('[arXiv] Error loading arXiv papers for main list:', err);
+    }
+}
+
+// Start loading arXiv papers after main papers are loaded
+papersLoadPromise.then(() => {
+    setTimeout(loadArxivPapersIntoList, 100);
+}).catch(() => {
+    setTimeout(loadArxivPapersIntoList, 100);
+});
 
 // Add your CORDIS project pages here (one URL per string).
 const CORDIS_PROJECT_URLS = Array.isArray(PROJECTS_CONFIG.cordisUrls)
@@ -1453,11 +1948,14 @@ function makeManualProjectCard(entry) {
 
 async function fetchCordisProject(entry) {
     const normalized = /^https?:\/\//i.test(entry.url) ? entry.url : `https://${entry.url}`;
-    const candidates = [
-        normalized,
+    const candidates = [];
+    if (!hasNullOriginContext()) {
+        candidates.push(normalized);
+    }
+    candidates.push(
+        `https://corsproxy.io/?${encodeURIComponent(normalized)}`,
         `https://api.allorigins.win/raw?url=${encodeURIComponent(normalized)}`,
-        `https://r.jina.ai/http://${normalized.replace(/^https?:\/\//i, '')}`,
-    ];
+    );
 
     let lastError = '';
 
@@ -1779,10 +2277,12 @@ async function fetchUnicaCourse(course) {
     }
 
     const candidates = [
-        `https://r.jina.ai/http://${normalized.replace(/^https?:\/\//i, '')}`,
+        `https://corsproxy.io/?${encodeURIComponent(normalized)}`,
         `https://api.allorigins.win/raw?url=${encodeURIComponent(normalized)}`,
-        normalized,
     ];
+    if (!hasNullOriginContext()) {
+        candidates.push(normalized);
+    }
 
     let lastError = '';
 
