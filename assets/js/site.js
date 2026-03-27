@@ -20,6 +20,7 @@ async function loadPapers() {
         ];
 
     const crossrefCache = new Map();
+    const doiBibtexCache = new Map();
     const orcidDetailCache = new Map();
 
     function makeSkeletonMarkup(count = 5) {
@@ -285,6 +286,30 @@ async function loadPapers() {
         }
     }
 
+    async function mapWithConcurrency(items, limit, mapper) {
+        const input = Array.isArray(items) ? items : [];
+        const size = Math.max(1, Number(limit) || 1);
+        const results = new Array(input.length);
+        let cursor = 0;
+
+        const workers = Array.from({ length: Math.min(size, input.length) }, async () => {
+            while (true) {
+                const index = cursor;
+                cursor += 1;
+                if (index >= input.length) break;
+
+                try {
+                    results[index] = await mapper(input[index], index);
+                } catch {
+                    results[index] = null;
+                }
+            }
+        });
+
+        await Promise.all(workers);
+        return results;
+    }
+
     function normalizeTypeLabel(rawType, venue) {
         const typeMap = {
             'journal-article': 'Journal article',
@@ -314,7 +339,7 @@ async function loadPapers() {
             .some(pattern => normalizedTitle.includes(pattern));
     }
 
-    async function fetchCrossrefVenue(doi) {
+    async function fetchCrossrefMetadata(doi) {
         if (!doi) return null;
         if (crossrefCache.has(doi)) return crossrefCache.get(doi);
 
@@ -325,9 +350,15 @@ async function loadPapers() {
             const crData = await crRes.json();
             const msg = crData?.message || {};
             const containerTitle = msg['container-title']?.[0] || null;
+            const title = msg.title?.[0] || null;
+            const subtitle = msg.subtitle?.[0] || null;
             const publisher = msg.publisher || null;
             const crType = msg.type || null;
             const crossrefUrl = msg.URL || '';
+            const authors = Array.isArray(msg.author) ? msg.author : [];
+            const volume = msg.volume || null;
+            const issue = msg.issue || null;
+            const page = msg.page || msg['article-number'] || null;
             const crossrefYear = msg.issued?.['date-parts']?.[0]?.[0]
                 || msg.created?.['date-parts']?.[0]?.[0]
                 || msg.deposited?.['date-parts']?.[0]?.[0]
@@ -335,8 +366,14 @@ async function loadPapers() {
 
             const parsed = {
                 containerTitle,
+                title,
+                subtitle,
                 publisher,
                 crType,
+                authors,
+                volume,
+                issue,
+                page,
                 crossrefUrl,
                 crossrefYear: crossrefYear ? String(crossrefYear) : null
             };
@@ -361,6 +398,28 @@ async function loadPapers() {
             return data;
         } catch {
             orcidDetailCache.set(putCode, null);
+            return null;
+        }
+    }
+
+    async function fetchDoiBibtex(doi) {
+        if (!doi) return null;
+        if (doiBibtexCache.has(doi)) return doiBibtexCache.get(doi);
+
+        try {
+            const doiRes = await fetch(`https://doi.org/${encodeURIComponent(doi)}`, {
+                headers: {
+                    Accept: 'application/x-bibtex; charset=utf-8'
+                }
+            });
+            if (!doiRes.ok) throw new Error('DOI BibTeX fetch failed');
+
+            const bibtex = String(await doiRes.text() || '').trim();
+            const parsed = bibtex.startsWith('@') ? bibtex : null;
+            doiBibtexCache.set(doi, parsed);
+            return parsed;
+        } catch {
+            doiBibtexCache.set(doi, null);
             return null;
         }
     }
@@ -391,6 +450,29 @@ async function loadPapers() {
         return '';
     }
 
+    function getBibtexFromOrcidCitation(detail) {
+        const citation = detail?.citation;
+        const type = String(citation?.['citation-type'] || '').toLowerCase();
+        const value = String(citation?.['citation-value'] || '').trim();
+        if (!value || type !== 'bibtex' || !value.startsWith('@')) return '';
+        return value;
+    }
+
+    function bibtexHasMatchingDoi(bibtex, doi) {
+        const target = normalizeDoiValue(doi || '');
+        if (!bibtex || !target) return false;
+        const found = normalizeDoiValue(extractBibtexField(bibtex, 'doi') || '');
+        return Boolean(found && found.toLowerCase() === target.toLowerCase());
+    }
+
+    function bibtexHasMatchingTitle(bibtex, title) {
+        if (!bibtex || !title) return false;
+        const bibTitle = normalizeTitleKey(extractBibtexField(bibtex, 'title') || '');
+        const targetTitle = normalizeTitleKey(title || '');
+        if (!bibTitle || !targetTitle) return false;
+        return bibTitle === targetTitle;
+    }
+
     function bibtexEscape(value) {
         return (value || '')
             .replace(/\\/g, '\\\\')
@@ -399,37 +481,82 @@ async function loadPapers() {
             .replace(/"/g, '\\"');
     }
 
-    function makeBibtexKey(title, year) {
+    function makeBibtexKey(title, year, primaryAuthor) {
+        const authorPart = (primaryAuthor || 'pintor')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '')
+            .slice(0, 12);
         const titlePart = (title || 'work')
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '')
-            .slice(0, 24);
-        return `pintor${year || 'nd'}${titlePart || 'work'}`;
+            .slice(0, 20);
+        return `${authorPart || 'pintor'}${year || 'nd'}${titlePart || 'work'}`;
     }
 
-    function generateBibtex({ title, year, venue, doi, rawType, url }) {
-        const entryType = rawType === 'journal-article'
-            ? 'article'
-            : rawType === 'conference-paper'
-                ? 'inproceedings'
-                : rawType === 'book-chapter'
-                    ? 'incollection'
-                    : 'misc';
+    function crossrefEntryType(crType, rawType) {
+        const crossrefMap = {
+            'journal-article': 'article',
+            'proceedings-article': 'inproceedings',
+            'proceedings': 'proceedings',
+            'book-chapter': 'incollection',
+            'book-section': 'incollection',
+            'book': 'book',
+            'reference-entry': 'incollection',
+            'posted-content': 'misc',
+            'preprint': 'misc',
+        };
+        if (crType && crossrefMap[crType]) return crossrefMap[crType];
 
-        const key = makeBibtexKey(title, year);
+        if (rawType === 'journal-article') return 'article';
+        if (rawType === 'conference-paper') return 'inproceedings';
+        if (rawType === 'book-chapter') return 'incollection';
+        if (rawType === 'book' || rawType === 'edited-book') return 'book';
+        return 'misc';
+    }
+
+    function formatBibtexAuthor(author) {
+        const family = cleanSpace(author?.family || '');
+        const given = cleanSpace(author?.given || '');
+        const name = cleanSpace(author?.name || '');
+        if (family && given) return `${family}, ${given}`;
+        if (family) return family;
+        if (name) return name;
+        return '';
+    }
+
+    function normalizeBibtexPages(value) {
+        const raw = cleanSpace(value || '');
+        if (!raw) return '';
+        return raw.replace(/\s*[\u2013\u2014]\s*/g, '--').replace(/\s*-\s*/g, '--');
+    }
+
+    function generateBibtex({ title, year, venue, doi, rawType, url, crossref }) {
+        const entryType = crossrefEntryType(crossref?.crType, rawType);
+        const authorList = (crossref?.authors || [])
+            .map(formatBibtexAuthor)
+            .filter(Boolean);
+        const firstAuthorFamily = cleanSpace(crossref?.authors?.[0]?.family || '');
+        const bestTitle = cleanSpace(crossref?.title || title || 'Untitled work');
+        const bestYear = cleanSpace(crossref?.crossrefYear || year || 'n.d.');
+        const bestVenue = cleanSpace(crossref?.containerTitle || venue || '');
+        const key = makeBibtexKey(bestTitle, bestYear, firstAuthorFamily || 'pintor');
         const fields = [
-            `  title = {${bibtexEscape(title || 'Untitled work')}}`,
-            `  author = {Pintor, Maura and et al.}`,
-            `  year = {${bibtexEscape(year || 'n.d.')}}`
+            `  title = {${bibtexEscape(bestTitle)}}`,
+            `  author = {${bibtexEscape(authorList.length ? authorList.join(' and ') : 'Pintor, Maura and others')}}`,
+            `  year = {${bibtexEscape(bestYear)}}`
         ];
 
-        if (venue) {
-            if (entryType === 'article') fields.push(`  journal = {${bibtexEscape(venue)}}`);
-            if (entryType === 'inproceedings' || entryType === 'incollection') fields.push(`  booktitle = {${bibtexEscape(venue)}}`);
-            if (entryType === 'misc') fields.push(`  howpublished = {${bibtexEscape(venue)}}`);
+        if (bestVenue) {
+            if (entryType === 'article') fields.push(`  journal = {${bibtexEscape(bestVenue)}}`);
+            if (entryType === 'inproceedings' || entryType === 'incollection' || entryType === 'proceedings') fields.push(`  booktitle = {${bibtexEscape(bestVenue)}}`);
+            if (entryType === 'misc') fields.push(`  howpublished = {${bibtexEscape(bestVenue)}}`);
         }
+        if (crossref?.publisher && entryType !== 'article') fields.push(`  publisher = {${bibtexEscape(crossref.publisher)}}`);
+        if (crossref?.volume) fields.push(`  volume = {${bibtexEscape(String(crossref.volume))}}`);
+        if (crossref?.issue) fields.push(`  number = {${bibtexEscape(String(crossref.issue))}}`);
+        if (crossref?.page) fields.push(`  pages = {${bibtexEscape(normalizeBibtexPages(crossref.page))}}`);
         if (doi) fields.push(`  doi = {${bibtexEscape(doi)}}`);
-        if (url) fields.push(`  url = {${bibtexEscape(url)}}`);
+        if (url || crossref?.crossrefUrl) fields.push(`  url = {${bibtexEscape(url || crossref.crossrefUrl)}}`);
 
         return `@${entryType}{${key},\n${fields.join(',\n')}\n}`;
     }
@@ -519,10 +646,10 @@ async function loadPapers() {
             }
         };
 
-        for (const summary of summaries) {
+        const candidateRecords = await mapWithConcurrency(summaries, 6, async (summary) => {
             const title = summary.title?.title?.value || 'Untitled work';
             if (shouldExcludePublication(title)) {
-                continue;
+                return null;
             }
             const rawType = summary.type || 'work';
             const externalIds = summary['external-ids'];
@@ -536,9 +663,18 @@ async function loadPapers() {
                 : (allowSourceAsVenue && isMeaningfulVenue(summarySource) ? summarySource : '');
             const needsVenueEnrichment = !isMeaningfulVenue(initialVenue);
             const needsYearEnrichment = !summary['publication-date']?.year?.value;
-            const crossref = (doi && (needsVenueEnrichment || needsYearEnrichment))
-                ? await withTimeout(fetchCrossrefVenue(doi), 2200, null)
-                : null;
+
+            const doiBibtexPromise = doi
+                ? withTimeout(fetchDoiBibtex(doi), 1300, null)
+                : Promise.resolve(null);
+            const crossrefPromise = doi && (needsVenueEnrichment || needsYearEnrichment)
+                ? withTimeout(fetchCrossrefMetadata(doi), 1300, null)
+                : Promise.resolve(null);
+
+            const [doiBibtex, initialCrossref] = await Promise.all([doiBibtexPromise, crossrefPromise]);
+            const crossref = initialCrossref || ((doi && !doiBibtex)
+                ? await withTimeout(fetchCrossrefMetadata(doi), 1300, null)
+                : null);
 
             const publicationUrlCandidate = summary?.url?.value || '';
             const arxivId = findArxivId(
@@ -566,8 +702,10 @@ async function loadPapers() {
                 venue = crossref.publisher;
             }
 
-            if (!isMeaningfulVenue(venue) && putCode) {
-                const detail = await withTimeout(fetchOrcidWorkDetail(putCode), 1800, null);
+            let detail = null;
+            const needDetailForVenue = !isMeaningfulVenue(venue) && Boolean(putCode);
+            if (needDetailForVenue) {
+                detail = await withTimeout(fetchOrcidWorkDetail(putCode), 1200, null);
                 const bibtexVenue = getVenueFromOrcidCitation(detail);
                 if (isMeaningfulVenue(bibtexVenue)) {
                     venue = bibtexVenue;
@@ -606,16 +744,29 @@ async function loadPapers() {
                 venue = 'arXiv preprint';
             }
 
-            const providedBibtex = '';
+            if (!detail && putCode && !doiBibtex) {
+                detail = await withTimeout(fetchOrcidWorkDetail(putCode), 1200, null);
+            }
+            const verifiedDoiBibtex = bibtexHasMatchingDoi(doiBibtex, doi) ? doiBibtex : '';
+
+            const orcidBibtexRaw = getBibtexFromOrcidCitation(detail);
+            const orcidHasDoiMatch = bibtexHasMatchingDoi(orcidBibtexRaw, doi);
+            const orcidHasTitleMatch = bibtexHasMatchingTitle(orcidBibtexRaw, title);
+            const verifiedOrcidBibtex = (orcidHasDoiMatch || orcidHasTitleMatch) ? orcidBibtexRaw : '';
+
+            const providedBibtex = verifiedDoiBibtex || verifiedOrcidBibtex;
             const bibtex = providedBibtex || generateBibtex({
                 title,
                 year,
                 venue,
                 doi,
                 rawType: effectiveType,
-                url: nonArxivPublicationUrl || arxivUrl || publicationUrl
+                url: nonArxivPublicationUrl || arxivUrl || publicationUrl,
+                crossref,
             });
-            const bibtexSource = providedBibtex ? 'ORCID BibTeX' : 'Re-constructed BibTeX';
+            const bibtexSource = verifiedDoiBibtex
+                ? 'Guaranteed match (DOI)'
+                : (verifiedOrcidBibtex ? 'Guaranteed match (ORCID)' : 'Reconstructed from metadata');
             const encodedBibtex = bibtex ? encodeURIComponent(bibtex) : '';
 
             const li = document.createElement('div');
@@ -630,14 +781,16 @@ async function loadPapers() {
                     ${encodedBibtex ? `<span class="pub-note">${bibtexSource}</span>` : ''}
                 </div>
             `;
-            upsertRecord({
+            return {
                 element: li,
                 year: Number.parseInt(year, 10) || 0,
                 filterType,
                 titleKey: normalizeTitleKey(title),
                 priority: isPublished ? 3 : (effectiveType === 'preprint' ? 2 : 1),
-            });
-        }
+            };
+        });
+
+        candidateRecords.filter(Boolean).forEach(upsertRecord);
 
 
         const toRecords = () => {
