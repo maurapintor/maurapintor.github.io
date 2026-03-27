@@ -19,12 +19,15 @@ function hasNullOriginContext() {
     return window.location.protocol === 'file:' || window.location.origin === 'null';
 }
 
-function buildFetchSources(targetUrl) {
+function buildFetchSources(targetUrl, options = {}) {
+    const includeProxy = options.includeProxy !== false;
     const sources = [];
     if (!hasNullOriginContext()) {
         sources.push({ url: targetUrl, isProxy: false, name: 'direct' });
     }
-    sources.push({ url: `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`, isProxy: true, name: 'corsproxy' });
+    if (includeProxy) {
+        sources.push({ url: `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`, isProxy: true, name: 'corsproxy' });
+    }
     return sources;
 }
 
@@ -508,7 +511,8 @@ async function loadPapers() {
 
         try {
             const crossrefApiUrl = `https://api.crossref.org/works/${encodeURIComponent(doi)}`;
-            const sources = buildFetchSources(crossrefApiUrl);
+            // Crossref enrichment is optional; avoid proxy traffic to reduce rate-limit errors.
+            const sources = buildFetchSources(crossrefApiUrl, { includeProxy: false });
 
             let crData = null;
             for (const source of sources) {
@@ -629,7 +633,8 @@ async function loadPapers() {
 
         try {
             const doiUrl = `https://doi.org/${encodeURIComponent(doi)}`;
-            const sources = buildFetchSources(doiUrl);
+            // BibTeX enrichment is optional; avoid proxy traffic to reduce rate-limit errors.
+            const sources = buildFetchSources(doiUrl, { includeProxy: false });
 
             for (const source of sources) {
                 try {
