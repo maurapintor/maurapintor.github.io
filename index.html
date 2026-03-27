@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Maura Pintor — Assistant Professor working on adversarial machine learning, robustness, and AI security.">
+        <title>Maura Pintor</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="config/site-config.js"></script>
+        <!-- Google Analytics (GA4) -->
+        <script>
+            const gaMeasurementId = (window.SITE_CONFIG && window.SITE_CONFIG.analytics && window.SITE_CONFIG.analytics.measurementId) || "G-73151SSBC1";
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            const gaScript = document.createElement("script");
+            gaScript.async = true;
+            gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaMeasurementId)}`;
+            document.head.appendChild(gaScript);
+            gtag("js", new Date());
+            gtag("config", gaMeasurementId);
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/site.css">
+    </head>
+    <body>
+        <header>
+            <img class="profile-photo" src="https://www.saiferlab.ai/images/spsimpleportfolio/maura-pintor/Maura%20Pintor_sAIfer%20Lab.png" alt="Maura Pintor profile picture">
+            <h1>Maura Pintor</h1>
+            <p class="subtitle">
+                Assistant Professor @ University of Cagliari
+            </p>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#research">Research</a>
+                <a href="#publications">Publications</a>
+                <a href="#projects">Projects</a>
+                <a href="#teaching">Teaching</a>
+                <a href="#initiatives">Initiatives</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="card about-card">
+                <div class="bio-sketch">
+                    <p>
+                        Maura Pintor is an Assistant Professor at the PRA Lab in the Department of Electrical and Electronic Engineering at the University of Cagliari, Italy. She received her PhD in Electronic and Computer Engineering from the University of Cagliari in 2022.
+                    </p>
+                    <p>
+                        Her research focuses on adversarial machine learning, with a particular emphasis on evaluating, debugging, and improving the robustness of machine learning systems. Her work aims to make AI models more reliable, secure, and trustworthy in real-world settings.
+                    </p>
+                    <p>
+                        She serves as an Area Chair for NeurIPS and as an Associate Editor for Pattern Recognition, and she is a Consulting Associate Editor for the IEEE Transactions on Information Forensics and Security (TIFS). She is a member of IEEE, the IEEE Information Forensics and Security Technical Committee, IAPR, and ELLIS.
+                    She is also the main maintainer of the open-source library SecML-Torch, a framework for evaluating the adversarial robustness of deep learning models.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section id="research">
+            <h2>Research Interests</h2>
+            <div class="card">
+                <ul>
+                    <li>Adversarial Machine Learning</li>
+                    <li>Explainable AI</li>
+                    <li>Cybersecurity & AI Safety</li>
+                    <li>Agentic AI Security</li>
+                </ul>
+            </div>
+        </section>
+        <section id="publications">
+            <h2>Publications</h2>
+            <div class="card">
+                <p class="pub-intro">
+                    Selected publications are loaded from ORCID.
+                </p>
+                <p>
+                    <strong>Google Scholar:</strong>
+                    <a href="https://scholar.google.com/citations?user=Tu45bY4AAAAJ&hl" target="_blank">View Profile</a>
+                </p>
+                <div class="pub-toolbar">
+                    <div id="pubFilters" class="pub-filters">
+                        <button class="action-pill pub-filter is-active" data-filter="all" type="button">All</button>
+                        <button class="action-pill pub-filter" data-filter="journal" type="button">Journal</button>
+                        <button class="action-pill pub-filter" data-filter="conference" type="button">Conference</button>
+                    </div>
+                    <label class="pub-sort-wrap" for="pubSort">
+                        Sort
+                        <select id="pubSort" class="pub-sort">
+                            <option value="newest">Newest first</option>
+                            <option value="oldest">Oldest first</option>
+                        </select>
+                    </label>
+                </div>
+                <p id="pubSummary" class="pub-note pub-summary"></p>
+                <div id="papers" class="pub-track pub-loading">Loading publications...</div>
+            </div>
+        </section>
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="card">
+                <div id="projectsList" class="project-list pub-loading">Loading projects...</div>
+            </div>
+        </section>
+        <section id="teaching">
+            <h2>Teaching</h2>
+            <div class="card">
+                <div id="teachingList" class="project-list pub-loading">Loading courses...</div>
+            </div>
+        </section>
+        <section id="initiatives">
+            <h2>Initiatives</h2>
+            <div class="card">
+                <div class="project-item">
+                    <div class="project-title">SecML-Torch</div>
+                    <div class="project-meta">Open-source • Adversarial Machine Learning</div>
+                    <p class="project-desc">
+                        Main maintainer of a library for evaluating adversarial robustness of deep learning models.
+                    </p>
+                    <div class="pub-url-row">
+                        <a class="action-pill" href="https://github.com/pralab/secml-torch" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-title">ML Security Seminars</div>
+                    <div class="project-meta">Research community</div>
+                    <p class="project-desc">
+                        Seminar series on machine learning security and adversarial robustness.
+                    </p>
+                    <div class="pub-url-row">
+                        <a class="action-pill" href="https://pralab.github.io/mlsec/" target="_blank">Website</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="card contact-card">
+                <p>
+                    Email:
+                    <a href="mailto:maura.pintor@unica.it">maura.pintor@unica.it</a>
+                </p>
+                <p>
+                    GitHub:
+                    <a href="https://github.com/maurapintor" target="_blank" rel="noopener noreferrer">github.com/maurapintor</a>
+                </p>
+            </div>
+        </section>
+        <footer>
+            © 2026 Maura Pintor
+        </footer>
+        <script defer src="assets/js/site.js"></script>
+    </body>
+</html>
