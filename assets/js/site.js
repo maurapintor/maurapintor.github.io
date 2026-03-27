@@ -24,10 +24,7 @@ function buildFetchSources(targetUrl) {
     if (!hasNullOriginContext()) {
         sources.push({ url: targetUrl, isProxy: false, name: 'direct' });
     }
-    sources.push(
-        { url: `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`, isProxy: true, name: 'corsproxy' },
-        { url: `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`, isProxy: true, name: 'allorigins' },
-    );
+    sources.push({ url: `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`, isProxy: true, name: 'corsproxy' });
     return sources;
 }
 
@@ -523,9 +520,9 @@ async function loadPapers() {
                     });
                     if (source.isProxy && crRes.status === 429) {
                         activateProxyBackoff();
-                        continue;
+                        break;
                     }
-                    if (!crRes.ok) continue;
+                    if (!crRes.ok) break;
 
                     const payload = await crRes.text();
                     const direct = (() => {
@@ -553,7 +550,7 @@ async function loadPapers() {
                         break;
                     }
                 } catch {
-                    // Try next source.
+                    break;
                 }
             }
 
@@ -645,9 +642,9 @@ async function loadPapers() {
                     });
                     if (source.isProxy && doiRes.status === 429) {
                         activateProxyBackoff();
-                        continue;
+                        break;
                     }
-                    if (!doiRes.ok) continue;
+                    if (!doiRes.ok) break;
 
                     const payload = await doiRes.text();
                     const parsed = extractBibtexCandidate(payload);
@@ -656,7 +653,7 @@ async function loadPapers() {
                         return parsed;
                     }
                 } catch {
-                    // Try next source.
+                    break;
                 }
             }
 
@@ -1407,6 +1404,91 @@ function parseArxivPayload(payload, maxItems) {
     return parsedMarkdown;
 }
 
+function parseDblpPayload(payload) {
+    const text = String(payload || '').trim();
+    if (!text) return null;
+
+    try {
+        return JSON.parse(text);
+    } catch {
+        const start = text.indexOf('{');
+        const end = text.lastIndexOf('}');
+        if (start < 0 || end <= start) return null;
+        try {
+            return JSON.parse(text.slice(start, end + 1));
+        } catch {
+            return null;
+        }
+    }
+}
+
+function normalizeDblpEes(eeField) {
+    if (!eeField) return [];
+    if (Array.isArray(eeField)) return eeField.map(v => cleanSpace(v)).filter(Boolean);
+    return [cleanSpace(eeField)].filter(Boolean);
+}
+
+function parseDblpPreprints(payload, maxItems) {
+    const parsed = parseDblpPayload(payload);
+    const hits = parsed?.result?.hits?.hit;
+    const list = Array.isArray(hits) ? hits : (hits ? [hits] : []);
+    const out = [];
+
+    for (const hit of list) {
+        if (out.length >= Math.max(1, maxItems)) break;
+        const info = hit?.info || {};
+        const ees = normalizeDblpEes(info.ee);
+        const absUrl = ees.find(url => /arxiv\.org\/abs\//i.test(url)) || '';
+        if (!absUrl) continue;
+
+        const arxivId = extractArxivEntryId(absUrl);
+        const pdfUrl = arxivId ? `https://arxiv.org/pdf/${arxivId}.pdf` : (ees.find(url => /arxiv\.org\/pdf\//i.test(url)) || '');
+        const year = cleanSpace(info.year || '');
+        out.push({
+            title: cleanSpace(info.title || 'Untitled preprint'),
+            absUrl,
+            pdfUrl,
+            arxivId,
+            published: year ? `${year}-01-01` : '',
+            category: cleanSpace(info.venue || ''),
+        });
+    }
+
+    return out;
+}
+
+async function loadDblpPreprintsByOrcid(orcid, maxItems) {
+    const dblpUrl = `https://dblp.org/search/publ/api?q=orcid:${encodeURIComponent(orcid)}&h=${Math.max(10, Math.min(200, maxItems * 5))}&format=json`;
+    const sources = buildFetchSources(dblpUrl);
+
+    for (const source of sources) {
+        try {
+            if (source.isProxy && isProxyBackoffActive()) continue;
+
+            const res = await fetch(source.url, {
+                headers: { Accept: 'application/json, text/plain;q=0.9, */*;q=0.5' }
+            });
+
+            if (source.isProxy && res.status === 429) {
+                activateProxyBackoff();
+                break;
+            }
+            if (!res.ok) break;
+
+            const payload = await res.text();
+            const items = parseDblpPreprints(payload, maxItems);
+            if (items.length) {
+                console.debug(`[arXiv] DBLP fallback returned ${items.length} arXiv-linked preprints via ${source.name}`);
+                return items;
+            }
+        } catch {
+            break;
+        }
+    }
+
+    return [];
+}
+
 function dedupePreprintsAgainstPublished(items) {
     if (!EXCLUDE_PUBLISHED_FROM_PREPRINTS) return items || [];
     return (items || []).filter(item => {
@@ -1448,21 +1530,21 @@ async function loadArxivPapersIntoList() {
                 if (strat.isProxy && res.status === 429) {
                     console.warn('[arXiv] Proxy rate limited (429), activating backoff');
                     activateProxyBackoff();
-                    continue;
+                    break;
                 }
-                if (!res.ok) continue;
+                if (!res.ok) break;
 
                 const text = await res.text();
                 const trimmed = text?.trim() || '';
                 console.debug(`[arXiv] Payload via ${strat.name}: chars=${trimmed.length}`);
-                if (!trimmed) continue;
+                if (!trimmed) break;
 
                 payload = trimmed;
                 strategy = strat.name;
                 break;
             } catch (err) {
                 console.warn(`[arXiv] Fetch error via ${strat.name}: ${err?.message || err}`);
-                // Try next strategy.
+                break;
             }
         }
 
@@ -1481,8 +1563,12 @@ async function loadArxivPapersIntoList() {
         }
 
         if (!parsedEntries.length) {
-            console.warn('[arXiv] No arXiv papers found to add to publications');
-            return;
+            console.warn('[arXiv] No arXiv papers found from feed, trying DBLP fallback');
+            parsedEntries = await loadDblpPreprintsByOrcid(orcid, maxItems);
+            if (!parsedEntries.length) {
+                console.warn('[arXiv] No preprints found from arXiv feed or DBLP fallback');
+                return;
+            }
         }
 
         // Deduplicate against published papers
@@ -1946,22 +2032,24 @@ async function fetchCordisProject(entry) {
             });
             if (source.isProxy && res.status === 429) {
                 activateProxyBackoff();
-                continue;
+                lastError = 'HTTP 429';
+                break;
             }
             if (!res.ok) {
                 lastError = `HTTP ${res.status}`;
-                continue;
+                break;
             }
 
             const html = await res.text();
             if (!html || html.length < 200) {
                 lastError = 'empty response';
-                continue;
+                break;
             }
 
             return makeProjectCard(extractCordisData(html, normalized), { ...entry, url: normalized }, '');
         } catch (err) {
             lastError = err instanceof Error ? err.message : 'network error';
+            break;
         }
     }
 
@@ -2274,18 +2362,19 @@ async function fetchUnicaCourse(course) {
 
             if (source.isProxy && res.status === 429) {
                 activateProxyBackoff();
-                continue;
+                lastError = 'HTTP 429';
+                break;
             }
 
             if (!res.ok) {
                 lastError = `HTTP ${res.status}`;
-                continue;
+                break;
             }
 
             const payload = await res.text();
             if (!payload || payload.length < 200) {
                 lastError = 'empty response';
-                continue;
+                break;
             }
 
             return {
@@ -2294,6 +2383,7 @@ async function fetchUnicaCourse(course) {
             };
         } catch (err) {
             lastError = err instanceof Error ? err.message : 'network error';
+            break;
         }
     }
 
