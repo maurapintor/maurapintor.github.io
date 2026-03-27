@@ -761,7 +761,7 @@ const CORDIS_PROJECT_URLS = Array.isArray(PROJECTS_CONFIG.cordisUrls)
         "https://cordis.europa.eu/project/id/952647",
         "https://cordis.europa.eu/project/id/780788"
     ];
-const EU_PROJECT_LOGO_SRC = 'assets/images/eu-flag.svg';
+const EU_PROJECT_LOGO_SRC = 'assets/images/eu-flag.jpg';
 
 function normalizeProjectEntries() {
     if (Array.isArray(PROJECTS_CONFIG.items)) {
