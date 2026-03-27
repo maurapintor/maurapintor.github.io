@@ -19,6 +19,11 @@ window.SITE_CONFIG = Object.freeze({
       "https://cordis.europa.eu/project/id/952647",
       "https://cordis.europa.eu/project/id/780788"
     ]
+    // Optional future format:
+    // items: [
+    //   { source: "cordis", funding: "eu", url: "https://cordis.europa.eu/project/id/..." },
+    //   { source: "manual", funding: "other", title: "Project title", description: "Short description", url: "https://...", fundingLabel: "Funded by ..." }
+    // ]
   },
   teaching: {
     courses: [

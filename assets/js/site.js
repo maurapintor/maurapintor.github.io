@@ -761,6 +761,31 @@ const CORDIS_PROJECT_URLS = Array.isArray(PROJECTS_CONFIG.cordisUrls)
         "https://cordis.europa.eu/project/id/952647",
         "https://cordis.europa.eu/project/id/780788"
     ];
+const EU_PROJECT_LOGO_SRC = 'assets/images/eu-flag.svg';
+
+function normalizeProjectEntries() {
+    if (Array.isArray(PROJECTS_CONFIG.items)) {
+        return PROJECTS_CONFIG.items.map((item, index) => {
+            if (typeof item === 'string') {
+                return { source: 'cordis', url: item, funding: 'eu', id: `project-${index}` };
+            }
+
+            return {
+                source: item?.source || (item?.url && /cordis\.europa\.eu/i.test(item.url) ? 'cordis' : 'manual'),
+                funding: item?.funding || (item?.url && /cordis\.europa\.eu/i.test(item.url) ? 'eu' : 'other'),
+                ...item,
+                id: item?.id || `project-${index}`,
+            };
+        });
+    }
+
+    return CORDIS_PROJECT_URLS.map((url, index) => ({
+        id: `cordis-${index}`,
+        source: 'cordis',
+        funding: 'eu',
+        url,
+    }));
+}
 
 function parseCordisProjectId(url) {
     const match = (url || '').match(/\/project\/id\/(\d+)/i);
@@ -978,12 +1003,79 @@ function extractCordisData(content, url) {
     const callId = extractCordisCallId(text);
 
     const title = normalizeProjectTitle(toSmartTitleCase(rawTitle));
-    return { title, objective, acronym, programme, programmeCode, projectType, callId, startDate, endDate, url };
+    return {
+        title,
+        objective,
+        acronym,
+        programme,
+        programmeCode,
+        projectType,
+        callId,
+        startDate,
+        endDate,
+        url,
+        funding: 'eu',
+        fundingLabel: 'Funded by the European Union',
+        fundingLogoSrc: EU_PROJECT_LOGO_SRC,
+    };
 }
 
-function makeProjectCard(project, errorMessage) {
+function getProjectFundingInfo(project, entry) {
+    const normalizedFunding = String(entry?.funding || project?.funding || '').trim().toLowerCase();
+    const isEuFunding = normalizedFunding === 'eu' || normalizedFunding === 'european-union' || project?.funding === 'eu';
+
+    if (isEuFunding) {
+        return {
+            label: entry?.fundingLabel || project?.fundingLabel || 'Funded by the European Union',
+            logoSrc: entry?.fundingLogoSrc || project?.fundingLogoSrc || EU_PROJECT_LOGO_SRC,
+            theme: 'eu',
+        };
+    }
+
+    if (entry?.fundingLabel || entry?.fundingLogoSrc) {
+        return {
+            label: entry.fundingLabel || 'Funded project',
+            logoSrc: entry.fundingLogoSrc || '',
+            theme: 'generic',
+        };
+    }
+
+    return null;
+}
+
+function makeProjectCard(project, entry, errorMessage) {
     const card = document.createElement('div');
     card.className = 'project-item';
+
+    const fundingInfo = getProjectFundingInfo(project, entry);
+    if (fundingInfo) {
+        const fundingBlock = document.createElement('div');
+        fundingBlock.className = `project-funding project-funding--${fundingInfo.theme}`;
+
+        if (fundingInfo.logoSrc) {
+            const logo = document.createElement('img');
+            logo.className = 'project-funding__logo';
+            logo.src = fundingInfo.logoSrc;
+            logo.alt = fundingInfo.theme === 'eu' ? 'European Union flag' : 'Project funding logo';
+            fundingBlock.appendChild(logo);
+        }
+
+        const copy = document.createElement('div');
+        copy.className = 'project-funding__copy';
+
+        const eyebrow = document.createElement('div');
+        eyebrow.className = 'project-funding__eyebrow';
+        eyebrow.textContent = fundingInfo.theme === 'eu' ? 'EU Project' : 'Funded Project';
+        copy.appendChild(eyebrow);
+
+        const label = document.createElement('div');
+        label.className = 'project-funding__label';
+        label.textContent = fundingInfo.label;
+        copy.appendChild(label);
+
+        fundingBlock.appendChild(copy);
+        card.appendChild(fundingBlock);
+    }
 
     const titleEl = document.createElement('div');
     titleEl.className = 'project-title';
@@ -1027,8 +1119,28 @@ function makeProjectCard(project, errorMessage) {
     return card;
 }
 
-async function fetchCordisProject(url) {
-    const normalized = /^https?:\/\//i.test(url) ? url : `https://${url}`;
+function makeManualProjectCard(entry) {
+    const project = {
+        title: cleanSpace(entry?.title || 'Project'),
+        objective: cleanSpace(entry?.description || entry?.objective || ''),
+        acronym: cleanSpace(entry?.acronym || ''),
+        programme: cleanSpace(entry?.programme || ''),
+        programmeCode: cleanSpace(entry?.programmeCode || ''),
+        projectType: cleanSpace(entry?.projectType || ''),
+        callId: cleanSpace(entry?.callId || ''),
+        startDate: cleanSpace(entry?.startDate || ''),
+        endDate: cleanSpace(entry?.endDate || ''),
+        url: cleanSpace(entry?.url || ''),
+        funding: cleanSpace(entry?.funding || ''),
+        fundingLabel: cleanSpace(entry?.fundingLabel || ''),
+        fundingLogoSrc: cleanSpace(entry?.fundingLogoSrc || ''),
+    };
+
+    return makeProjectCard(project, entry, '');
+}
+
+async function fetchCordisProject(entry) {
+    const normalized = /^https?:\/\//i.test(entry.url) ? entry.url : `https://${entry.url}`;
     const candidates = [
         normalized,
         `https://api.allorigins.win/raw?url=${encodeURIComponent(normalized)}`,
@@ -1053,21 +1165,22 @@ async function fetchCordisProject(url) {
                 continue;
             }
 
-            return makeProjectCard(extractCordisData(html, normalized));
+            return makeProjectCard(extractCordisData(html, normalized), { ...entry, url: normalized }, '');
         } catch (err) {
             lastError = err instanceof Error ? err.message : 'network error';
         }
     }
 
     return makeProjectCard(
-        { url: normalized },
+        { url: normalized, funding: entry?.funding, fundingLabel: entry?.fundingLabel, fundingLogoSrc: entry?.fundingLogoSrc },
+        entry,
         `Unable to fetch or parse this CORDIS URL (${lastError || 'request failed'}).`
     );
 }
 
 async function loadCordisProjects() {
     const list = document.getElementById('projectsList');
-    const PROJECT_CACHE_KEY = 'site_projects_cache_v5';
+    const PROJECT_CACHE_KEY = 'site_projects_cache_v6';
 
     function makeSkeletonMarkup(count = 4) {
         return `<div class="skeleton-list">${Array.from({ length: count }).map(() => '<div class="skeleton-item"></div>').join('')}</div>`;
@@ -1096,15 +1209,15 @@ async function loadCordisProjects() {
     list.innerHTML = makeSkeletonMarkup(4);
     list.classList.remove('pub-loading', 'pub-error');
 
-    const urls = CORDIS_PROJECT_URLS.map(v => v.trim()).filter(Boolean);
-    if (!urls.length) {
+    const entries = normalizeProjectEntries().filter(entry => cleanSpace(entry?.url || entry?.title || ''));
+    if (!entries.length) {
         list.classList.add('pub-error');
-        list.textContent = 'No CORDIS URLs configured yet. Add links in CORDIS_PROJECT_URLS inside the script.';
+        list.textContent = 'No projects configured yet. Add entries in config/site-config.js.';
         return;
     }
 
     try {
-        const cards = await Promise.all(urls.map(fetchCordisProject));
+        const cards = await Promise.all(entries.map(entry => entry.source === 'cordis' ? fetchCordisProject(entry) : Promise.resolve(makeManualProjectCard(entry))));
         list.innerHTML = '';
         cards.forEach(card => list.appendChild(card));
         saveProjectsCache(cards.map(card => card.outerHTML));

@@ -314,6 +314,44 @@
             border-color: #b5c9dc;
             box-shadow: var(--soft-shadow);
         }
+        .project-funding {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #c9d7e6;
+            background: linear-gradient(180deg, #f4f8fc 0%, #eaf1f8 100%);
+        }
+        .project-funding--eu {
+            border-color: #b9cceb;
+            background: linear-gradient(180deg, #eef4ff 0%, #e1ebfb 100%);
+        }
+        .project-funding__logo {
+            width: 54px;
+            height: 36px;
+            flex: 0 0 auto;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 3px 8px rgba(20, 41, 66, 0.12);
+        }
+        .project-funding__copy {
+            min-width: 0;
+        }
+        .project-funding__eyebrow {
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #36546f;
+            margin-bottom: 3px;
+        }
+        .project-funding__label {
+            color: #24384b;
+            font-size: 0.92rem;
+            line-height: 1.35;
+        }
         .project-title { font-weight:700; color:#2f3a49; margin-bottom:4px; }
         .project-meta { color:#6c7480; font-size:0.92em; margin-bottom:7px; }
         .project-desc { margin:0; color:#334457; }
@@ -361,6 +399,9 @@
             .card {
                 padding: 18px 16px 16px;
                 border-radius: 14px;
+            }
+            .project-funding {
+                align-items: flex-start;
             }
             nav {
                 gap: 8px;
