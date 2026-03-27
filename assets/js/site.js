@@ -509,91 +509,9 @@ async function loadPapers() {
         if (!doi) return null;
         if (crossrefCache.has(doi)) return crossrefCache.get(doi);
 
-        try {
-            const crossrefApiUrl = `https://api.crossref.org/works/${encodeURIComponent(doi)}`;
-            // Crossref enrichment is optional; avoid proxy traffic to reduce rate-limit errors.
-            const sources = buildFetchSources(crossrefApiUrl, { includeProxy: false });
-
-            let crData = null;
-            for (const source of sources) {
-                try {
-                    if (source.isProxy && isProxyBackoffActive()) continue;
-
-                    const crRes = await fetch(source.url, {
-                        headers: { Accept: 'application/json, text/plain;q=0.9, */*;q=0.5' }
-                    });
-                    if (source.isProxy && crRes.status === 429) {
-                        activateProxyBackoff();
-                        break;
-                    }
-                    if (!crRes.ok) break;
-
-                    const payload = await crRes.text();
-                    const direct = (() => {
-                        try {
-                            return JSON.parse(payload);
-                        } catch {
-                            return null;
-                        }
-                    })();
-
-                    const extracted = (() => {
-                        if (direct) return direct;
-                        const start = payload.indexOf('{');
-                        const end = payload.lastIndexOf('}');
-                        if (start < 0 || end <= start) return null;
-                        try {
-                            return JSON.parse(payload.slice(start, end + 1));
-                        } catch {
-                            return null;
-                        }
-                    })();
-
-                    if (extracted?.message) {
-                        crData = extracted;
-                        break;
-                    }
-                } catch {
-                    break;
-                }
-            }
-
-            if (!crData?.message) throw new Error('Crossref fetch failed');
-            const msg = crData?.message || {};
-            const containerTitle = msg['container-title']?.[0] || null;
-            const title = msg.title?.[0] || null;
-            const subtitle = msg.subtitle?.[0] || null;
-            const publisher = msg.publisher || null;
-            const crType = msg.type || null;
-            const crossrefUrl = msg.URL || '';
-            const authors = Array.isArray(msg.author) ? msg.author : [];
-            const volume = msg.volume || null;
-            const issue = msg.issue || null;
-            const page = msg.page || msg['article-number'] || null;
-            const crossrefYear = msg.issued?.['date-parts']?.[0]?.[0]
-                || msg.created?.['date-parts']?.[0]?.[0]
-                || msg.deposited?.['date-parts']?.[0]?.[0]
-                || null;
-
-            const parsed = {
-                containerTitle,
-                title,
-                subtitle,
-                publisher,
-                crType,
-                authors,
-                volume,
-                issue,
-                page,
-                crossrefUrl,
-                crossrefYear: crossrefYear ? String(crossrefYear) : null
-            };
-            crossrefCache.set(doi, parsed);
-            return parsed;
-        } catch {
-            crossrefCache.set(doi, null);
-            return null;
-        }
+        // Disabled in-browser to avoid CORS/rate-limit errors from Crossref.
+        crossrefCache.set(doi, null);
+        return null;
     }
 
     async function fetchOrcidWorkDetail(putCode) {
@@ -617,57 +535,9 @@ async function loadPapers() {
         if (!doi) return null;
         if (doiBibtexCache.has(doi)) return doiBibtexCache.get(doi);
 
-        function extractBibtexCandidate(payload) {
-            const text = String(payload || '').trim();
-            if (!text) return null;
-            if (text.startsWith('@')) return text;
-
-            const codeBlock = text.match(/```(?:bibtex)?\s*([\s\S]*?@\w+\{[\s\S]*?)```/i);
-            if (codeBlock?.[1]) return String(codeBlock[1]).trim();
-
-            const inline = text.match(/(@\w+\{[\s\S]+)/);
-            if (inline?.[1]) return String(inline[1]).trim();
-
-            return null;
-        }
-
-        try {
-            const doiUrl = `https://doi.org/${encodeURIComponent(doi)}`;
-            // BibTeX enrichment is optional; avoid proxy traffic to reduce rate-limit errors.
-            const sources = buildFetchSources(doiUrl, { includeProxy: false });
-
-            for (const source of sources) {
-                try {
-                    if (source.isProxy && isProxyBackoffActive()) continue;
-
-                    const doiRes = await fetch(source.url, {
-                        headers: {
-                            Accept: 'application/x-bibtex; charset=utf-8, text/plain;q=0.9, */*;q=0.5'
-                        }
-                    });
-                    if (source.isProxy && doiRes.status === 429) {
-                        activateProxyBackoff();
-                        break;
-                    }
-                    if (!doiRes.ok) break;
-
-                    const payload = await doiRes.text();
-                    const parsed = extractBibtexCandidate(payload);
-                    if (parsed) {
-                        doiBibtexCache.set(doi, parsed);
-                        return parsed;
-                    }
-                } catch {
-                    break;
-                }
-            }
-
-            doiBibtexCache.set(doi, null);
-            return null;
-        } catch {
-            doiBibtexCache.set(doi, null);
-            return null;
-        }
+        // Disabled in-browser to avoid CORS/rate-limit errors from DOI transforms.
+        doiBibtexCache.set(doi, null);
+        return null;
     }
 
     function extractBibtexField(citationText, fieldName) {
