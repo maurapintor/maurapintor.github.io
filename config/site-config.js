@@ -9,7 +9,42 @@ window.SITE_CONFIG = Object.freeze({
       "Cybersecurity and AI: The PRALab Research Experience",
       "ALOHA",
       "CoEvolution"
-    ]
+    ],
+    // Match is done against publication venue text (case-insensitive partial match).
+    topConferenceVenues: [
+      "NeurIPS",
+      "ICML",
+      "ICLR",
+      "AAAI",
+      "IJCAI",
+      "ACM CCS",
+      "IEEE Symposium on Security and Privacy",
+      "USENIX Security"
+    ],
+    // Optional manual exclusions to avoid false positives (example: "ICMLC").
+    topConferenceExcludedVenues: [
+      "ICMLC"
+    ],
+    q1JournalVenues: [
+      "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+      "Pattern Recognition",
+      "Machine Learning",
+      "IEEE Transactions on Information Forensics and Security",
+      "Artificial Intelligence",
+      "ACM Computing Surveys",
+      "Journal of Machine Learning Research",
+      "Neural Networks",
+      "Journal of Systems and Software",
+      "Neurocomputing",
+      "Information Sciences",
+      "Computers & Security",
+    ],
+    // Optional canonicalization map: key is incoming venue text, value is preferred display name.
+    journalNameOverrides: {
+      "ieee tifs": "IEEE Transactions on Information Forensics and Security",
+      "international conference on representation learning": "International Conference on Learning Representations (ICLR)",
+      "international conference on learning representations": "International Conference on Learning Representations (ICLR)"
+    }
   },
   projects: {
     cordisUrls: [

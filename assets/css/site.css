@@ -212,8 +212,45 @@
             border-color: #b5c9dc;
             box-shadow: var(--soft-shadow);
         }
-        .pub-title { font-weight:700; color:#2f3a49; }
+        .pub-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .pub-title { font-weight:700; color:#2f3a49; flex: 1 1 320px; }
         .pub-meta { color:#6c7480; font-size:0.95em; margin-top:4px; }
+        .pub-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .pub-badge {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            border: 1px solid transparent;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        .pub-badge-top {
+            color: #5e3e00;
+            background: linear-gradient(180deg, #ffe9a9 0%, #ffd56e 100%);
+            border-color: #d9aa2a;
+            box-shadow: 0 2px 8px rgba(170, 114, 0, 0.18);
+        }
+        .pub-badge-q1 {
+            color: #0e4f3a;
+            background: linear-gradient(180deg, #d9f4df 0%, #bceac8 100%);
+            border-color: #6fba87;
+            box-shadow: 0 2px 8px rgba(21, 126, 73, 0.18);
+        }
         .pub-toolbar {
             margin-top: 10px;
             margin-bottom: 10px;

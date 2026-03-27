@@ -18,6 +18,140 @@ async function loadPapers() {
             "ALOHA",
             "CoEvolution"
         ];
+    const TOP_CONFERENCE_VENUES = Array.isArray(PUBLICATIONS_CONFIG.topConferenceVenues)
+        ? PUBLICATIONS_CONFIG.topConferenceVenues
+        : [
+            "NeurIPS",
+            "ICML",
+            "ICLR",
+            "AAAI",
+            "IJCAI",
+            "ACM CCS",
+            "IEEE Symposium on Security and Privacy",
+            "USENIX Security"
+        ];
+    const TOP_CONFERENCE_EXCLUDED_VENUES = Array.isArray(PUBLICATIONS_CONFIG.topConferenceExcludedVenues)
+        ? PUBLICATIONS_CONFIG.topConferenceExcludedVenues
+        : [
+            "ICMLC"
+        ];
+    const Q1_JOURNAL_VENUES = Array.isArray(PUBLICATIONS_CONFIG.q1JournalVenues)
+        ? PUBLICATIONS_CONFIG.q1JournalVenues
+        : [
+            "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+            "Pattern Recognition",
+            "Machine Learning",
+            "IEEE Transactions on Information Forensics and Security",
+            "Artificial Intelligence",
+            "ACM Computing Surveys",
+            "Journal of Machine Learning Research",
+            "Neural Networks",
+            "Computers & Security",
+            "Information Sciences",
+        ];
+    const JOURNAL_NAME_OVERRIDES = (PUBLICATIONS_CONFIG.journalNameOverrides && typeof PUBLICATIONS_CONFIG.journalNameOverrides === 'object')
+        ? PUBLICATIONS_CONFIG.journalNameOverrides
+        : {};
+
+    function normalizeVenueKey(value) {
+        return String(value || '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, ' ')
+            .trim();
+    }
+
+    const TOP_CONFERENCE_KEYS = TOP_CONFERENCE_VENUES
+        .map(normalizeVenueKey)
+        .filter(Boolean);
+    const TOP_CONFERENCE_EXCLUDED_KEYS = TOP_CONFERENCE_EXCLUDED_VENUES
+        .map(normalizeVenueKey)
+        .filter(Boolean);
+    const Q1_JOURNAL_KEYS = Q1_JOURNAL_VENUES
+        .map(normalizeVenueKey)
+        .filter(Boolean);
+    const JOURNAL_OVERRIDE_MAP = new Map(
+        Object.entries(JOURNAL_NAME_OVERRIDES)
+            .map(([from, to]) => [normalizeVenueKey(from), cleanSpace(to)])
+            .filter(([from, to]) => from && to)
+    );
+
+    function normalizeVenueName(value) {
+        const input = cleanSpace(value || '').replace(/[\s.;,:]+$/g, '');
+        if (!input) return '';
+
+        const directOverride = JOURNAL_OVERRIDE_MAP.get(normalizeVenueKey(input));
+        if (directOverride) return directOverride;
+
+        const acronymMap = new Map([
+            ['acm', 'ACM'],
+            ['aaai', 'AAAI'],
+            ['acl', 'ACL'],
+            ['iclr', 'ICLR'],
+            ['icml', 'ICML'],
+            ['ijcai', 'IJCAI'],
+            ['ieee', 'IEEE'],
+            ['neurips', 'NeurIPS'],
+            ['nips', 'NeurIPS'],
+            ['cvpr', 'CVPR'],
+            ['iccv', 'ICCV'],
+            ['eccv', 'ECCV'],
+            ['wacv', 'WACV'],
+            ['kdd', 'KDD'],
+            ['usenix', 'USENIX'],
+            ['ml', 'ML'],
+            ['ai', 'AI'],
+            ['nlp', 'NLP'],
+            ['qa', 'QA'],
+            ['llm', 'LLM'],
+        ]);
+        const minorWords = new Set(['a', 'an', 'and', 'as', 'at', 'by', 'for', 'from', 'in', 'of', 'on', 'or', 'the', 'to', 'with', 'via']);
+
+        let wordIndex = 0;
+        const normalized = input
+            .split(/(\s+|[-/])/)
+            .map((token) => {
+                if (/^\s+$|^[-/]$/.test(token)) return token;
+
+                const parts = token.match(/^(["'([{]*)(.*?)(["'\])}.,;:]*)$/);
+                const prefix = parts?.[1] || '';
+                const core = parts?.[2] || token;
+                const suffix = parts?.[3] || '';
+
+                if (!core) return token;
+
+                const lower = core.toLowerCase();
+                let nextCore;
+                const isUpperToken = /^[A-Z0-9&.]+$/.test(core);
+                const upperLetters = core.replace(/[^A-Z]/g, '');
+                const isLikelyAcronym = isUpperToken
+                    && upperLetters.length > 0
+                    && upperLetters.length <= 5
+                    && !minorWords.has(lower);
+
+                if (acronymMap.has(lower)) {
+                    nextCore = acronymMap.get(lower);
+                } else if (isLikelyAcronym) {
+                    nextCore = core;
+                } else if (wordIndex > 0 && minorWords.has(lower)) {
+                    nextCore = lower;
+                } else {
+                    nextCore = lower.charAt(0).toUpperCase() + lower.slice(1);
+                }
+
+                wordIndex += 1;
+                return `${prefix}${nextCore}${suffix}`;
+            })
+            .join('');
+
+        const normalizedOverride = JOURNAL_OVERRIDE_MAP.get(normalizeVenueKey(normalized));
+        return normalizedOverride || normalized;
+    }
+
+    function matchesVenueList(venue, normalizedList) {
+        const venueKey = normalizeVenueKey(venue);
+        if (!venueKey || !normalizedList.length) return false;
+        return normalizedList.some(item => venueKey.includes(item));
+    }
 
     const crossrefCache = new Map();
     const doiBibtexCache = new Map();
@@ -718,6 +852,8 @@ async function loadPapers() {
                     : 'Repository record';
             }
 
+            venue = normalizeVenueName(venue);
+
             const nonArxivPublicationUrl = choosePublicationUrl({ doi, crossref, externalIds, summary, detail: null, excludeArxiv: true });
             const arxivRef = chooseArxivUrl({ title, arxivId, doi, externalIds, summary, detail: null });
             const arxivUrl = arxivRef.url;
@@ -735,6 +871,10 @@ async function loadPapers() {
             const effectiveType = (rawType === 'preprint' || isArxivOnly) ? 'preprint' : rawType;
             const type = normalizeTypeLabel(effectiveType, venue);
             const filterType = getFilterType(effectiveType);
+            const isTopConference = effectiveType === 'conference-paper'
+                && matchesVenueList(venue, TOP_CONFERENCE_KEYS)
+                && !matchesVenueList(venue, TOP_CONFERENCE_EXCLUDED_KEYS);
+            const isQ1Journal = effectiveType === 'journal-article' && matchesVenueList(venue, Q1_JOURNAL_KEYS);
 
             if (isArxivOnly && !isMeaningfulVenue(venue)) {
                 venue = 'arXiv preprint';
@@ -772,7 +912,13 @@ async function loadPapers() {
             const li = document.createElement('div');
             li.className = 'pub-item';
             li.innerHTML = `
-                <div class="pub-title">${title}</div>
+                <div class="pub-head">
+                    <div class="pub-title">${title}</div>
+                    <div class="pub-badges">
+                        ${isTopConference ? '<span class="pub-badge pub-badge-top">Top Conference</span>' : ''}
+                        ${isQ1Journal ? '<span class="pub-badge pub-badge-q1">Q1 Journal</span>' : ''}
+                    </div>
+                </div>
                 <div class="pub-meta">${year} • ${venue} • ${type}</div>
                 <div class="pub-url-row">
                     ${(isPublished && nonArxivPublicationUrl) ? `<a class="action-pill" href="${nonArxivPublicationUrl}" target="_blank" rel="noopener noreferrer">Open publication</a>` : ''}
@@ -785,6 +931,8 @@ async function loadPapers() {
                 element: li,
                 year: Number.parseInt(year, 10) || 0,
                 filterType,
+                isTopConference,
+                isQ1Journal,
                 titleKey: normalizeTitleKey(title),
                 priority: isPublished ? 3 : (effectiveType === 'preprint' ? 2 : 1),
             };
@@ -800,11 +948,15 @@ async function loadPapers() {
                     html: record.element.outerHTML,
                     year: record.year || 0,
                     filterType: record.filterType || 'other',
+                    isTopConference: Boolean(record.isTopConference),
+                    isQ1Journal: Boolean(record.isQ1Journal),
                 });
                 return {
                     element: record.element,
                     year: record.year || 0,
                     filterType: record.filterType || 'other',
+                    isTopConference: Boolean(record.isTopConference),
+                    isQ1Journal: Boolean(record.isQ1Journal),
                 };
             });
         };
@@ -831,7 +983,12 @@ async function loadPapers() {
 
         const renderList = () => {
             const visible = state.items
-                .filter(item => state.filter === 'all' ? true : item.filterType === state.filter)
+                .filter(item => {
+                    if (state.filter === 'all') return true;
+                    if (state.filter === 'top-conference') return Boolean(item.isTopConference);
+                    if (state.filter === 'q1-journal') return Boolean(item.isQ1Journal);
+                    return item.filterType === state.filter;
+                })
                 .sort((a, b) => state.sort === 'oldest' ? (a.year - b.year) : (b.year - a.year));
 
             list.innerHTML = '';
@@ -884,6 +1041,8 @@ async function loadPapers() {
                     element: wrapper.firstElementChild,
                     year: item.year || 0,
                     filterType: item.filterType || 'other',
+                    isTopConference: Boolean(item.isTopConference),
+                    isQ1Journal: Boolean(item.isQ1Journal),
                 };
             }).filter(item => item.element);
 
