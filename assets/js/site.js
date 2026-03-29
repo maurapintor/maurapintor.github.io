@@ -1,10 +1,6 @@
 const SITE_CONFIG = window.SITE_CONFIG || {};
-const PUBLICATIONS_CONFIG = SITE_CONFIG.publications || {};
 const PROJECTS_CONFIG = SITE_CONFIG.projects || {};
 const TEACHING_CONFIG = SITE_CONFIG.teaching || {};
-const PREPRINTS_CONFIG = PUBLICATIONS_CONFIG.preprints || {};
-const PUBLISHED_TITLE_KEYS = new Set();
-const EXCLUDE_PUBLISHED_FROM_PREPRINTS = Boolean(PREPRINTS_CONFIG.excludeAlreadyPublished);
 let PROXY_BACKOFF_UNTIL = 0;
 
 function isProxyBackoffActive() {
@@ -31,686 +27,12 @@ function buildFetchSources(targetUrl, options = {}) {
     return sources;
 }
 
-function normalizePublicationTitleKey(value) {
-    return String(value || '')
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, ' ')
-        .trim();
-}
-
 async function loadPapers() {
-    const ORCID = PUBLICATIONS_CONFIG.orcid || "0000-0002-1944-2875";
-    const worksUrl = `https://pub.orcid.org/v3.0/${ORCID}/works`;
-    const PUB_CACHE_KEY = `site_pub_cache_${ORCID}`;
-
-
-    // Exclude publications by full title or any partial title match (case-insensitive).
-    const EXCLUDED_PUBLICATION_TITLES = Array.isArray(PUBLICATIONS_CONFIG.excludedTitles)
-        ? PUBLICATIONS_CONFIG.excludedTitles
-        : [
-            "AISec",
-            "Cybersecurity and AI: The PRALab Research Experience",
-            "ALOHA",
-            "CoEvolution"
-        ];
-    const TOP_CONFERENCE_VENUES = Array.isArray(PUBLICATIONS_CONFIG.topConferenceVenues)
-        ? PUBLICATIONS_CONFIG.topConferenceVenues
-        : [
-            "NeurIPS",
-            "ICML",
-            "ICLR",
-            "AAAI",
-            "IJCAI",
-            "ACM CCS",
-            "IEEE Symposium on Security and Privacy",
-            "USENIX Security"
-        ];
-    const TOP_CONFERENCE_EXCLUDED_VENUES = Array.isArray(PUBLICATIONS_CONFIG.topConferenceExcludedVenues)
-        ? PUBLICATIONS_CONFIG.topConferenceExcludedVenues
-        : [
-            "ICMLC"
-        ];
-    const Q1_JOURNAL_VENUES = Array.isArray(PUBLICATIONS_CONFIG.q1JournalVenues)
-        ? PUBLICATIONS_CONFIG.q1JournalVenues
-        : [
-            "IEEE Transactions on Pattern Analysis and Machine Intelligence",
-            "Pattern Recognition",
-            "Machine Learning",
-            "IEEE Transactions on Information Forensics and Security",
-            "Artificial Intelligence",
-            "ACM Computing Surveys",
-            "Journal of Machine Learning Research",
-            "Neural Networks",
-            "Computers & Security",
-            "Information Sciences",
-        ];
-    const JOURNAL_NAME_OVERRIDES = (PUBLICATIONS_CONFIG.journalNameOverrides && typeof PUBLICATIONS_CONFIG.journalNameOverrides === 'object')
-        ? PUBLICATIONS_CONFIG.journalNameOverrides
-        : {};
-
-    function normalizeVenueKey(value) {
-        return String(value || '')
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, ' ')
-            .trim();
-    }
-
-    const TOP_CONFERENCE_KEYS = TOP_CONFERENCE_VENUES
-        .map(normalizeVenueKey)
-        .filter(Boolean);
-    const TOP_CONFERENCE_EXCLUDED_KEYS = TOP_CONFERENCE_EXCLUDED_VENUES
-        .map(normalizeVenueKey)
-        .filter(Boolean);
-    const Q1_JOURNAL_KEYS = Q1_JOURNAL_VENUES
-        .map(normalizeVenueKey)
-        .filter(Boolean);
-    const JOURNAL_OVERRIDE_MAP = new Map(
-        Object.entries(JOURNAL_NAME_OVERRIDES)
-            .map(([from, to]) => [normalizeVenueKey(from), cleanSpace(to)])
-            .filter(([from, to]) => from && to)
-    );
-
-    function normalizeVenueName(value) {
-        const input = cleanSpace(value || '').replace(/[\s.;,:]+$/g, '');
-        if (!input) return '';
-
-        const directOverride = JOURNAL_OVERRIDE_MAP.get(normalizeVenueKey(input));
-        if (directOverride) return directOverride;
-
-        const acronymMap = new Map([
-            ['acm', 'ACM'],
-            ['aaai', 'AAAI'],
-            ['acl', 'ACL'],
-            ['iclr', 'ICLR'],
-            ['icml', 'ICML'],
-            ['ijcai', 'IJCAI'],
-            ['ieee', 'IEEE'],
-            ['neurips', 'NeurIPS'],
-            ['nips', 'NeurIPS'],
-            ['cvpr', 'CVPR'],
-            ['iccv', 'ICCV'],
-            ['eccv', 'ECCV'],
-            ['wacv', 'WACV'],
-            ['kdd', 'KDD'],
-            ['usenix', 'USENIX'],
-            ['ml', 'ML'],
-            ['ai', 'AI'],
-            ['nlp', 'NLP'],
-            ['qa', 'QA'],
-            ['llm', 'LLM'],
-        ]);
-        const minorWords = new Set(['a', 'an', 'and', 'as', 'at', 'by', 'for', 'from', 'in', 'of', 'on', 'or', 'the', 'to', 'with', 'via']);
-
-        let wordIndex = 0;
-        const normalized = input
-            .split(/(\s+|[-/])/)
-            .map((token) => {
-                if (/^\s+$|^[-/]$/.test(token)) return token;
-
-                const parts = token.match(/^(["'([{]*)(.*?)(["'\])}.,;:]*)$/);
-                const prefix = parts?.[1] || '';
-                const core = parts?.[2] || token;
-                const suffix = parts?.[3] || '';
-
-                if (!core) return token;
-
-                const lower = core.toLowerCase();
-                let nextCore;
-                const isUpperToken = /^[A-Z0-9&.]+$/.test(core);
-                const upperLetters = core.replace(/[^A-Z]/g, '');
-                const isLikelyAcronym = isUpperToken
-                    && upperLetters.length > 0
-                    && upperLetters.length <= 5
-                    && !minorWords.has(lower);
-
-                if (acronymMap.has(lower)) {
-                    nextCore = acronymMap.get(lower);
-                } else if (isLikelyAcronym) {
-                    nextCore = core;
-                } else if (wordIndex > 0 && minorWords.has(lower)) {
-                    nextCore = lower;
-                } else {
-                    nextCore = lower.charAt(0).toUpperCase() + lower.slice(1);
-                }
-
-                wordIndex += 1;
-                return `${prefix}${nextCore}${suffix}`;
-            })
-            .join('');
-
-        const normalizedOverride = JOURNAL_OVERRIDE_MAP.get(normalizeVenueKey(normalized));
-        return normalizedOverride || normalized;
-    }
-
-    function matchesVenueList(venue, normalizedList) {
-        const venueKey = normalizeVenueKey(venue);
-        if (!venueKey || !normalizedList.length) return false;
-        return normalizedList.some(item => venueKey.includes(item));
-    }
-
-    const crossrefCache = new Map();
-    const doiBibtexCache = new Map();
-    const orcidDetailCache = new Map();
+    const DATA_URL = 'assets/data/publications.json';
 
     function makeSkeletonMarkup(count = 5) {
         return `<div class="skeleton-list">${Array.from({ length: count }).map(() => '<div class="skeleton-item"></div>').join('')}</div>`;
     }
-
-    function savePubCache(items) {
-        try {
-            localStorage.setItem(PUB_CACHE_KEY, JSON.stringify({
-                savedAt: Date.now(),
-                items,
-            }));
-        } catch {
-            // Ignore storage failures.
-        }
-    }
-
-    function loadPubCache() {
-        try {
-            const raw = localStorage.getItem(PUB_CACHE_KEY);
-            if (!raw) return null;
-            const parsed = JSON.parse(raw);
-            if (!Array.isArray(parsed?.items)) return null;
-            return parsed;
-        } catch {
-            return null;
-        }
-    }
-
-    function getDoiFromExternalIds(externalIds) {
-        const ids = externalIds?.['external-id'] || [];
-        const doiEntry = ids.find(id => (id['external-id-type'] || '').toLowerCase() === 'doi');
-        if (!doiEntry) return null;
-        return normalizeDoiValue(doiEntry['external-id-value']);
-    }
-
-    function normalizeDoiValue(value) {
-        const raw = String(value || '').trim();
-        if (!raw) return null;
-        return raw
-            .replace(/^doi\s*:\s*/i, '')
-            .replace(/^https?:\/\/doi\.org\//i, '')
-            .replace(/[\s.]+$/g, '')
-            .trim() || null;
-    }
-
-    function getBestWorkUrl(externalIds) {
-        const ids = externalIds?.['external-id'] || [];
-        const withUrl = ids.find(id => id['external-id-url']?.value);
-        return withUrl?.['external-id-url']?.value || null;
-    }
-
-    function normalizeExternalUrl(rawValue) {
-        const raw = String(rawValue || '').trim();
-        if (!raw) return '';
-
-        const doiLike = raw.match(/^(?:doi\s*:\s*)?(10\.\d{4,9}\/.+)$/i);
-        if (doiLike) {
-            return `https://doi.org/${doiLike[1].trim()}`;
-        }
-
-        try {
-            return new URL(raw).toString();
-        } catch {
-            try {
-                return new URL(`https://${raw.replace(/^\/+/, '')}`).toString();
-            } catch {
-                return '';
-            }
-        }
-    }
-
-    function normalizeTitleKey(value) {
-        return normalizePublicationTitleKey(value);
-    }
-
-    function isPreferredPublicationUrl(url) {
-        try {
-            const host = new URL(url).hostname.toLowerCase();
-            if (host.includes('orcid.org')) return false;
-            if (host.includes('cordis.europa.eu')) return false;
-            return true;
-        } catch {
-            return false;
-        }
-    }
-
-    function isArxivDoi(value) {
-        return (value || '').toLowerCase().startsWith('10.48550/arxiv.');
-    }
-
-    function isArxivUrl(url) {
-        return /arxiv\.org\/(abs|pdf)/i.test(url || '');
-    }
-
-    function arxivIdFromDoi(doi) {
-        if (!isArxivDoi(doi)) return '';
-        return String(doi || '').replace(/^10\.48550\/arxiv\./i, '').trim();
-    }
-
-    function choosePublicationUrl({ doi, crossref, externalIds, summary, detail, excludeArxiv = false }) {
-        const doiUrl = doi ? `https://doi.org/${doi}` : '';
-        const candidates = [
-            doiUrl,
-            crossref?.crossrefUrl || '',
-            getBestWorkUrl(externalIds),
-            summary?.url?.value,
-            detail?.url?.value,
-        ];
-
-        for (const candidate of candidates) {
-            const normalized = normalizeExternalUrl(candidate);
-            if (!normalized) continue;
-            if (excludeArxiv && (isArxivUrl(normalized) || isArxivDoi(doi))) continue;
-            if (!isPreferredPublicationUrl(normalized)) continue;
-            return normalized;
-        }
-        return '';
-    }
-
-    function chooseArxivUrl({ title, arxivId, doi, externalIds, summary, detail }) {
-        const fromDoi = arxivIdFromDoi(doi);
-        const canonicalId = arxivId || fromDoi;
-        if (canonicalId) {
-            return { url: `https://arxiv.org/abs/${canonicalId}`, exact: true };
-        }
-
-        const candidates = [
-            getBestWorkUrl(externalIds),
-            summary?.url?.value,
-            detail?.url?.value,
-        ];
-
-        for (const candidate of candidates) {
-            const normalized = normalizeExternalUrl(candidate);
-            if (normalized && isArxivUrl(normalized)) {
-                return { url: normalized, exact: true };
-            }
-        }
-
-        if (title) {
-            return {
-                url: `https://arxiv.org/search/?query=${encodeURIComponent(title)}&searchtype=title&abstracts=show&order=-announced_date_first&size=50`,
-                exact: false,
-            };
-        }
-
-        return { url: '', exact: false };
-    }
-
-    function getExternalIdList(externalIds) {
-        return externalIds?.['external-id'] || [];
-    }
-
-    function extractArxivIdFromUrl(value) {
-        if (!value) return null;
-        const raw = String(value).trim();
-        const directMatch = raw.match(/arxiv\.org\/(?:abs|pdf)\/([^?#\s]+?)(?:\.pdf)?$/i);
-        if (!directMatch?.[1]) return null;
-        return parseArxivId(directMatch[1]);
-    }
-
-    function parseArxivId(text) {
-        if (!text) return null;
-        const normalized = String(text).trim().replace(/^arxiv:/i, '').replace(/[.,;\s]+$/g, '');
-
-        if (/^[a-z\-.]+\/[0-9]{7}(?:v\d+)?$/i.test(normalized)) return normalized;
-        if (/^\d{4}\.\d{4,5}(?:v\d+)?$/i.test(normalized)) return normalized;
-
-        return extractArxivIdFromUrl(normalized);
-    }
-
-    function findArxivId(externalIds, doi, ...candidateUrls) {
-        const ids = getExternalIdList(externalIds);
-
-        if (isArxivDoi(doi)) {
-            const fromDoi = arxivIdFromDoi(doi);
-            if (fromDoi) return fromDoi;
-        }
-
-        const arxivField = ids.find(id => (id['external-id-type'] || '').toLowerCase() === 'arxiv');
-        if (arxivField?.['external-id-value']) {
-            const parsed = parseArxivId(arxivField['external-id-value']);
-            if (parsed) return parsed;
-        }
-
-        for (const id of ids) {
-            const idType = (id['external-id-type'] || '').toLowerCase();
-            if (idType === 'doi' && isArxivDoi(id['external-id-value'])) {
-                const fromDoi = arxivIdFromDoi(id['external-id-value']);
-                if (fromDoi) return fromDoi;
-            }
-
-            const parsedFromValue = parseArxivId(id['external-id-value']);
-            if (parsedFromValue) return parsedFromValue;
-            const parsedFromUrl = extractArxivIdFromUrl(id['external-id-url']?.value);
-            if (parsedFromUrl) return parsedFromUrl;
-        }
-
-        for (const urlLike of candidateUrls) {
-            const parsed = extractArxivIdFromUrl(urlLike);
-            if (parsed) return parsed;
-        }
-
-        return null;
-    }
-
-    function inferYearFromArxivId(arxivId) {
-        if (!arxivId) return null;
-        const modernMatch = arxivId.match(/^(\d{2})(\d{2})\./);
-        if (!modernMatch) return null;
-
-        const yy = Number(modernMatch[1]);
-        const currentYY = new Date().getFullYear() % 100;
-        const century = yy <= currentYY + 1 ? 2000 : 1900;
-        return String(century + yy);
-    }
-
-    function isArxivRecord(externalIds, doi, ...texts) {
-        const arxivId = findArxivId(externalIds, doi, ...texts);
-        if (arxivId) return true;
-        if ((doi || '').toLowerCase().startsWith('10.48550/arxiv.')) return true;
-        return texts.some(t => /arxiv\.org|\barxiv\b/i.test(t || ''));
-    }
-
-    function shorten(text, max = 220) {
-        if (!text) return '';
-        if (text.length <= max) return text;
-        return `${text.slice(0, max).trimEnd()}...`;
-    }
-
-    function isMeaningfulVenue(value) {
-        const text = cleanSpace(value || '');
-        if (!text) return false;
-        const lower = text.toLowerCase();
-        if (lower === 'venue not specified') return false;
-        if (/^https?:\/\//i.test(text)) return false;
-        if (/\bonline record\b|\brepository\b|\biris\.unica\.it\b|\borcid\.org\b|\bcrossref\b|\bdoi\.org\b|\bpubmed\b|\bwikipedia\b/i.test(lower)) return false;
-        if (/^[a-z0-9.-]+\.[a-z]{2,}$/i.test(text)) return false;
-        return true;
-    }
-
-    function looksInstitutionalSource(value) {
-        const text = cleanSpace(value || '');
-        if (!text) return false;
-        return /universit|university|dipartiment|department|facolt|faculty|istituto|institute|iris\.|repository|archiv|crossref|doi\.org|pubmed|wikidata/i.test(text.toLowerCase());
-    }
-
-    async function withTimeout(promise, timeoutMs, fallback) {
-        let timer;
-        try {
-            return await Promise.race([
-                promise,
-                new Promise(resolve => {
-                    timer = setTimeout(() => resolve(fallback), timeoutMs);
-                })
-            ]);
-        } finally {
-            clearTimeout(timer);
-        }
-    }
-
-    async function mapWithConcurrency(items, limit, mapper) {
-        const input = Array.isArray(items) ? items : [];
-        const size = Math.max(1, Number(limit) || 1);
-        const results = new Array(input.length);
-        let cursor = 0;
-
-        const workers = Array.from({ length: Math.min(size, input.length) }, async () => {
-            while (true) {
-                const index = cursor;
-                cursor += 1;
-                if (index >= input.length) break;
-
-                try {
-                    results[index] = await mapper(input[index], index);
-                } catch {
-                    results[index] = null;
-                }
-            }
-        });
-
-        await Promise.all(workers);
-        return results;
-    }
-
-    function normalizeTypeLabel(rawType, venue) {
-        const typeMap = {
-            'journal-article': 'Journal article',
-            'conference-paper': 'Conference paper',
-            'book-chapter': 'Chapter contribution',
-            'book': 'Book',
-            'edited-book': 'Edited book',
-            'preprint': 'Preprint',
-            'other': 'Research output'
-        };
-
-        const baseLabel = typeMap[rawType] || (rawType || 'work').replace(/-/g, ' ');
-
-        if (rawType === 'book-chapter' && /proceedings|conference|acm|ieee|springer lecture notes/i.test(venue || '')) {
-            return 'Conference proceedings chapter';
-        }
-
-        return baseLabel;
-    }
-
-    function shouldExcludePublication(title) {
-        const normalizedTitle = (title || '').toLowerCase();
-        if (!normalizedTitle) return false;
-        return EXCLUDED_PUBLICATION_TITLES
-            .map(v => (v || '').toLowerCase().trim())
-            .filter(Boolean)
-            .some(pattern => normalizedTitle.includes(pattern));
-    }
-
-    async function fetchCrossrefMetadata(doi) {
-        if (!doi) return null;
-        if (crossrefCache.has(doi)) return crossrefCache.get(doi);
-
-        // Disabled in-browser to avoid CORS/rate-limit errors from Crossref.
-        crossrefCache.set(doi, null);
-        return null;
-    }
-
-    async function fetchOrcidWorkDetail(putCode) {
-        if (!putCode) return null;
-        if (orcidDetailCache.has(putCode)) return orcidDetailCache.get(putCode);
-
-        try {
-            const detailUrl = `https://pub.orcid.org/v3.0/${ORCID}/work/${putCode}`;
-            const res = await fetch(detailUrl, { headers: { Accept: 'application/json' } });
-            if (!res.ok) throw new Error('ORCID detail fetch failed');
-            const data = await res.json();
-            orcidDetailCache.set(putCode, data);
-            return data;
-        } catch {
-            orcidDetailCache.set(putCode, null);
-            return null;
-        }
-    }
-
-    async function fetchDoiBibtex(doi) {
-        if (!doi) return null;
-        if (doiBibtexCache.has(doi)) return doiBibtexCache.get(doi);
-
-        // Disabled in-browser to avoid CORS/rate-limit errors from DOI transforms.
-        doiBibtexCache.set(doi, null);
-        return null;
-    }
-
-    function extractBibtexField(citationText, fieldName) {
-        const text = String(citationText || '');
-        if (!text) return '';
-        const pattern = new RegExp(`(?:^|\\n|,)\\s*${fieldName}\\s*=\\s*(\\{[^{}]*\\}|\"[^\"]*\")`, 'i');
-        const match = text.match(pattern);
-        if (!match?.[1]) return '';
-        const raw = match[1].trim();
-        const unwrapped = raw.startsWith('{') || raw.startsWith('"') ? raw.slice(1, -1) : raw;
-        return cleanSpace(unwrapped.replace(/\\[{}]/g, ''));
-    }
-
-    function getVenueFromOrcidCitation(detail) {
-        const citation = detail?.citation;
-        const type = String(citation?.['citation-type'] || '').toLowerCase();
-        const value = citation?.['citation-value'] || '';
-        if (!value || type !== 'bibtex') return '';
-
-        const journal = extractBibtexField(value, 'journal');
-        if (isMeaningfulVenue(journal)) return journal;
-
-        const booktitle = extractBibtexField(value, 'booktitle');
-        if (isMeaningfulVenue(booktitle)) return booktitle;
-
-        return '';
-    }
-
-    function getBibtexFromOrcidCitation(detail) {
-        const citation = detail?.citation;
-        const type = String(citation?.['citation-type'] || '').toLowerCase();
-        const value = String(citation?.['citation-value'] || '').trim();
-        if (!value || type !== 'bibtex' || !value.startsWith('@')) return '';
-        return value;
-    }
-
-    function bibtexHasMatchingDoi(bibtex, doi) {
-        const target = normalizeDoiValue(doi || '');
-        if (!bibtex || !target) return false;
-        const found = normalizeDoiValue(extractBibtexField(bibtex, 'doi') || '');
-        return Boolean(found && found.toLowerCase() === target.toLowerCase());
-    }
-
-    function bibtexHasMatchingTitle(bibtex, title) {
-        if (!bibtex || !title) return false;
-        const bibTitle = normalizeTitleKey(extractBibtexField(bibtex, 'title') || '');
-        const targetTitle = normalizeTitleKey(title || '');
-        if (!bibTitle || !targetTitle) return false;
-        return bibTitle === targetTitle;
-    }
-
-    function bibtexEscape(value) {
-        return (value || '')
-            .replace(/\\/g, '\\\\')
-            .replace(/\{/g, '\\{')
-            .replace(/\}/g, '\\}')
-            .replace(/"/g, '\\"');
-    }
-
-    function makeBibtexKey(title, year, primaryAuthor) {
-        const authorPart = (primaryAuthor || 'pintor')
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, '')
-            .slice(0, 12);
-        const titlePart = (title || 'work')
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, '')
-            .slice(0, 20);
-        return `${authorPart || 'pintor'}${year || 'nd'}${titlePart || 'work'}`;
-    }
-
-    function crossrefEntryType(crType, rawType) {
-        const crossrefMap = {
-            'journal-article': 'article',
-            'proceedings-article': 'inproceedings',
-            'proceedings': 'proceedings',
-            'book-chapter': 'incollection',
-            'book-section': 'incollection',
-            'book': 'book',
-            'reference-entry': 'incollection',
-            'posted-content': 'misc',
-            'preprint': 'misc',
-        };
-        if (crType && crossrefMap[crType]) return crossrefMap[crType];
-
-        if (rawType === 'journal-article') return 'article';
-        if (rawType === 'conference-paper') return 'inproceedings';
-        if (rawType === 'book-chapter') return 'incollection';
-        if (rawType === 'book' || rawType === 'edited-book') return 'book';
-        return 'misc';
-    }
-
-    function formatBibtexAuthor(author) {
-        const family = cleanSpace(author?.family || '');
-        const given = cleanSpace(author?.given || '');
-        const name = cleanSpace(author?.name || '');
-        if (family && given) return `${family}, ${given}`;
-        if (family) return family;
-        if (name) return name;
-        return '';
-    }
-
-    function normalizeBibtexPages(value) {
-        const raw = cleanSpace(value || '');
-        if (!raw) return '';
-        return raw.replace(/\s*[\u2013\u2014]\s*/g, '--').replace(/\s*-\s*/g, '--');
-    }
-
-    function generateBibtex({ title, year, venue, doi, rawType, url, crossref }) {
-        const entryType = crossrefEntryType(crossref?.crType, rawType);
-        const authorList = (crossref?.authors || [])
-            .map(formatBibtexAuthor)
-            .filter(Boolean);
-        const firstAuthorFamily = cleanSpace(crossref?.authors?.[0]?.family || '');
-        const bestTitle = cleanSpace(crossref?.title || title || 'Untitled work');
-        const bestYear = cleanSpace(crossref?.crossrefYear || year || 'n.d.');
-        const bestVenue = cleanSpace(crossref?.containerTitle || venue || '');
-        const key = makeBibtexKey(bestTitle, bestYear, firstAuthorFamily || 'pintor');
-        const fields = [
-            `  title = {${bibtexEscape(bestTitle)}}`,
-            `  author = {${bibtexEscape(authorList.length ? authorList.join(' and ') : 'Pintor, Maura and others')}}`,
-            `  year = {${bibtexEscape(bestYear)}}`
-        ];
-
-        if (bestVenue) {
-            if (entryType === 'article') fields.push(`  journal = {${bibtexEscape(bestVenue)}}`);
-            if (entryType === 'inproceedings' || entryType === 'incollection' || entryType === 'proceedings') fields.push(`  booktitle = {${bibtexEscape(bestVenue)}}`);
-            if (entryType === 'misc') fields.push(`  howpublished = {${bibtexEscape(bestVenue)}}`);
-        }
-        if (crossref?.publisher && entryType !== 'article') fields.push(`  publisher = {${bibtexEscape(crossref.publisher)}}`);
-        if (crossref?.volume) fields.push(`  volume = {${bibtexEscape(String(crossref.volume))}}`);
-        if (crossref?.issue) fields.push(`  number = {${bibtexEscape(String(crossref.issue))}}`);
-        if (crossref?.page) fields.push(`  pages = {${bibtexEscape(normalizeBibtexPages(crossref.page))}}`);
-        if (doi) fields.push(`  doi = {${bibtexEscape(doi)}}`);
-        if (url || crossref?.crossrefUrl) fields.push(`  url = {${bibtexEscape(url || crossref.crossrefUrl)}}`);
-
-        return `@${entryType}{${key},\n${fields.join(',\n')}\n}`;
-    }
-
-    function attachCopyHandlers() {
-        const bubbles = document.querySelectorAll('.copy-bibtex');
-        bubbles.forEach(bubble => {
-            bubble.addEventListener('click', async () => {
-                const isEncoded = bubble.dataset.encoded === 'true';
-                const raw = bubble.dataset.copy;
-                const valueToCopy = isEncoded ? decodeURIComponent(raw || '') : (raw || '');
-                if (!valueToCopy) return;
-
-                const original = bubble.textContent;
-                try {
-                    await navigator.clipboard.writeText(valueToCopy);
-                    bubble.textContent = bubble.dataset.success || 'Copied';
-                } catch {
-                    bubble.textContent = 'Copy failed';
-                }
-
-                setTimeout(() => {
-                    bubble.textContent = original;
-                }, 1200);
-            });
-        });
-    }
-
-    function getFilterType(rawType) {
-        if (rawType === 'journal-article') return 'journal';
-        if (rawType === 'conference-paper') return 'conference';
-        if (rawType === 'preprint') return 'preprint';
-        return 'other';
-    }
-
-
-
-
 
     function setActiveFilterButton(filterValue) {
         const buttons = document.querySelectorAll('#pubFilters .pub-filter');
@@ -719,257 +41,108 @@ async function loadPapers() {
         });
     }
 
-    try {
-        const res = await fetch(worksUrl, {
-            headers: { 'Accept': 'application/json' }
+    function attachCopyHandlers() {
+        document.querySelectorAll('.copy-bibtex').forEach(bubble => {
+            bubble.addEventListener('click', async () => {
+                const isEncoded = bubble.dataset.encoded === 'true';
+                const raw = bubble.dataset.copy;
+                const valueToCopy = isEncoded ? decodeURIComponent(raw || '') : (raw || '');
+                if (!valueToCopy) return;
+                const original = bubble.textContent;
+                try {
+                    await navigator.clipboard.writeText(valueToCopy);
+                    bubble.textContent = bubble.dataset.success || 'Copied';
+                } catch {
+                    bubble.textContent = 'Copy failed';
+                }
+                setTimeout(() => { bubble.textContent = original; }, 1200);
+            });
         });
-        if (!res.ok) throw new Error('Could not load ORCID works');
+    }
 
-        const data = await res.json();
+    function buildPubElement(pub) {
+        const el = document.createElement('div');
+        el.className = 'pub-item';
+        const encodedBibtex = pub.bibtex ? encodeURIComponent(pub.bibtex) : '';
+        const isPreprint = pub.filterType === 'preprint' || pub.isArxivOnly;
 
-        const list = document.getElementById('papers');
-        const summaryEl = document.getElementById('pubSummary');
+        let linksHtml = '';
+        if (isPreprint) {
+            // Preprint: (1) arXiv link  (2) BibTeX
+            if (pub.arxivUrl) {
+                linksHtml += `<a class="action-pill" href="${pub.arxivUrl}" target="_blank" rel="noopener noreferrer">Open arXiv</a>`;
+            }
+        } else {
+            // Published: (1) publication link  (2) arXiv if available  (3) BibTeX
+            if (pub.publicationUrl) {
+                linksHtml += `<a class="action-pill" href="${pub.publicationUrl}" target="_blank" rel="noopener noreferrer">Open publication</a>`;
+            }
+            if (pub.arxivUrl) {
+                linksHtml += `<a class="action-pill" href="${pub.arxivUrl}" target="_blank" rel="noopener noreferrer">Open arXiv</a>`;
+            }
+        }
+        if (encodedBibtex) {
+            linksHtml += `<button class="action-pill copy-bibtex" data-copy="${encodedBibtex}" data-encoded="true" data-success="Copied BibTeX" title="Click to copy BibTeX">Copy BibTeX</button>`;
+        }
+
+        el.innerHTML = `
+            <div class="pub-head">
+                <div class="pub-title">${pub.title}</div>
+                <div class="pub-badges">
+                    ${pub.isTopConference ? '<span class="pub-badge pub-badge-top">Top Conference</span>' : ''}
+                    ${pub.isQ1Journal ? '<span class="pub-badge pub-badge-q1">Q1 Journal</span>' : ''}
+                    ${pub.arxivUrl ? '<span class="pub-badge pub-badge-preprint">arXiv</span>' : ''}
+                </div>
+            </div>
+            <div class="pub-meta">${pub.year} • ${pub.venue} • ${pub.typeLabel}</div>
+            <div class="pub-url-row">${linksHtml}</div>
+        `;
+        return el;
+    }
+
+    const list = document.getElementById('papers');
+    const summaryEl = document.getElementById('pubSummary');
+
+    try {
         list.innerHTML = makeSkeletonMarkup(6);
         list.classList.remove('pub-loading', 'pub-error');
         summaryEl.textContent = '';
 
-        const summaries = (data.group || [])
-            .map(group => group['work-summary']?.[0])
-            .filter(Boolean);
+        let publications;
+        if (window.PUBLICATIONS_DATA) {
+            publications = window.PUBLICATIONS_DATA;
+        } else {
+            const resp = await fetch(DATA_URL);
+            if (!resp.ok) throw new Error(`Failed to load ${DATA_URL}: ${resp.status}`);
+            publications = await resp.json();
+        }
 
-        if (!summaries.length) {
-            list.innerHTML = "No publications found on ORCID.";
+        if (!publications.length) {
+            list.innerHTML = 'No publications found.';
             list.classList.add('pub-error');
             return;
         }
 
-        const bestByTitle = new Map();
-
-        let renderedCount = 0;
-        const cacheItems = [];
-
-        const upsertRecord = (record) => {
-            const prev = bestByTitle.get(record.titleKey);
-            if (!prev) {
-                bestByTitle.set(record.titleKey, record);
-                return;
-            }
-
-            const betterPriority = record.priority > prev.priority;
-            const betterYear = record.priority === prev.priority && record.year > prev.year;
-            if (betterPriority || betterYear) {
-                bestByTitle.set(record.titleKey, record);
-            }
-        };
-
-        const candidateRecords = await mapWithConcurrency(summaries, 6, async (summary) => {
-            const title = summary.title?.title?.value || 'Untitled work';
-            if (shouldExcludePublication(title)) {
-                return null;
-            }
-            const rawType = summary.type || 'work';
-            const externalIds = summary['external-ids'];
-            const doi = getDoiFromExternalIds(externalIds);
-            const putCode = summary['put-code'];
-            const summaryJournal = cleanSpace(summary?.['journal-title']?.value || '');
-            const summarySource = cleanSpace(summary?.source?.['source-name']?.value || '');
-            const allowSourceAsVenue = rawType !== 'journal-article' && !looksInstitutionalSource(summarySource);
-            const initialVenue = isMeaningfulVenue(summaryJournal)
-                ? summaryJournal
-                : (allowSourceAsVenue && isMeaningfulVenue(summarySource) ? summarySource : '');
-            const needsVenueEnrichment = !isMeaningfulVenue(initialVenue);
-            const needsYearEnrichment = !summary['publication-date']?.year?.value;
-
-            const doiBibtexPromise = doi
-                ? withTimeout(fetchDoiBibtex(doi), 1300, null)
-                : Promise.resolve(null);
-            const crossrefPromise = doi && (needsVenueEnrichment || needsYearEnrichment)
-                ? withTimeout(fetchCrossrefMetadata(doi), 1300, null)
-                : Promise.resolve(null);
-
-            const [doiBibtex, initialCrossref] = await Promise.all([doiBibtexPromise, crossrefPromise]);
-            const crossref = initialCrossref || ((doi && !doiBibtex)
-                ? await withTimeout(fetchCrossrefMetadata(doi), 1300, null)
-                : null);
-
-            const publicationUrlCandidate = summary?.url?.value || '';
-            const arxivId = findArxivId(
-                externalIds,
-                doi,
-                publicationUrlCandidate,
-                summary?.url?.value,
-                getBestWorkUrl(externalIds)
-            );
-            const year = summary['publication-date']?.year?.value
-                || crossref?.crossrefYear
-                || inferYearFromArxivId(arxivId)
-                || 'n.d.';
-
-            let venue = initialVenue || '';
-
-            if (rawType === 'journal-article' && isMeaningfulVenue(crossref?.containerTitle)) {
-                venue = crossref.containerTitle;
-            }
-
-            if (!isMeaningfulVenue(venue) && isMeaningfulVenue(crossref?.containerTitle)) {
-                venue = crossref.containerTitle;
-            }
-            if (!isMeaningfulVenue(venue) && isMeaningfulVenue(crossref?.publisher)) {
-                venue = crossref.publisher;
-            }
-
-            let detail = null;
-            const needDetailForVenue = !isMeaningfulVenue(venue) && Boolean(putCode);
-            if (needDetailForVenue) {
-                detail = await withTimeout(fetchOrcidWorkDetail(putCode), 1200, null);
-                const bibtexVenue = getVenueFromOrcidCitation(detail);
-                if (isMeaningfulVenue(bibtexVenue)) {
-                    venue = bibtexVenue;
-                }
-            }
-
-            if (!isMeaningfulVenue(venue)) {
-                venue = rawType === 'conference-paper'
-                    ? 'Conference proceedings (venue not listed in ORCID)'
-                    : 'Repository record';
-            }
-
-            venue = normalizeVenueName(venue);
-
-            const nonArxivPublicationUrl = choosePublicationUrl({ doi, crossref, externalIds, summary, detail: null, excludeArxiv: true });
-            const arxivRef = chooseArxivUrl({ title, arxivId, doi, externalIds, summary, detail: null });
-            const arxivUrl = arxivRef.url;
-
-            const publicationUrl = nonArxivPublicationUrl || arxivUrl;
-
-            const isArxiv = isArxivRecord(externalIds, doi, publicationUrl, arxivUrl, title, venue);
-            const hasNonArxivDoi = Boolean(doi && !doi.toLowerCase().startsWith('10.48550/arxiv.'));
-            const publishedTypes = ['journal-article', 'conference-paper', 'book-chapter', 'book', 'edited-book'];
-            const hasPublishedType = publishedTypes.includes(rawType);
-            const isPublished = hasNonArxivDoi || hasPublishedType;
-            const isArxivUnpublished = isArxiv && !isPublished;
-            const genericVenue = !isMeaningfulVenue(venue) || /repository record|online record/i.test(venue);
-
-            const isArxivOnly = isArxiv && !hasNonArxivDoi && !hasPublishedType && genericVenue;
-            const effectiveType = (rawType === 'preprint' || isArxivOnly) ? 'preprint' : rawType;
-            const type = normalizeTypeLabel(effectiveType, venue);
-            const filterType = getFilterType(effectiveType);
-            const isTopConference = effectiveType === 'conference-paper'
-                && matchesVenueList(venue, TOP_CONFERENCE_KEYS)
-                && !matchesVenueList(venue, TOP_CONFERENCE_EXCLUDED_KEYS);
-            const isQ1Journal = effectiveType === 'journal-article' && matchesVenueList(venue, Q1_JOURNAL_KEYS);
-            const isArxivPreprint = arxivRef.exact === true;
-
-            if (isArxivOnly && !isMeaningfulVenue(venue)) {
-                venue = 'arXiv preprint';
-            }
-
-            if (isArxivOnly && /repository record/i.test(venue)) {
-                venue = 'arXiv preprint';
-            }
-
-            if (!detail && putCode && !doiBibtex) {
-                detail = await withTimeout(fetchOrcidWorkDetail(putCode), 1200, null);
-            }
-            const verifiedDoiBibtex = bibtexHasMatchingDoi(doiBibtex, doi) ? doiBibtex : '';
-
-            const orcidBibtexRaw = getBibtexFromOrcidCitation(detail);
-            const orcidHasDoiMatch = bibtexHasMatchingDoi(orcidBibtexRaw, doi);
-            const orcidHasTitleMatch = bibtexHasMatchingTitle(orcidBibtexRaw, title);
-            const verifiedOrcidBibtex = (orcidHasDoiMatch || orcidHasTitleMatch) ? orcidBibtexRaw : '';
-
-            const providedBibtex = verifiedDoiBibtex || verifiedOrcidBibtex;
-            const bibtex = providedBibtex || generateBibtex({
-                title,
-                year,
-                venue,
-                doi,
-                rawType: effectiveType,
-                url: nonArxivPublicationUrl || arxivUrl || publicationUrl,
-                crossref,
-            });
-            const bibtexSource = verifiedDoiBibtex
-                ? 'Guaranteed match (DOI)'
-                : (verifiedOrcidBibtex ? 'Guaranteed match (ORCID)' : 'Reconstructed from metadata');
-            const encodedBibtex = bibtex ? encodeURIComponent(bibtex) : '';
-
-            const li = document.createElement('div');
-            li.className = 'pub-item';
-            li.innerHTML = `
-                <div class="pub-head">
-                    <div class="pub-title">${title}</div>
-                    <div class="pub-badges">
-                        ${isTopConference ? '<span class="pub-badge pub-badge-top">Top Conference</span>' : ''}
-                        ${isQ1Journal ? '<span class="pub-badge pub-badge-q1">Q1 Journal</span>' : ''}
-                        ${isArxivPreprint ? '<span class="pub-badge pub-badge-preprint">arXiv Preprint</span>' : ''}
-                    </div>
-                </div>
-                <div class="pub-meta">${year} • ${venue} • ${type}</div>
-                <div class="pub-url-row">
-                    ${(isPublished && nonArxivPublicationUrl) ? `<a class="action-pill" href="${nonArxivPublicationUrl}" target="_blank" rel="noopener noreferrer">Open publication</a>` : ''}
-                    ${arxivUrl ? `<a class="action-pill" href="${arxivUrl}" target="_blank" rel="noopener noreferrer">${arxivRef.exact ? 'Open arXiv' : 'Find on arXiv'}</a>` : ''}
-                    ${encodedBibtex ? `<button class="action-pill copy-bibtex" data-copy="${encodedBibtex}" data-encoded="true" data-success="Copied BibTeX" title="Click to copy BibTeX">Copy BibTeX</button>` : ''}
-                    ${encodedBibtex ? `<span class="pub-note">${bibtexSource}</span>` : ''}
-                </div>
-            `;
-            return {
-                element: li,
-                year: Number.parseInt(year, 10) || 0,
-                filterType,
-                isArxivPreprint,
-                isArxivUnpublished,
-                isTopConference,
-                isQ1Journal,
-                titleKey: normalizeTitleKey(title),
-                priority: isPublished ? 3 : (effectiveType === 'preprint' ? 2 : 1),
-            };
-        });
-
-        candidateRecords.filter(Boolean).forEach(upsertRecord);
-
-
-        const toRecords = () => {
-            cacheItems.length = 0;
-            return Array.from(bestByTitle.values()).map(record => {
-                cacheItems.push({
-                    html: record.element.outerHTML,
-                    year: record.year || 0,
-                    filterType: record.filterType || 'other',
-                    isArxivPreprint: Boolean(record.isArxivPreprint),
-                    isArxivUnpublished: Boolean(record.isArxivUnpublished),
-                    isTopConference: Boolean(record.isTopConference),
-                    isQ1Journal: Boolean(record.isQ1Journal),
-                });
-                return {
-                    element: record.element,
-                    year: record.year || 0,
-                    filterType: record.filterType || 'other',
-                    isArxivPreprint: Boolean(record.isArxivPreprint),
-                    isArxivUnpublished: Boolean(record.isArxivUnpublished),
-                    isTopConference: Boolean(record.isTopConference),
-                    isQ1Journal: Boolean(record.isQ1Journal),
-                };
-            });
-        };
+        const items = publications.map(pub => ({
+            pub,
+            element: buildPubElement(pub),
+            year: Number.parseInt(pub.year, 10) || 0,
+            filterType: pub.filterType || 'other',
+            isArxivUnpublished: Boolean(pub.isArxivOnly),
+            isTopConference: Boolean(pub.isTopConference),
+            isQ1Journal: Boolean(pub.isQ1Journal),
+        }));
 
         const state = {
             filter: 'all',
             sort: document.getElementById('pubSort').value || 'newest',
-            items: [],
+            items,
         };
-
-        renderedCount = state.items.length;
 
         const formatDate = () => {
             try {
-                return new Intl.DateTimeFormat('en-GB', {
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric'
-                }).format(new Date());
-            } catch {
-                return new Date().toISOString().slice(0, 10);
-            }
+                return new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).format(new Date());
+            } catch { return new Date().toISOString().slice(0, 10); }
         };
 
         const renderList = () => {
@@ -993,8 +166,7 @@ async function loadPapers() {
                 visible.forEach(item => list.appendChild(item.element));
             }
 
-            const suffix = '';
-            summaryEl.textContent = `Updated from ORCID on ${formatDate()} • ${visible.length}/${state.items.length} shown${suffix}`;
+            summaryEl.textContent = `Loaded from data • ${formatDate()} • ${visible.length}/${state.items.length} shown`;
         };
 
         document.querySelectorAll('#pubFilters .pub-filter').forEach(button => {
@@ -1010,63 +182,15 @@ async function loadPapers() {
             renderList();
         });
 
-
-
-        state.items = toRecords();
-        renderedCount = state.items.length;
-        PUBLISHED_TITLE_KEYS.clear();
-        state.items.forEach(item => {
-            if (item.filterType === 'preprint') return;
-            const title = item.element?.querySelector('.pub-title')?.textContent || '';
-            const key = normalizePublicationTitleKey(title);
-            if (key) PUBLISHED_TITLE_KEYS.add(key);
-        });
-
         setActiveFilterButton(state.filter);
         renderList();
-        savePubCache(cacheItems);
         attachCopyHandlers();
 
-
     } catch (e) {
-        const el = document.getElementById('papers');
-        const summary = document.getElementById('pubSummary');
-        const cached = loadPubCache();
-        if (cached?.items?.length) {
-            const records = cached.items.map(item => {
-                const wrapper = document.createElement('div');
-                wrapper.innerHTML = item.html;
-                return {
-                    element: wrapper.firstElementChild,
-                    year: item.year || 0,
-                    filterType: item.filterType || 'other',
-                    isArxivPreprint: Boolean(item.isArxivPreprint),
-                    isArxivUnpublished: Boolean(item.isArxivUnpublished),
-                    isTopConference: Boolean(item.isTopConference),
-                    isQ1Journal: Boolean(item.isQ1Journal),
-                };
-            }).filter(item => item.element);
-
-            PUBLISHED_TITLE_KEYS.clear();
-            records.forEach(item => {
-                if (item.filterType === 'preprint') return;
-                const title = item.element?.querySelector('.pub-title')?.textContent || '';
-                const key = normalizePublicationTitleKey(title);
-                if (key) PUBLISHED_TITLE_KEYS.add(key);
-            });
-
-            el.innerHTML = '';
-            records.sort((a, b) => b.year - a.year).forEach(item => el.appendChild(item.element));
-            el.classList.remove('pub-loading', 'pub-error');
-            summary.textContent = `Showing cached publications • Last sync ${new Date(cached.savedAt || Date.now()).toLocaleDateString('en-GB')}`;
-            attachCopyHandlers();
-            return;
-        }
-
-        el.innerHTML = "Could not load publications.";
-        el.classList.remove('pub-loading');
-        el.classList.add('pub-error');
-        summary.textContent = '';
+        list.innerHTML = 'Could not load publications.';
+        list.classList.remove('pub-loading');
+        list.classList.add('pub-error');
+        summaryEl.textContent = '';
     }
 }
 
