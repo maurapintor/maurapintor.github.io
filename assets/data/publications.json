@@ -215,7 +215,15 @@
   },
   {
     "title": "An Experimental Analysis of Semi-supervised Learning for Malware Detection",
-    "authors": [],
+    "authors": [
+      "Minnei, Luca",
+      "Piras, Giorgio",
+      "Sotgiu, Angelo",
+      "Pintor, Maura",
+      "Demontis, Ambra",
+      "Maiorca, Davide",
+      "Biggio, Battista"
+    ],
     "year": "2025",
     "venue": "Proceedings of the Joint National Conference on Cybersecurity (ITASEC & SERICS 2025)",
     "rawType": "conference-paper",
@@ -371,7 +379,13 @@
   },
   {
     "title": "Understanding Regression in Continual Learning for Malware Detection",
-    "authors": [],
+    "authors": [
+      "Ghiani, Daniele",
+      "Angioni, Daniele",
+      "Sotgiu, Angelo",
+      "Pintor, Maura",
+      "Biggio, Battista"
+    ],
     "year": "2025",
     "venue": "Proceedings of the Joint National Conference on Cybersecurity (ITASEC & SERICS 2025), Bologna, Italy, February 03-08, 2025",
     "rawType": "conference-paper",
@@ -391,7 +405,14 @@
   },
   {
     "title": "σ-zero: Gradient-based Optimization of ℓ0-norm Adversarial Examples",
-    "authors": [],
+    "authors": [
+      "Cinà, Antonio Emanuele",
+      "Villani, Francesco",
+      "Pintor, Maura",
+      "Schönherr, Lea",
+      "Biggio, Battista",
+      "Pelillo, Marcello"
+    ],
     "year": "2025",
     "venue": "International Conference on Learning Representations (ICLR)",
     "rawType": "conference-paper",
@@ -411,7 +432,13 @@
   },
   {
     "title": "Evaluating Line-level Localization Ability of Learning-based Code Vulnerability Detection Models",
-    "authors": [],
+    "authors": [
+      "Pintore, Marco",
+      "Piras, Giorgio",
+      "Sotgiu, Angelo",
+      "Pintor, Maura",
+      "Biggio, Battista"
+    ],
     "year": "2025",
     "venue": "arXiv preprint",
     "rawType": "other",
@@ -768,7 +795,17 @@
   },
   {
     "title": "AI Security and Safety: The PRALab Research Experience",
-    "authors": [],
+    "authors": [
+      "Demontis, Ambra",
+      "Pintor, Maura",
+      "Demetrio, Luca",
+      "Sotgiu, Angelo",
+      "Angioni, Daniele",
+      "Piras, Giorgio",
+      "Gupta, Srishti",
+      "Biggio, Battista",
+      "Roli, Fabio"
+    ],
     "year": "2023",
     "venue": "Proceedings of the Italia Intelligenza Artificiale - Thematic Workshops co-located with the 3rd CINI National Lab AIIS Conference on Artificial Intelligence (Ital IA 2023)",
     "rawType": "conference-paper",
@@ -1028,7 +1065,12 @@
   },
   {
     "title": "Explaining Machine Learning DGA Detectors from DNS Traffic Data",
-    "authors": [],
+    "authors": [
+      "Piras, Giorgio",
+      "Pintor, Maura",
+      "Demetrio, Luca",
+      "Biggio, Battista"
+    ],
     "year": "2022",
     "venue": "ITASEC 2022. Italian Conference on Cybersecurity 2022 Proceedings of the Italian Conference on Cybersecurity (ITASEC 2022). Rome, Italy, June 20-23, 2022",
     "rawType": "conference-paper",
@@ -1048,7 +1090,15 @@
   },
   {
     "title": "Indicators of Attack Failure: Debugging and Improving Optimization of Adversarial Examples",
-    "authors": [],
+    "authors": [
+      "Pintor, Maura",
+      "Demetrio, Luca",
+      "Sotgiu, Angelo",
+      "Demontis, Ambra",
+      "Carlini, Nicholas",
+      "Biggio, Battista",
+      "Roli, Fabio"
+    ],
     "year": "2022",
     "venue": "Advances in Neural Information Processing Systems 35 (NeurIPS 2022)",
     "rawType": "conference-paper",
@@ -1068,7 +1118,12 @@
   },
   {
     "title": "Robust Machine Learning for Malware Detection over Time",
-    "authors": [],
+    "authors": [
+      "Angioni, Daniele",
+      "Demetrio, Luca",
+      "Pintor, Maura",
+      "Biggio, Battista"
+    ],
     "year": "2022",
     "venue": "ITASEC 2022 Italian Conference on Cybersecurity 2022. Proceedings of the Italian Conference on Cybersecurity (ITASEC 2022). Rome, Italy, June 20-23, 2022",
     "rawType": "conference-paper",
@@ -1118,7 +1173,12 @@
   },
   {
     "title": "Fast minimum-norm adversarial attacks through adaptive norm constraints",
-    "authors": [],
+    "authors": [
+      "Pintor, Maura",
+      "Roli, Fabio",
+      "Brendel, Wieland",
+      "Biggio, Battista"
+    ],
     "year": "2021",
     "venue": "35th Conference on Neural Information Processing Systems (NeurIPS 2021)",
     "rawType": "conference-paper",
@@ -1224,7 +1284,16 @@
   },
   {
     "title": "Why Do Adversarial Attacks Transfer? Explaining Transferability of Evasion and Poisoning Attacks",
-    "authors": [],
+    "authors": [
+      "Demontis, Ambra",
+      "Melis, Marco",
+      "Pintor, Maura",
+      "Jagielski, Matthew",
+      "Biggio, Battista",
+      "Oprea, Alina",
+      "Nita-Rotaru, Cristina",
+      "Roli, Fabio"
+    ],
     "year": "2019",
     "venue": "28th USENIX Security Symposium",
     "rawType": "conference-paper",

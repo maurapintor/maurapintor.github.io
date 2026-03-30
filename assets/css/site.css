@@ -220,6 +220,7 @@
             flex-wrap: wrap;
         }
         .pub-title { font-weight:700; color:#2f3a49; flex: 1 1 320px; }
+        .pub-authors { color:#6c7480; font-size:0.9em; margin-top:4px; }
         .pub-meta { color:#6c7480; font-size:0.95em; margin-top:4px; }
         .pub-badges {
             display: flex;

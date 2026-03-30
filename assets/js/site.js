@@ -85,6 +85,12 @@ async function loadPapers() {
             linksHtml += `<button class="action-pill copy-bibtex" data-copy="${encodedBibtex}" data-encoded="true" data-success="Copied BibTeX" title="Click to copy BibTeX">Copy BibTeX</button>`;
         }
 
+        const authorsHtml = (pub.authors || []).map(a => {
+            const parts = a.split(',').map(s => s.trim());
+            const name = parts.length === 2 ? `${parts[1]} ${parts[0]}` : a;
+            return name === 'Maura Pintor' ? `<strong>${name}</strong>` : name;
+        }).join(', ');
+
         el.innerHTML = `
             <div class="pub-head">
                 <div class="pub-title">${pub.title}</div>
@@ -94,6 +100,7 @@ async function loadPapers() {
                     ${pub.arxivUrl ? '<span class="pub-badge pub-badge-preprint">arXiv</span>' : ''}
                 </div>
             </div>
+            ${authorsHtml ? `<div class="pub-authors">${authorsHtml}</div>` : ''}
             <div class="pub-meta">${pub.year} • ${pub.venue} • ${pub.typeLabel}</div>
             <div class="pub-url-row">${linksHtml}</div>
         `;

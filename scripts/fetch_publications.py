@@ -889,13 +889,17 @@ def process_publications(cfg: dict) -> list[dict]:
 
         type_label = normalize_type_label(effective_type, venue)
 
-        # Authors from crossref or ORCID
+        # Authors from crossref or ORCID bibtex fallback
         authors = []
         if crossref_meta.get("authors"):
             authors = [
                 f"{a['family']}, {a['given']}" if a.get("given") else a["family"]
                 for a in crossref_meta["authors"]
             ]
+        if not authors and bibtex:
+            bib_author_str = extract_bibtex_field(bibtex, "author")
+            if bib_author_str:
+                authors = [a.strip() for a in bib_author_str.split(" and ") if a.strip()]
 
         record = {
             "title": clean_title_for_display(title),
