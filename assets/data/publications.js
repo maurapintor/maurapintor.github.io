@@ -78,6 +78,36 @@ window.PUBLICATIONS_DATA = [
     "filterType": "other"
   },
   {
+    "title": "Label-efficient Training Updates for Malware Detection over Time",
+    "authors": [
+      "Luca Minnei",
+      "Cristian Manca",
+      "Giorgio Piras",
+      "Angelo Sotgiu",
+      "Maura Pintor",
+      "Daniele Ghiani",
+      "Davide Maiorca",
+      "Giorgio Giacinto",
+      "Battista Biggio"
+    ],
+    "year": "2026",
+    "venue": "arXiv preprint",
+    "rawType": "preprint",
+    "effectiveType": "preprint",
+    "typeLabel": "Preprint",
+    "doi": "",
+    "arxivId": "2603.28396",
+    "publicationUrl": "",
+    "arxivUrl": "https://arxiv.org/abs/2603.28396",
+    "bibtex": "@misc{minnei2026labelefficienttraini,\n  title = {Label-efficient Training Updates for Malware Detection over Time},\n  author = {Minnei, Luca and Manca, Cristian and Piras, Giorgio and Sotgiu, Angelo and Pintor, Maura and Ghiani, Daniele and Maiorca, Davide and Giacinto, Giorgio and Biggio, Battista},\n  year = {2026},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2603.28396}\n}",
+    "bibtexSource": "Reconstructed from metadata",
+    "isPublished": false,
+    "isTopConference": false,
+    "isQ1Journal": false,
+    "isArxivOnly": true,
+    "filterType": "preprint"
+  },
+  {
     "title": "SAGE-5GC: Security-Aware Guidelines for Evaluating Anomaly Detection in the 5G Core Network",
     "authors": [
       "Cristian Manca",
