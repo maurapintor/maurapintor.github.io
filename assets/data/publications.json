@@ -53,6 +53,32 @@
     "filterType": "journal"
   },
   {
+    "title": "Evaluating line-level localization ability of learning-based code vulnerability detection models",
+    "authors": [
+      "Pintore, Marco",
+      "Piras, Giorgio",
+      "Sotgiu, Angelo",
+      "Pintor, Maura",
+      "Biggio, Battista"
+    ],
+    "year": "2026",
+    "venue": "Machine Learning",
+    "rawType": "journal-article",
+    "effectiveType": "journal-article",
+    "typeLabel": "Journal article",
+    "doi": "10.1007/s10994-025-06902-1",
+    "arxivId": "2510.11202",
+    "publicationUrl": "https://doi.org/10.1007/s10994-025-06902-1",
+    "arxivUrl": "https://arxiv.org/abs/2510.11202",
+    "bibtex": "@article{\n\t11584_461225,\n\tauthor = {Pintore, Marco and Piras, Giorgio and Sotgiu, Angelo and Pintor, Maura and Biggio, Battista},\n\ttitle = {Evaluating line-level localization ability of learning-based code vulnerability detection models},\n\tyear = {2026},\n\tjournal = {MACHINE LEARNING},\n\tvolume = {115},\n\turl = {https://doi.org/10.1007/s10994-025-06902-1},\n\tdoi = {10.1007/s10994-025-06902-1},\n\tpages = {1--19}\n}",
+    "bibtexSource": "ORCID",
+    "isPublished": true,
+    "isTopConference": false,
+    "isQ1Journal": true,
+    "isArxivOnly": false,
+    "filterType": "journal"
+  },
+  {
     "title": "Position-Aware Stamp-Like Adversarial Attack for Document Classification",
     "authors": [
       "Dong, Qi",
@@ -459,32 +485,6 @@
     "isQ1Journal": false,
     "isArxivOnly": false,
     "filterType": "conference"
-  },
-  {
-    "title": "Evaluating Line-level Localization Ability of Learning-based Code Vulnerability Detection Models",
-    "authors": [
-      "Pintore, Marco",
-      "Piras, Giorgio",
-      "Sotgiu, Angelo",
-      "Pintor, Maura",
-      "Biggio, Battista"
-    ],
-    "year": "2025",
-    "venue": "arXiv preprint",
-    "rawType": "other",
-    "effectiveType": "preprint",
-    "typeLabel": "Preprint",
-    "doi": "",
-    "arxivId": "2510.11202",
-    "publicationUrl": "https://iris.unica.it/handle/11584/461225",
-    "arxivUrl": "https://arxiv.org/abs/2510.11202",
-    "bibtex": "@misc{\n\t11584_461225,\n\tauthor = {Pintore, Marco and Piras, Giorgio and Sotgiu, Angelo and Pintor, Maura and Biggio, Battista},\n\ttitle = {Evaluating Line-level Localization Ability of Learning-based Code Vulnerability Detection Models},\n\tyear = {9999},\n\tabstract = {To address the extremely concerning problem of software vulnerability, system security is often entrusted to Machine Learning (ML) algorithms. Despite their now established detection capabilities, such models are limited by design to flagging the entire input source code function as vulnerable, rather than precisely localizing the concerned code lines. However, the detection granularity is crucial to support human operators during software development, ensuring that such predictions reflect the true code semantics to help debug, evaluate, and fix the detected vulnerabilities. To address this issue, recent work made progress toward improving the detector’s localization ability, thus narrowing down the vulnerability detection “window” and providing more fine-grained predictions. Such approaches, however, implicitly disregard the presence of spurious correlations and biases in the data, which often predominantly influence the performance of ML algorithms. In this work, we investigate how detectors comply with this requirement by proposing an explainability-based evaluation procedure. Our approach, defined as Detection Alignment (DA), quantifies the agreement between the input source code lines that most influence the prediction and the actual localization of the vulnerability as per the ground truth. Through DA, which is model-agnostic and adaptable to different detection tasks, not limited to our use case, we analyze multiple learning-based vulnerability detectors and datasets. As a result, we show how the predictions of such models are consistently biased by non-vulnerable lines, ultimately highlighting the high impact of biases and spurious correlations. The code is available at https://github.com/pralab/vuln-localization-eval.},\n\turl = {https://arxiv.org/abs/2510.11202v1},\n\tpages = {1--15}\n}",
-    "bibtexSource": "ORCID",
-    "isPublished": false,
-    "isTopConference": false,
-    "isQ1Journal": false,
-    "isArxivOnly": true,
-    "filterType": "preprint"
   },
   {
     "title": "Silent Until Sparse: Backdoor Attacks on Semi-Structured Sparsity",
