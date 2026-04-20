@@ -70,7 +70,7 @@ window.PUBLICATIONS_DATA = [
     "arxivId": "2510.11202",
     "publicationUrl": "https://doi.org/10.1007/s10994-025-06902-1",
     "arxivUrl": "https://arxiv.org/abs/2510.11202",
-    "bibtex": "@article{\n\t11584_461225,\n\tauthor = {Pintore, Marco and Piras, Giorgio and Sotgiu, Angelo and Pintor, Maura and Biggio, Battista},\n\ttitle = {Evaluating line-level localization ability of learning-based code vulnerability detection models},\n\tyear = {2026},\n\tjournal = {MACHINE LEARNING},\n\tvolume = {115},\n\turl = {https://doi.org/10.1007/s10994-025-06902-1},\n\tdoi = {10.1007/s10994-025-06902-1},\n\tpages = {1--19}\n}",
+    "bibtex": "@article{\n\t11584_461225,\n\tauthor = {Pintore, Marco and Piras, Giorgio and Sotgiu, Angelo and Pintor, Maura and Biggio, Battista},\n\ttitle = {Evaluating line-level localization ability of learning-based code vulnerability detection models},\n\tyear = {2026},\n\tjournal = {MACHINE LEARNING},\n\tvolume = {115},\n\turl = {https://doi.org/10.1007/s10994-025-06902-1},\n\tdoi = {10.1007/s10994-025-06902-1},\n\tpages = {1--19},\n\tnumber = {4}\n}",
     "bibtexSource": "ORCID",
     "isPublished": true,
     "isTopConference": false,
