@@ -487,6 +487,31 @@ window.PUBLICATIONS_DATA = [
     "filterType": "conference"
   },
   {
+    "title": "Prototype-Guided Robust Learning against Backdoor Attacks",
+    "authors": [
+      "Wei Guo",
+      "Maura Pintor",
+      "Ambra Demontis",
+      "Battista Biggio"
+    ],
+    "year": "2025",
+    "venue": "arXiv preprint",
+    "rawType": "preprint",
+    "effectiveType": "preprint",
+    "typeLabel": "Preprint",
+    "doi": "",
+    "arxivId": "2509.08748",
+    "publicationUrl": "",
+    "arxivUrl": "https://arxiv.org/abs/2509.08748",
+    "bibtex": "@misc{guo2025prototypeguidedrobus,\n  title = {Prototype-Guided Robust Learning against Backdoor Attacks},\n  author = {Guo, Wei and Pintor, Maura and Demontis, Ambra and Biggio, Battista},\n  year = {2025},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2509.08748}\n}",
+    "bibtexSource": "Reconstructed from metadata",
+    "isPublished": false,
+    "isTopConference": false,
+    "isQ1Journal": false,
+    "isArxivOnly": true,
+    "filterType": "preprint"
+  },
+  {
     "title": "Silent Until Sparse: Backdoor Attacks on Semi-Structured Sparsity",
     "authors": [
       "Wei Guo",
@@ -615,31 +640,6 @@ window.PUBLICATIONS_DATA = [
     "publicationUrl": "",
     "arxivUrl": "https://arxiv.org/abs/2510.18381",
     "bibtex": "@misc{piras2025s2apscorespacesharpn,\n  title = {S2AP: Score-space Sharpness Minimization for Adversarial Pruning},\n  author = {Piras, Giorgio and Zhao, Qi and Brau, Fabio and Pintor, Maura and Wressnegger, Christian and Biggio, Battista},\n  year = {2025},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2510.18381}\n}",
-    "bibtexSource": "Reconstructed from metadata",
-    "isPublished": false,
-    "isTopConference": false,
-    "isQ1Journal": false,
-    "isArxivOnly": true,
-    "filterType": "preprint"
-  },
-  {
-    "title": "Prototype-Guided Robust Learning against Backdoor Attacks",
-    "authors": [
-      "Wei Guo",
-      "Maura Pintor",
-      "Ambra Demontis",
-      "Battista Biggio"
-    ],
-    "year": "2025",
-    "venue": "arXiv preprint",
-    "rawType": "preprint",
-    "effectiveType": "preprint",
-    "typeLabel": "Preprint",
-    "doi": "",
-    "arxivId": "2509.08748",
-    "publicationUrl": "",
-    "arxivUrl": "https://arxiv.org/abs/2509.08748",
-    "bibtex": "@misc{guo2025prototypeguidedrobus,\n  title = {Prototype-Guided Robust Learning against Backdoor Attacks},\n  author = {Guo, Wei and Pintor, Maura and Demontis, Ambra and Biggio, Battista},\n  year = {2025},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2509.08748}\n}",
     "bibtexSource": "Reconstructed from metadata",
     "isPublished": false,
     "isTopConference": false,
