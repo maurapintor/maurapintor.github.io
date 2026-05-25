@@ -104,6 +104,34 @@
     "filterType": "other"
   },
   {
+    "title": "Latent-space Attacks for Refusal Evasion in Language Models",
+    "authors": [
+      "Giorgio Piras",
+      "Raffaele Mura",
+      "Fabio Brau",
+      "Maura Pintor",
+      "Luca Oneto",
+      "Fabio Roli",
+      "Battista Biggio"
+    ],
+    "year": "2026",
+    "venue": "arXiv preprint",
+    "rawType": "preprint",
+    "effectiveType": "preprint",
+    "typeLabel": "Preprint",
+    "doi": "",
+    "arxivId": "2605.21706",
+    "publicationUrl": "",
+    "arxivUrl": "https://arxiv.org/abs/2605.21706",
+    "bibtex": "@misc{piras2026latentspaceattacksfo,\n  title = {Latent-space Attacks for Refusal Evasion in Language Models},\n  author = {Piras, Giorgio and Mura, Raffaele and Brau, Fabio and Pintor, Maura and Oneto, Luca and Roli, Fabio and Biggio, Battista},\n  year = {2026},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2605.21706}\n}",
+    "bibtexSource": "Reconstructed from metadata",
+    "isPublished": false,
+    "isTopConference": false,
+    "isQ1Journal": false,
+    "isArxivOnly": true,
+    "filterType": "preprint"
+  },
+  {
     "title": "Label-efficient Training Updates for Malware Detection over Time",
     "authors": [
       "Luca Minnei",
