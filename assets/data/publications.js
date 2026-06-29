@@ -515,6 +515,31 @@ window.PUBLICATIONS_DATA = [
     "filterType": "conference"
   },
   {
+    "title": "Counterfeit Answers: Adversarial Forgery against OCR-Free Document Visual Question Answering",
+    "authors": [
+      "Marco Pintore",
+      "Maura Pintor",
+      "Dimosthenis Karatzas",
+      "Battista Biggio"
+    ],
+    "year": "2025",
+    "venue": "arXiv preprint",
+    "rawType": "preprint",
+    "effectiveType": "preprint",
+    "typeLabel": "Preprint",
+    "doi": "",
+    "arxivId": "2512.04554",
+    "publicationUrl": "",
+    "arxivUrl": "https://arxiv.org/abs/2512.04554",
+    "bibtex": "@misc{pintore2025counterfeitanswersad,\n  title = {Counterfeit Answers: Adversarial Forgery against OCR-Free Document Visual Question Answering},\n  author = {Pintore, Marco and Pintor, Maura and Karatzas, Dimosthenis and Biggio, Battista},\n  year = {2025},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2512.04554}\n}",
+    "bibtexSource": "Reconstructed from metadata",
+    "isPublished": false,
+    "isTopConference": false,
+    "isQ1Journal": false,
+    "isArxivOnly": true,
+    "filterType": "preprint"
+  },
+  {
     "title": "Prototype-Guided Robust Learning against Backdoor Attacks",
     "authors": [
       "Wei Guo",
@@ -589,31 +614,6 @@ window.PUBLICATIONS_DATA = [
     "publicationUrl": "",
     "arxivUrl": "https://arxiv.org/abs/2512.19725",
     "bibtex": "@misc{gupta2025outofdistributiondet,\n  title = {Out-of-Distribution Detection for Continual Learning: Design Principles and Benchmarking},\n  author = {Gupta, Srishti and Balia, Riccardo and Angioni, Daniele and Brau, Fabio and Pintor, Maura and Demontis, Ambra and Sebastian, Alessandro and Carta, Salvatore Mario and Roli, Fabio and Biggio, Battista},\n  year = {2025},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2512.19725}\n}",
-    "bibtexSource": "Reconstructed from metadata",
-    "isPublished": false,
-    "isTopConference": false,
-    "isQ1Journal": false,
-    "isArxivOnly": true,
-    "filterType": "preprint"
-  },
-  {
-    "title": "Counterfeit Answers: Adversarial Forgery against OCR-Free Document Visual Question Answering",
-    "authors": [
-      "Marco Pintore",
-      "Maura Pintor",
-      "Dimosthenis Karatzas",
-      "Battista Biggio"
-    ],
-    "year": "2025",
-    "venue": "arXiv preprint",
-    "rawType": "preprint",
-    "effectiveType": "preprint",
-    "typeLabel": "Preprint",
-    "doi": "",
-    "arxivId": "2512.04554",
-    "publicationUrl": "",
-    "arxivUrl": "https://arxiv.org/abs/2512.04554",
-    "bibtex": "@misc{pintore2025counterfeitanswersad,\n  title = {Counterfeit Answers: Adversarial Forgery against OCR-Free Document Visual Question Answering},\n  author = {Pintore, Marco and Pintor, Maura and Karatzas, Dimosthenis and Biggio, Battista},\n  year = {2025},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2512.04554}\n}",
     "bibtexSource": "Reconstructed from metadata",
     "isPublished": false,
     "isTopConference": false,
