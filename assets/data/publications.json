@@ -104,6 +104,36 @@
     "filterType": "other"
   },
   {
+    "title": "Regression-aware Continual Learning for Android Malware Detection",
+    "authors": [
+      "Ghiani, Daniele",
+      "Angioni, Daniele",
+      "Piras, Giorgio",
+      "Sotgiu, Angelo",
+      "Minnei, Luca",
+      "Gupta, Srishti",
+      "Pintor, Maura",
+      "Roli, Fabio",
+      "Biggio, Battista"
+    ],
+    "year": "2026",
+    "venue": "IEEE Transactions on Information Forensics and Security",
+    "rawType": "journal-article",
+    "effectiveType": "journal-article",
+    "typeLabel": "Journal article",
+    "doi": "10.1109/TIFS.2026.3714132",
+    "arxivId": "2507.18313",
+    "publicationUrl": "https://doi.org/10.1109/TIFS.2026.3714132",
+    "arxivUrl": "https://arxiv.org/abs/2507.18313",
+    "bibtex": "@article{ghiani2026regressionawareconti,\n  title = {Regression-aware Continual Learning for Android Malware Detection},\n  author = {Ghiani, Daniele and Angioni, Daniele and Piras, Giorgio and Sotgiu, Angelo and Minnei, Luca and Gupta, Srishti and Pintor, Maura and Roli, Fabio and Biggio, Battista},\n  year = {2026},\n  journal = {IEEE Transactions on Information Forensics and Security},\n  pages = {1--1},\n  doi = {10.1109/TIFS.2026.3714132},\n  url = {https://doi.org/10.1109/TIFS.2026.3714132}\n}",
+    "bibtexSource": "Reconstructed from metadata",
+    "isPublished": true,
+    "isTopConference": false,
+    "isQ1Journal": true,
+    "isArxivOnly": false,
+    "filterType": "journal"
+  },
+  {
     "title": "Latent-space Attacks for Refusal Evasion in Language Models",
     "authors": [
       "Giorgio Piras",
@@ -513,36 +543,6 @@
     "isQ1Journal": false,
     "isArxivOnly": false,
     "filterType": "conference"
-  },
-  {
-    "title": "Regression-aware Continual Learning for Android Malware Detection",
-    "authors": [
-      "Daniele Ghiani",
-      "Daniele Angioni",
-      "Giorgio Piras",
-      "Angelo Sotgiu",
-      "Luca Minnei",
-      "Srishti Gupta",
-      "Maura Pintor",
-      "Fabio Roli",
-      "Battista Biggio"
-    ],
-    "year": "2025",
-    "venue": "arXiv preprint",
-    "rawType": "preprint",
-    "effectiveType": "preprint",
-    "typeLabel": "Preprint",
-    "doi": "",
-    "arxivId": "2507.18313",
-    "publicationUrl": "",
-    "arxivUrl": "https://arxiv.org/abs/2507.18313",
-    "bibtex": "@misc{ghiani2025regressionawareconti,\n  title = {Regression-aware Continual Learning for Android Malware Detection},\n  author = {Ghiani, Daniele and Angioni, Daniele and Piras, Giorgio and Sotgiu, Angelo and Minnei, Luca and Gupta, Srishti and Pintor, Maura and Roli, Fabio and Biggio, Battista},\n  year = {2025},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2507.18313}\n}",
-    "bibtexSource": "Reconstructed from metadata",
-    "isPublished": false,
-    "isTopConference": false,
-    "isQ1Journal": false,
-    "isArxivOnly": true,
-    "filterType": "preprint"
   },
   {
     "title": "Counterfeit Answers: Adversarial Forgery against OCR-Free Document Visual Question Answering",
