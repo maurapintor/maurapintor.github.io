@@ -104,6 +104,31 @@
     "filterType": "other"
   },
   {
+    "title": "Prototype-Guided Robust Learning against Backdoor Attacks",
+    "authors": [
+      "Guo, Wei",
+      "Pintor, Maura",
+      "Demontis, Ambra",
+      "Biggio, Battista"
+    ],
+    "year": "2026",
+    "venue": "Elsevier BV",
+    "rawType": "preprint",
+    "effectiveType": "preprint",
+    "typeLabel": "Preprint",
+    "doi": "10.2139/ssrn.7157274",
+    "arxivId": "2509.08748",
+    "publicationUrl": "https://doi.org/10.2139/ssrn.7157274",
+    "arxivUrl": "https://arxiv.org/abs/2509.08748",
+    "bibtex": "@misc{guo2026prototypeguidedrobus,\n  title = {Prototype-Guided Robust Learning against Backdoor Attacks},\n  author = {Guo, Wei and Pintor, Maura and Demontis, Ambra and Biggio, Battista},\n  year = {2026},\n  howpublished = {Elsevier BV},\n  publisher = {Elsevier BV},\n  doi = {10.2139/ssrn.7157274},\n  url = {https://doi.org/10.2139/ssrn.7157274}\n}",
+    "bibtexSource": "Reconstructed from metadata",
+    "isPublished": true,
+    "isTopConference": false,
+    "isQ1Journal": false,
+    "isArxivOnly": false,
+    "filterType": "preprint"
+  },
+  {
     "title": "Regression-aware Continual Learning for Android Malware Detection",
     "authors": [
       "Ghiani, Daniele",
@@ -132,6 +157,35 @@
     "isQ1Journal": true,
     "isArxivOnly": false,
     "filterType": "journal"
+  },
+  {
+    "title": "Adversarial Frontiers: Minimum-Norm Attack Ensembles for Robustness Evaluation",
+    "authors": [
+      "Luca Scionis",
+      "Luca Melis",
+      "Maura Pintor",
+      "Fabio Brau",
+      "Ambra Demontis",
+      "Giorgio Fumera",
+      "Fabio Roli",
+      "Battista Biggio"
+    ],
+    "year": "2026",
+    "venue": "arXiv preprint",
+    "rawType": "preprint",
+    "effectiveType": "preprint",
+    "typeLabel": "Preprint",
+    "doi": "",
+    "arxivId": "2607.19855",
+    "publicationUrl": "",
+    "arxivUrl": "https://arxiv.org/abs/2607.19855",
+    "bibtex": "@misc{scionis2026adversarialfrontiers,\n  title = {Adversarial Frontiers: Minimum-Norm Attack Ensembles for Robustness Evaluation},\n  author = {Scionis, Luca and Melis, Luca and Pintor, Maura and Brau, Fabio and Demontis, Ambra and Fumera, Giorgio and Roli, Fabio and Biggio, Battista},\n  year = {2026},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2607.19855}\n}",
+    "bibtexSource": "Reconstructed from metadata",
+    "isPublished": false,
+    "isTopConference": false,
+    "isQ1Journal": false,
+    "isArxivOnly": true,
+    "filterType": "preprint"
   },
   {
     "title": "Latent-space Attacks for Refusal Evasion in Language Models",
@@ -562,31 +616,6 @@
     "publicationUrl": "",
     "arxivUrl": "https://arxiv.org/abs/2512.04554",
     "bibtex": "@misc{pintore2025counterfeitanswersad,\n  title = {Counterfeit Answers: Adversarial Forgery against OCR-Free Document Visual Question Answering},\n  author = {Pintore, Marco and Pintor, Maura and Karatzas, Dimosthenis and Biggio, Battista},\n  year = {2025},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2512.04554}\n}",
-    "bibtexSource": "Reconstructed from metadata",
-    "isPublished": false,
-    "isTopConference": false,
-    "isQ1Journal": false,
-    "isArxivOnly": true,
-    "filterType": "preprint"
-  },
-  {
-    "title": "Prototype-Guided Robust Learning against Backdoor Attacks",
-    "authors": [
-      "Wei Guo",
-      "Maura Pintor",
-      "Ambra Demontis",
-      "Battista Biggio"
-    ],
-    "year": "2025",
-    "venue": "arXiv preprint",
-    "rawType": "preprint",
-    "effectiveType": "preprint",
-    "typeLabel": "Preprint",
-    "doi": "",
-    "arxivId": "2509.08748",
-    "publicationUrl": "",
-    "arxivUrl": "https://arxiv.org/abs/2509.08748",
-    "bibtex": "@misc{guo2025prototypeguidedrobus,\n  title = {Prototype-Guided Robust Learning against Backdoor Attacks},\n  author = {Guo, Wei and Pintor, Maura and Demontis, Ambra and Biggio, Battista},\n  year = {2025},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2509.08748}\n}",
     "bibtexSource": "Reconstructed from metadata",
     "isPublished": false,
     "isTopConference": false,
