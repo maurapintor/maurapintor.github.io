@@ -129,7 +129,7 @@ window.PUBLICATIONS_DATA = [
     "filterType": "preprint"
   },
   {
-    "title": "Regression-aware Continual Learning for Android Malware Detection",
+    "title": "Regression-Aware Continual Learning for Android Malware Detection",
     "authors": [
       "Ghiani, Daniele",
       "Angioni, Daniele",
@@ -150,13 +150,42 @@ window.PUBLICATIONS_DATA = [
     "arxivId": "2507.18313",
     "publicationUrl": "https://doi.org/10.1109/TIFS.2026.3714132",
     "arxivUrl": "https://arxiv.org/abs/2507.18313",
-    "bibtex": "@article{ghiani2026regressionawareconti,\n  title = {Regression-aware Continual Learning for Android Malware Detection},\n  author = {Ghiani, Daniele and Angioni, Daniele and Piras, Giorgio and Sotgiu, Angelo and Minnei, Luca and Gupta, Srishti and Pintor, Maura and Roli, Fabio and Biggio, Battista},\n  year = {2026},\n  journal = {IEEE Transactions on Information Forensics and Security},\n  pages = {1--1},\n  doi = {10.1109/TIFS.2026.3714132},\n  url = {https://doi.org/10.1109/TIFS.2026.3714132}\n}",
+    "bibtex": "@article{ghiani2026regressionawareconti,\n  title = {Regression-Aware Continual Learning for Android Malware Detection},\n  author = {Ghiani, Daniele and Angioni, Daniele and Piras, Giorgio and Sotgiu, Angelo and Minnei, Luca and Gupta, Srishti and Pintor, Maura and Roli, Fabio and Biggio, Battista},\n  year = {2026},\n  journal = {IEEE Transactions on Information Forensics and Security},\n  volume = {21},\n  pages = {6845--6854},\n  doi = {10.1109/TIFS.2026.3714132},\n  url = {https://doi.org/10.1109/TIFS.2026.3714132}\n}",
     "bibtexSource": "Reconstructed from metadata",
     "isPublished": true,
     "isTopConference": false,
     "isQ1Journal": true,
     "isArxivOnly": false,
     "filterType": "journal"
+  },
+  {
+    "title": "EXE-Bench: Ranking the Tradeoffs of AI-based Windows Malware Detectors for Real-World Usability",
+    "authors": [
+      "Andrea Ponte",
+      "Daniel Gibert",
+      "Matous Kozak",
+      "Dmitrijs Trizna",
+      "Maura Pintor",
+      "Battista Biggio",
+      "Fabio Roli",
+      "Luca Demetrio"
+    ],
+    "year": "2026",
+    "venue": "arXiv preprint",
+    "rawType": "preprint",
+    "effectiveType": "preprint",
+    "typeLabel": "Preprint",
+    "doi": "",
+    "arxivId": "2607.24177",
+    "publicationUrl": "",
+    "arxivUrl": "https://arxiv.org/abs/2607.24177",
+    "bibtex": "@misc{ponte2026exebenchrankingthetr,\n  title = {EXE-Bench: Ranking the Tradeoffs of AI-based Windows Malware Detectors for Real-World Usability},\n  author = {Ponte, Andrea and Gibert, Daniel and Kozak, Matous and Trizna, Dmitrijs and Pintor, Maura and Biggio, Battista and Roli, Fabio and Demetrio, Luca},\n  year = {2026},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2607.24177}\n}",
+    "bibtexSource": "Reconstructed from metadata",
+    "isPublished": false,
+    "isTopConference": false,
+    "isQ1Journal": false,
+    "isArxivOnly": true,
+    "filterType": "preprint"
   },
   {
     "title": "Adversarial Frontiers: Minimum-Norm Attack Ensembles for Robustness Evaluation",
