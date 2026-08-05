@@ -80,7 +80,7 @@ window.SITE_CONFIG = Object.freeze({
     courses: [
       {
         role: "main_teacher",
-        url: "https://unica.coursecatalogue.cineca.it/corsi/2025/11199/insegnamenti/2027/21674/2025/2?schemaid=5185"
+        url: "https://unica.coursecatalogue.cineca.it/corsi/2023/11037/insegnamenti/2025/21674/2022/2?coorte=2023&schemaid=4623"
       },
       {
         role: "teaching_assistant",
