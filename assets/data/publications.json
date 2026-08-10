@@ -575,6 +575,35 @@
     "filterType": "journal"
   },
   {
+    "title": "TransferBench: Benchmarking Ensemble-based Black-box Transfer Attacks",
+    "authors": [
+      "Brau, Fabio",
+      "Pintor, Maura",
+      "Cinà, Antonio",
+      "Mura, Raffaele",
+      "Scionis, Luca",
+      "Oneto, Luca",
+      "Roli, Fabio",
+      "Biggio, Battista"
+    ],
+    "year": "2025",
+    "venue": "Advances in Neural Information Processing Systems 38 (NeurIPS 2025)",
+    "rawType": "conference-paper",
+    "effectiveType": "conference-paper",
+    "typeLabel": "Conference paper",
+    "doi": "",
+    "arxivId": "",
+    "publicationUrl": "https://iris.unica.it/handle/11584/490630",
+    "arxivUrl": "",
+    "bibtex": "@misc{\n\t11584_490630,\n\tauthor = {Brau, Fabio and Pintor, Maura and Cinà, Antonio and Mura, Raffaele and Scionis, Luca and Oneto, Luca and Roli, Fabio and Biggio, Battista},\n\ttitle = {TransferBench: Benchmarking Ensemble-based Black-box Transfer Attacks},\n\tyear = {2025},\n\tbooktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS 2025)}\n}",
+    "bibtexSource": "ORCID",
+    "isPublished": true,
+    "isTopConference": true,
+    "isQ1Journal": false,
+    "isArxivOnly": false,
+    "filterType": "conference"
+  },
+  {
     "title": "Understanding Regression in Continual Learning for Malware Detection",
     "authors": [
       "Ghiani, Daniele",
