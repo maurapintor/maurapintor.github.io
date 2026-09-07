@@ -53,6 +53,31 @@
     "filterType": "journal"
   },
   {
+    "title": "Counterfeit answers: adversarial forgery against OCR-Free document visual question answering",
+    "authors": [
+      "Pintore, Marco",
+      "Pintor, Maura",
+      "Karatzas, Dimosthenis",
+      "Biggio, Battista"
+    ],
+    "year": "2026",
+    "venue": "Lecture Notes in Computer Science",
+    "rawType": "conference-paper",
+    "effectiveType": "conference-paper",
+    "typeLabel": "Conference paper",
+    "doi": "10.1007/978-3-032-36042-7_16",
+    "arxivId": "2512.04554",
+    "publicationUrl": "https://doi.org/10.1007/978-3-032-36042-7_16",
+    "arxivUrl": "https://arxiv.org/abs/2512.04554",
+    "bibtex": "@misc{\n\t11584_492265,\n\tauthor = {Pintore, Marco and Pintor, Maura and Karatzas, Dimosthenis and Biggio, Battista},\n\ttitle = {Counterfeit answers: adversarial forgery against OCR-Free document visual question answering},\n\tyear = {2026},\n\tpublisher = {Springer},\n\taddress = {Cham},\n\tvolume = {16975},\n\tbooktitle = {Document Analysis and Recognition – ICDAR 2026. Proceedings, Part IV},\n\tdoi = {10.1007/978-3-032-36042-7_16},\n\tisbn = {9783032360410},\t\n\tisbn = {9783032360427},\t\n\tpages = {265--281}\n}",
+    "bibtexSource": "ORCID",
+    "isPublished": true,
+    "isTopConference": false,
+    "isQ1Journal": false,
+    "isArxivOnly": false,
+    "filterType": "conference"
+  },
+  {
     "title": "Evaluating line-level localization ability of learning-based code vulnerability detection models",
     "authors": [
       "Pintore, Marco",
@@ -575,7 +600,7 @@
     "filterType": "journal"
   },
   {
-    "title": "TransferBench: Benchmarking Ensemble-based Black-box Transfer Attacks",
+    "title": "TransferBench: benchmarking ensemble-based black-box transfer attacks",
     "authors": [
       "Brau, Fabio",
       "Pintor, Maura",
@@ -587,18 +612,18 @@
       "Biggio, Battista"
     ],
     "year": "2025",
-    "venue": "Advances in Neural Information Processing Systems 38 (NeurIPS 2025)",
+    "venue": "Advances in Neural Information Processing Systems 38",
     "rawType": "conference-paper",
     "effectiveType": "conference-paper",
     "typeLabel": "Conference paper",
-    "doi": "",
+    "doi": "10.52202/085713-4665",
     "arxivId": "",
-    "publicationUrl": "https://iris.unica.it/handle/11584/490630",
+    "publicationUrl": "https://doi.org/10.52202/085713-4665",
     "arxivUrl": "",
-    "bibtex": "@misc{\n\t11584_490630,\n\tauthor = {Brau, Fabio and Pintor, Maura and Cinà, Antonio and Mura, Raffaele and Scionis, Luca and Oneto, Luca and Roli, Fabio and Biggio, Battista},\n\ttitle = {TransferBench: Benchmarking Ensemble-based Black-box Transfer Attacks},\n\tyear = {2025},\n\tbooktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS 2025)}\n}",
+    "bibtex": "@misc{\n\t11584_490630,\n\tauthor = {Brau, Fabio and Pintor, Maura and Cinà, Antonio and Mura, Raffaele and Scionis, Luca and Oneto, Luca and Roli, Fabio and Biggio, Battista},\n\ttitle = {TransferBench: benchmarking ensemble-based black-box transfer attacks},\n\tyear = {2025},\n\tpublisher = {Neural Information Processing Systems Foundation, Inc. (NeurIPS)},\n\tvolume = {38},\n\tbooktitle = {Advances in Neural Information Processing Systems 38. 39th Conference on Neural Information Processing Systems (NeurIPS 2025)},\n\turl = {TransferBench: Benchmarking Ensemble-based Black-box Transfer Attacks - proceedings.com},\n\tdoi = {10.52202/085713-4665},\n\tisbn = {9798331338275},\t\n\tpages = {154897--154922}\n}",
     "bibtexSource": "ORCID",
     "isPublished": true,
-    "isTopConference": true,
+    "isTopConference": false,
     "isQ1Journal": false,
     "isArxivOnly": false,
     "filterType": "conference"
@@ -655,31 +680,6 @@
     "isQ1Journal": false,
     "isArxivOnly": false,
     "filterType": "conference"
-  },
-  {
-    "title": "Counterfeit Answers: Adversarial Forgery against OCR-Free Document Visual Question Answering",
-    "authors": [
-      "Marco Pintore",
-      "Maura Pintor",
-      "Dimosthenis Karatzas",
-      "Battista Biggio"
-    ],
-    "year": "2025",
-    "venue": "arXiv preprint",
-    "rawType": "preprint",
-    "effectiveType": "preprint",
-    "typeLabel": "Preprint",
-    "doi": "",
-    "arxivId": "2512.04554",
-    "publicationUrl": "",
-    "arxivUrl": "https://arxiv.org/abs/2512.04554",
-    "bibtex": "@misc{pintore2025counterfeitanswersad,\n  title = {Counterfeit Answers: Adversarial Forgery against OCR-Free Document Visual Question Answering},\n  author = {Pintore, Marco and Pintor, Maura and Karatzas, Dimosthenis and Biggio, Battista},\n  year = {2025},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2512.04554}\n}",
-    "bibtexSource": "Reconstructed from metadata",
-    "isPublished": false,
-    "isTopConference": false,
-    "isQ1Journal": false,
-    "isArxivOnly": true,
-    "filterType": "preprint"
   },
   {
     "title": "Silent Until Sparse: Backdoor Attacks on Semi-Structured Sparsity",
