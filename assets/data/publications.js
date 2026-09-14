@@ -104,6 +104,39 @@ window.PUBLICATIONS_DATA = [
     "filterType": "journal"
   },
   {
+    "title": "Over-parameterization and adversarial robustness in neural networks: an overview and empirical analysis",
+    "authors": [
+      "Gupta, Srishti",
+      "Chen, Zhang",
+      "Demetrio, Luca",
+      "Brau, Fabio",
+      "Feng, Xiaoyi",
+      "Xia, Zhaoqiang",
+      "Cinà, Antonio Emanuele",
+      "Pintor, Maura",
+      "Oneto, Luca",
+      "Demontis, Ambra",
+      "Biggio, Battista",
+      "Roli, Fabio"
+    ],
+    "year": "2026",
+    "venue": "Discover Artificial Intelligence",
+    "rawType": "journal-article",
+    "effectiveType": "journal-article",
+    "typeLabel": "Journal article",
+    "doi": "10.1007/s44163-026-01621-5",
+    "arxivId": "",
+    "publicationUrl": "https://doi.org/10.1007/s44163-026-01621-5",
+    "arxivUrl": "",
+    "bibtex": "@article{\n\t11584_493046,\n\tauthor = {Gupta, Srishti and Chen, Zhang and Demetrio, Luca and Brau, Fabio and Feng, Xiaoyi and Xia, Zhaoqiang and Cinà, Antonio Emanuele and Pintor, Maura and Oneto, Luca and Demontis, Ambra and Biggio, Battista and Roli, Fabio},\n\ttitle = {Over-parameterization and adversarial robustness in neural networks: an overview and empirical analysis},\n\tyear = {2026},\n\tjournal = {DISCOVER ARTIFICIAL INTELLIGENCE},\n\tvolume = {6},\n\tdoi = {10.1007/s44163-026-01621-5},\n\tnumber = {1}\n}",
+    "bibtexSource": "ORCID",
+    "isPublished": true,
+    "isTopConference": false,
+    "isQ1Journal": true,
+    "isArxivOnly": false,
+    "filterType": "journal"
+  },
+  {
     "title": "Position-Aware Stamp-Like Adversarial Attack for Document Classification",
     "authors": [
       "Dong, Qi",
