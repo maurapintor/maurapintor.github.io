@@ -1,5 +1,34 @@
 window.PUBLICATIONS_DATA = [
   {
+    "title": "ADP: Activation-Driven Neuron Pruning",
+    "authors": [
+      "Lazzaro, Dario",
+      "Ciná, Antonio Emanuele",
+      "Pintor, Maura",
+      "Demontis, Ambra",
+      "Biggio, Battista",
+      "Roli, Fabio",
+      "Pelillo, Marcello",
+      "Oneto, Luca"
+    ],
+    "year": "2027",
+    "venue": "Lecture Notes in Computer Science",
+    "rawType": "book-chapter",
+    "effectiveType": "book-chapter",
+    "typeLabel": "Chapter contribution",
+    "doi": "10.1007/978-3-032-38398-3_37",
+    "arxivId": "",
+    "publicationUrl": "https://doi.org/10.1007/978-3-032-38398-3_37",
+    "arxivUrl": "",
+    "bibtex": "@incollection{lazzaro2027adpactivationdrivenn,\n  title = {ADP: Activation-Driven Neuron Pruning},\n  author = {Lazzaro, Dario and Ciná, Antonio Emanuele and Pintor, Maura and Demontis, Ambra and Biggio, Battista and Roli, Fabio and Pelillo, Marcello and Oneto, Luca},\n  year = {2027},\n  booktitle = {Lecture Notes in Computer Science},\n  publisher = {Springer Nature Switzerland},\n  pages = {445--457},\n  doi = {10.1007/978-3-032-38398-3_37},\n  url = {https://doi.org/10.1007/978-3-032-38398-3_37}\n}",
+    "bibtexSource": "Reconstructed from metadata",
+    "isPublished": true,
+    "isTopConference": false,
+    "isQ1Journal": false,
+    "isArxivOnly": false,
+    "filterType": "other"
+  },
+  {
     "title": "Discrete prompt optimization using genetic algorithm for secure Python code generation",
     "authors": [
       "Tony, Catherine",
