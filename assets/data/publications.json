@@ -166,6 +166,35 @@
     "filterType": "journal"
   },
   {
+    "title": "EXE-Bench: Ranking the Tradeoffs of AI-based Windows Malware Detectors for Real-World Usability",
+    "authors": [
+      "Ponte, Andrea",
+      "Gibert, Daniel",
+      "Kozak, Matous",
+      "Trizna, Dmitrijs",
+      "Pintor, Maura",
+      "Biggio, Battista",
+      "Roli, Fabio",
+      "Demetrio, Luca"
+    ],
+    "year": "2026",
+    "venue": "IEEE Transactions on Information Forensics and Security",
+    "rawType": "journal-article",
+    "effectiveType": "journal-article",
+    "typeLabel": "Journal article",
+    "doi": "10.1109/TIFS.2026.3734783",
+    "arxivId": "2607.24177",
+    "publicationUrl": "https://doi.org/10.1109/TIFS.2026.3734783",
+    "arxivUrl": "https://arxiv.org/abs/2607.24177",
+    "bibtex": "@article{ponte2026exebenchrankingthetr,\n  title = {EXE-Bench: Ranking the Tradeoffs of AI-based Windows Malware Detectors for Real-World Usability},\n  author = {Ponte, Andrea and Gibert, Daniel and Kozak, Matous and Trizna, Dmitrijs and Pintor, Maura and Biggio, Battista and Roli, Fabio and Demetrio, Luca},\n  year = {2026},\n  journal = {IEEE Transactions on Information Forensics and Security},\n  pages = {1--1},\n  doi = {10.1109/TIFS.2026.3734783},\n  url = {https://doi.org/10.1109/TIFS.2026.3734783}\n}",
+    "bibtexSource": "Reconstructed from metadata",
+    "isPublished": true,
+    "isTopConference": false,
+    "isQ1Journal": true,
+    "isArxivOnly": false,
+    "filterType": "journal"
+  },
+  {
     "title": "Position-Aware Stamp-Like Adversarial Attack for Document Classification",
     "authors": [
       "Dong, Qi",
@@ -244,35 +273,6 @@
     "isQ1Journal": true,
     "isArxivOnly": false,
     "filterType": "journal"
-  },
-  {
-    "title": "EXE-Bench: Ranking the Tradeoffs of AI-based Windows Malware Detectors for Real-World Usability",
-    "authors": [
-      "Andrea Ponte",
-      "Daniel Gibert",
-      "Matous Kozak",
-      "Dmitrijs Trizna",
-      "Maura Pintor",
-      "Battista Biggio",
-      "Fabio Roli",
-      "Luca Demetrio"
-    ],
-    "year": "2026",
-    "venue": "arXiv preprint",
-    "rawType": "preprint",
-    "effectiveType": "preprint",
-    "typeLabel": "Preprint",
-    "doi": "",
-    "arxivId": "2607.24177",
-    "publicationUrl": "",
-    "arxivUrl": "https://arxiv.org/abs/2607.24177",
-    "bibtex": "@misc{ponte2026exebenchrankingthetr,\n  title = {EXE-Bench: Ranking the Tradeoffs of AI-based Windows Malware Detectors for Real-World Usability},\n  author = {Ponte, Andrea and Gibert, Daniel and Kozak, Matous and Trizna, Dmitrijs and Pintor, Maura and Biggio, Battista and Roli, Fabio and Demetrio, Luca},\n  year = {2026},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2607.24177}\n}",
-    "bibtexSource": "Reconstructed from metadata",
-    "isPublished": false,
-    "isTopConference": false,
-    "isQ1Journal": false,
-    "isArxivOnly": true,
-    "filterType": "preprint"
   },
   {
     "title": "Adversarial Frontiers: Minimum-Norm Attack Ensembles for Robustness Evaluation",
