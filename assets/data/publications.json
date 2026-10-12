@@ -166,7 +166,7 @@
     "filterType": "journal"
   },
   {
-    "title": "EXE-Bench: Ranking the Tradeoffs of AI-based Windows Malware Detectors for Real-World Usability",
+    "title": "EXE-Bench: Ranking the Tradeoffs of AI-Based Windows Malware Detectors for Real-World Usability",
     "authors": [
       "Ponte, Andrea",
       "Gibert, Daniel",
@@ -186,7 +186,7 @@
     "arxivId": "2607.24177",
     "publicationUrl": "https://doi.org/10.1109/TIFS.2026.3734783",
     "arxivUrl": "https://arxiv.org/abs/2607.24177",
-    "bibtex": "@article{ponte2026exebenchrankingthetr,\n  title = {EXE-Bench: Ranking the Tradeoffs of AI-based Windows Malware Detectors for Real-World Usability},\n  author = {Ponte, Andrea and Gibert, Daniel and Kozak, Matous and Trizna, Dmitrijs and Pintor, Maura and Biggio, Battista and Roli, Fabio and Demetrio, Luca},\n  year = {2026},\n  journal = {IEEE Transactions on Information Forensics and Security},\n  pages = {1--1},\n  doi = {10.1109/TIFS.2026.3734783},\n  url = {https://doi.org/10.1109/TIFS.2026.3734783}\n}",
+    "bibtex": "@article{ponte2026exebenchrankingthetr,\n  title = {EXE-Bench: Ranking the Tradeoffs of AI-Based Windows Malware Detectors for Real-World Usability},\n  author = {Ponte, Andrea and Gibert, Daniel and Kozak, Matous and Trizna, Dmitrijs and Pintor, Maura and Biggio, Battista and Roli, Fabio and Demetrio, Luca},\n  year = {2026},\n  journal = {IEEE Transactions on Information Forensics and Security},\n  volume = {21},\n  pages = {9007--9020},\n  doi = {10.1109/TIFS.2026.3734783},\n  url = {https://doi.org/10.1109/TIFS.2026.3734783}\n}",
     "bibtexSource": "Reconstructed from metadata",
     "isPublished": true,
     "isTopConference": false,
@@ -273,6 +273,31 @@
     "isQ1Journal": true,
     "isArxivOnly": false,
     "filterType": "journal"
+  },
+  {
+    "title": "Lipschitz Thinking: Ten Years of Certifiable-by-Design Robust Neural Networks",
+    "authors": [
+      "Fabio Brau",
+      "Giorgio Piras",
+      "Maura Pintor",
+      "Battista Biggio"
+    ],
+    "year": "2026",
+    "venue": "arXiv preprint",
+    "rawType": "preprint",
+    "effectiveType": "preprint",
+    "typeLabel": "Preprint",
+    "doi": "",
+    "arxivId": "2610.06252",
+    "publicationUrl": "",
+    "arxivUrl": "https://arxiv.org/abs/2610.06252",
+    "bibtex": "@misc{brau2026lipschitzthinkingten,\n  title = {Lipschitz Thinking: Ten Years of Certifiable-by-Design Robust Neural Networks},\n  author = {Brau, Fabio and Piras, Giorgio and Pintor, Maura and Biggio, Battista},\n  year = {2026},\n  howpublished = {arXiv preprint},\n  url = {https://arxiv.org/abs/2610.06252}\n}",
+    "bibtexSource": "Reconstructed from metadata",
+    "isPublished": false,
+    "isTopConference": false,
+    "isQ1Journal": false,
+    "isArxivOnly": true,
+    "filterType": "preprint"
   },
   {
     "title": "Adversarial Frontiers: Minimum-Norm Attack Ensembles for Robustness Evaluation",
